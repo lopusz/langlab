@@ -1,0 +1,12 @@
+* langlab-base
+
+A Clojure library to unify language processing tools available in Java.
+
+Currently, this is in pre-alpha, work in progress stage. Come back later
+for something useful.
+
+* License
+
+Copyright © 2013 lopusz
+
+Distributed under the Eclipse Public License, the same as Clojure.
