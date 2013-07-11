@@ -6,7 +6,10 @@
 
   ; DEPENDENCIES
 
-  :dependencies [[org.clojure/clojure "1.5.1"]]
+  :dependencies [   
+    [org.clojure/clojure "1.5.1"]
+    [com.cybozu.labs/langdetect "1.1-20120112"]
+    ]
 
   ; SOURCE DIRECTORY RECONFIGURATION
 
