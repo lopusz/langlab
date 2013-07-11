@@ -1,4 +1,4 @@
-package langlab.base.characters;
+package langlab.base.core.characters;
 
 public class  CharacterTools {
     static final int [] LATIN_VOWELS = 

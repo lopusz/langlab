@@ -1,6 +1,6 @@
-(ns langlab-base.characters-test
+(ns langlab-base.core.characters-test
   (:require [clojure.test :refer :all]
-            [langlab-base.characters :refer :all]))
+            [langlab-base.core.characters :refer :all]))
 
 (deftest remove-diacritics-test
   (is (= (remove-diacritics "") ""))

@@ -1,4 +1,4 @@
-package langlab.base.characters;
+package langlab.base.core.characters;
 
 import java.text.Normalizer;
 import java.text.Normalizer.Form;

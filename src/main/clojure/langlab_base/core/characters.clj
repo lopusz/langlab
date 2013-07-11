@@ -1,5 +1,7 @@
-(ns langlab-base.characters
-  (:import [ langlab.base.characters CharacterTools StringTools ]))
+(ns langlab-base.core.characters
+  "Module integrates utilities involving characters (e.g., diacritics removal,
+   vowel groups detection, etc.)"
+  (:import [ langlab.base.core.characters CharacterTools StringTools ]))
 
 (defn remove-diacritics 
   "Remove diacritical marks from the string `s`, E.g., 'żółw' is transformed
