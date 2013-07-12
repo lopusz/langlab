@@ -1,6 +1,7 @@
 (ns langlab-base.core.characters
-  "Module integrates utilities involving characters (e.g., diacritics removal,
-   vowel groups detection, etc.)"
+  "Module includes string utilities operating on characters."
+
+   This includes, e.g., diacritics removal,  vowel groups detection, etc."
   (:import [ langlab.base.core.characters CharacterTools StringTools ]))
 
 (defn remove-diacritics 

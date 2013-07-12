@@ -1,5 +1,5 @@
 (ns langlab-base.cmns.coll
-  "Collection utilitites.")
+  "Module includes various collection utilitites.")
 
 ;; This does not follow the rule of verb in function name.
 ;; This is analogy for function keys.

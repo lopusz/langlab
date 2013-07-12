@@ -1,5 +1,5 @@
 (ns langlab-base.core.detectors
-  "Module integrates language detection utilities."
+  "Module includes language detection utilities."
   (:import [ com.cybozu.labs.langdetect Detector DetectorFactory ]))
 
 ;; The resources trick is from Chass Emerick. Thanks!
