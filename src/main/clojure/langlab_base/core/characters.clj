@@ -1,5 +1,5 @@
 (ns langlab-base.core.characters
-  "Module includes string utilities operating on characters."
+  "Module includes string utilities operating on characters.
 
    This includes, e.g., diacritics removal,  vowel groups detection, etc."
   (:import [ langlab.base.core.characters CharacterTools StringTools ]))
@@ -25,3 +25,16 @@
   (-> s
       (StringTools/removeDiacritics) 
       (StringTools/countLatinVowelGroupsWithoutFinal)))
+
+(defn contains-whitespace? [ ^String s ]
+  (StringTools/containsWhitespace s))
+
+(defn contains-whitespace-only? [ ^String s ]
+  (StringTools/containsWhitespaceOnly s))
+
+(defn contains-punct? [ ^String s ]
+  (StringTools/containsPunct s))
+      
+(defn contains-punct-only? [ ^String s ]
+    (StringTools/containsPunctOnly s))
+

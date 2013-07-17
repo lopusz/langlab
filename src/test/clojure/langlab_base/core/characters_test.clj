@@ -25,3 +25,30 @@
   (is (= (count-latin-vowel-groups-without-final "größer") 2))
   (is (= (count-latin-vowel-groups-without-final "personae") 2))
   (is (= (count-latin-vowel-groups-without-final "algorithm") 3)))
+
+(deftest contains-punct-test
+  (is (= (contains-punct? "") false))
+  (is (= (contains-punct? "test,test") true))
+  (is (= (contains-punct? ",;!") true))
+  (is (= (contains-punct? "a—") true))
+  (is (= (contains-punct? "¿xyz") true)))
+
+(deftest contains-punct-only-test
+  (is (= (contains-punct-only? "") false))
+  (is (= (contains-punct-only? ",;!") true))
+  (is (= (contains-punct-only? ",;!") true))
+  (is (= (contains-punct-only? "…¿„”—") true))
+  (is (= (contains-punct-only? "…¿a„”—") false))
+  (is (= (contains-punct-only? "z…¿„”—") false))
+  (is (= (contains-punct-only? ",;!b") false)))
+
+(deftest contains-whitespace-test
+  (is (= (contains-whitespace? "") false))
+  (is (= (contains-whitespace? "z…¿„”—") false))
+  (is (= (contains-whitespace? "z…¿\t„”—") true))
+  (is (= (contains-whitespace? "z…¿ \n„”—") true)))
+
+(deftest contains-whitespace-only-test
+  (is (= (contains-whitespace-only? "") false))
+  (is (= (contains-whitespace-only? "\ta\n") false))
+  (is (= (contains-whitespace-only? "\t \t\n") true)))

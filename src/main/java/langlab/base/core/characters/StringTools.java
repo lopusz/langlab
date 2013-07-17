@@ -51,12 +51,76 @@ public class StringTools {
         return numVowelGroups;
     }
     
-    public static String removeDiacritics(String string) {
-        return Normalizer.normalize(string, Form.NFD)
+    public static String removeDiacritics(String s) {
+        return Normalizer.normalize(s, Form.NFD)
             .replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
             .replace("ł","l")
             .replace("Ł","L");
 
     }
-}
 
+    public static boolean containsWhitespaceOnly(String s) {
+        boolean res=true;
+    
+        for(int i = 0; i < s.length(); ) {
+            int cp = s.codePointAt(i);
+            if (!Character.isWhitespace(cp)) {
+                res=false;
+                break;
+            }
+            i += Character.charCount(cp);
+        }
+
+        if (s.length()==0) { res=false; } 
+
+        return res;
+    }
+
+    public static boolean containsWhitespace(String s) {
+        boolean res=false;
+
+        for(int i = 0; i < s.length(); ) {
+            int cp = s.codePointAt(i);
+            if (Character.isWhitespace(cp)) {
+                res=true;
+                break;
+            }
+            i += Character.charCount(cp);
+        }
+
+        return res;
+    }
+
+    public static boolean containsPunctOnly(String s) {
+        boolean res=true;
+
+        for(int i = 0; i < s.length(); ) {
+            int cp = s.codePointAt(i);
+            if (!CharacterTools.isPunctuation(cp)) {
+                res=false;
+                break;
+            }
+           
+            i += Character.charCount(cp);
+        }
+
+        if (s.length()==0) { res=false; } 
+    
+        return res;
+    }
+
+    public static boolean containsPunct(String s) {
+        boolean res=false;
+
+        for(int i = 0; i < s.length(); ) {
+            int cp = s.codePointAt(i);
+            if (CharacterTools.isPunctuation(cp)) {
+                res=true;
+                break;
+            }
+            i += Character.charCount(cp);
+        }
+
+        return res;
+    }
+}
