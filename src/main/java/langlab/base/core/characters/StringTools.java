@@ -3,7 +3,9 @@ package langlab.base.core.characters;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
 
-public class StringTools {
+public final class StringTools {
+
+    private StringTools() {}
 
     public static int countLatinVowelGroups (String word) {
         boolean lastCharWasConsonant=true;

@@ -1,6 +1,9 @@
 package langlab.base.core.characters;
 
-public class  CharacterTools {
+public final class  CharacterTools {
+
+    private CharacterTools() {}
+
     static final int [] LATIN_VOWELS = 
                         { 'a', 'e', 'i', 'o', 'u', 'y', 
                           'A', 'E', 'I', 'O', 'U', 'Y' };
