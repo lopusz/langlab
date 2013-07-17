@@ -1,6 +1,6 @@
 (ns langlab-base.core.transformers
   "Module contains utilities for transforming tokens."
-  (:require [ clojure.string :refer (blank? split) ]
+  (:require [ clojure.string :refer (blank? split lower-case) ]
             [ langlab-base.core.characters :refer :all]))
 
 (defn merge-tokens-with-space
@@ -54,11 +54,11 @@
     (filter is-not-article? tokens)))
 
 (defn trans-drop-punct   [ tokens ]
-  (filter #(not (is-punct-token? %)) tokens))
+  (filter #(not (contains-punct-only? %)) tokens))
 
 (defn trans-lower-case [ tokens ]
   (map lower-case tokens))
 
 (defn trans-drop-punct-lower [ tokens ]
   (map lower-case
-   (trans-drop-punct tokens))) )
+   (trans-drop-punct tokens)))
