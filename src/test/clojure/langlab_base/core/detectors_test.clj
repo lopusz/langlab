@@ -2,7 +2,7 @@
   (:require 
     [ clojure.test :refer :all ]
     [ langlab-base.core.detectors :refer :all]
-    [ langlab-base.cmns.coll :refer (keys-sorted-by-val-desc)]))
+    [ langlab-base.cmns.colls :refer (keys-sorted-by-val-desc)]))
 
 (def test-data-pl-en
   (str "Żółw nad żółtą rzeką szedł." 

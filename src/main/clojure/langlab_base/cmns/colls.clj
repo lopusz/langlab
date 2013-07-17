@@ -1,4 +1,4 @@
-(ns langlab-base.cmns.coll
+(ns langlab-base.cmns.colls
   "Module includes various collection utilitites.")
 
 ;; This does not follow the rule of verb in function name.
