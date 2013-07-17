@@ -6,11 +6,13 @@
   :url ""
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
+  :aot :all
 
   ; DEPENDENCIES
 
   :dependencies [   
     [org.clojure/clojure "1.5.1"]
+    [org.clojure/math.numeric-tower "0.0.2"]
     ;; language detection
     [com.cybozu.labs/langdetect "1.1-20120112"]         
     ;; stemmers family + useful analysis utilities
@@ -18,6 +20,10 @@
     ;; Polish multistemming
     [org.carrot2/morfologik-stemming "1.6.0"]
     [org.carrot2/morfologik-polish "1.6.0"]
+    ;; ICU for improved parsing (BreakIterator)
+    [com.ibm.icu/icu4j "51.1"]
+    ;; OpenNLP Clojure wrappers
+    [clojure-opennlp "0.3.1"]
     ]
 
   ; SOURCE DIRECTORY RECONFIGURATION

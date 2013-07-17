@@ -13,12 +13,21 @@ public class ICUBreakIteratorWrapper implements Iterator<String> {
     int beg,end;
     boolean hasNextCalled;
 
-    public boolean hasNext() {
+    public boolean hasNext() {  
         if (!hasNextCalled) {
-            beg=end;
-            end=bi.next();
+            String res;
+            do { 
+                beg=end;
+                end=bi.next();
+                if (end!=BreakIterator.DONE) {
+                    res=s.substring(beg,end).trim();
+                } else {
+                    res="done";
+                }
+            } while ( res.length()==0 );
             hasNextCalled=true;
         }
+
         return (end!=BreakIterator.DONE);
     }
 

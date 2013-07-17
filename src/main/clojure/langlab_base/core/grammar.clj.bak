@@ -1,0 +1,46 @@
+(ns ted.grammar
+  (:use
+   [ clojure.string :only (lower-case replace) :rename {replace str-replace} ]
+   [ clojure.java.io :only (resource) ]
+   [ opennlp nlp treebank ]
+   cmn.should
+   ted.parsing))
+
+(def en-tag-pos-onlp-maxent 
+  (make-pos-tagger (resource "onlp_models_15/en-pos-maxent.bin" )))
+
+(def en-tag-pos-onlp-percept
+  (make-pos-tagger (resource "onlp_models_15/en-pos-perceptron.bin" )))
+
+(defn make-tag-pos-onlp [ model-fname ]
+  (make-pos-tagger model-fname))
+
+(defn make-chunk-treebank-onlp [ model-fname ]
+  (make-treebank-chunker model-fname))
+
+(def en-chunk-treebank-onlp 
+  (make-treebank-chunker (resource "onlp_models_15/en-chunker.bin")))
+
+(defn gen-noun-phrases
+  [ s gen-noun-phrases-env ]
+
+  (should (string? s))
+  (should (every? #(contains? gen-noun-phrases-env %)
+                 [ :split-sentences-f :split-tokens-f 
+                   :tag-pos-f :chunk-treebank-f :trans-tokens-f ])) 
+                  
+  (let [
+        { :keys [ split-sentences-f split-tokens-f tag-pos-f chunk-treebank-f 
+                  trans-tokens-f merge-tokens-f ]
+          :or  { merge-tokens-f merge-tokens-with-space } }
+          gen-noun-phrases-env
+       ]
+    (->> s
+     (split-sentences-f)
+     (map split-tokens-f)
+     (map tag-pos-f)
+     (mapcat chunk-treebank-f)
+     (filter #(= (:tag %) "NP"))
+     (map #(trans-tokens-f (:phrase %)))
+     (filter #(not (empty? %)))
+     (map merge-tokens-f))))

@@ -4,7 +4,7 @@
              BreakIteratorWrapper ICUBreakIteratorWrapper ])
   (:require [ clojure.string :refer (trim) ]
             [ langlab-base.core.transformers  
-                :refer (trans-tokens-drop-whitespace) ]))
+                :refer (trans-drop-whitespace) ]))
 
 ;  (:require 
 ;     [ opennlp nlp :refer (make-tokenizer make-sentence-detector)]))
@@ -34,7 +34,7 @@
    Sets language to `lang`.
    _Note_: It is not clear to me how the locale is used by BreakIterator."
   [ ^String lang ^String s ]
-  (trans-tokens-drop-whitespace
+  (trans-drop-whitespace
     (iterator-seq (BreakIteratorWrapper/getWordIterator s lang))))
 
 (defn en-split-tokens-bi 
@@ -63,18 +63,16 @@
    Sets language to `lang`.
    _Note_: It is not clear to me how the locale is used by BreakIterator."
   [ ^String lang ^String s ]
-  (trans-tokens-drop-whitespace
+  (trans-drop-whitespace
     (iterator-seq (ICUBreakIteratorWrapper/getWordIterator s lang))))
 
 (defn en-split-tokens-icu-bi 
   "Convenience function alias for `lg-split-tokens-icu-bi` for English."
   [ ^String s ]
-  (lg-split-tokens-bi "en" s))
+  (lg-split-tokens-icu-bi "en" s))
 
 ;; ONLP BASED SPLITTER FACTORIES 
-
 (comment
-
 (defn make-split-tokens-onlp
   "Creates Open NLP token spliter using model from file `model-fname`."
   [ model-fname ]
@@ -84,32 +82,3 @@
   "Creates Open NLP sentence spliter using model from `model-fname`."
   [ model-fname ]
   (make-sentence-detector model-fname)))
-
-(comment
-
-(defn split-tokens-with-space [ s ]
-  "Inverse of the merge-tokens-with-space."
-  (split s #"\s+"))
-
-(def  ^:private punct-chars "?!&-.,;'\"")
-
-(def  ^:private punct-re
-  (re-pattern (str "[" punct-chars "]*")))
-
-(def  ^:private punct-split-re
-  (re-pattern (str "[" punct-chars "]+|[^" punct-chars "]+")))
-
-(defn is-punct-token? [ token ] 
-  (not (nil? (re-matches punct-re token))))
-
-(defn- split-punct-and-words 
-  "Splits punctuation and words glued together.
-   E.g., '!!!x,' ->  [ '!!!' 'x' ',']'"
-  [ s ] 
-  (re-seq punct-split-re s))
-
-(defn split-tokens-regex [ s ] 
-  "Splits string 's' into tokens (i.e. words and punctuation signs)."
-  (mapcat
-      split-punct-and-words
-      (split s #"\s+"))))
