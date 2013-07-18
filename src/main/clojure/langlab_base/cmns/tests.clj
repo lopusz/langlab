@@ -13,23 +13,13 @@
         ]
   (> tol (float  (abs diff)))))
 
-(defn run-dict-test 
+(defn is-eq-dict
   "Runs test of function `f` based on map `arg-fval-map`
      { data1 result1 data2 result2 ... }
    There is an option of including customized equality operator  `eq-f`,
    useful, e.g., for floats."
   ([ f arg-fval-map ]
-    (let [
-          args (keys arg-fval-map)
-          fvals (vals arg-fval-map)
-          fvals* (map f args)
-          seq-is= 
-            (fn [seq1 seq2] 
-               (map 
-                 #(is (= %1 %2) (str %1 " not equal " %2)) 
-                 seq1 seq2))
-         ]
-      (every? identity (seq-is= fvals fvals*))))
+     (is-eq-dict f arg-fval-map #(= %1 %2)))
 
   ([ f arg-fval-map eq-f ]
      (let [
@@ -38,8 +28,16 @@
            fvals* (map f args)
            seq-is= 
              (fn [seq1 seq2] 
-               (map 
+               (doall (map 
                  #(is (eq-f %1 %2) (str  %1 " not equal " %2)) 
-                 seq1 seq2))
+                 seq1 seq2)))
          ]
-      (every? identity (seq-is= fvals fvals*)))))
+      (seq-is= fvals fvals*))))
+
+(defn is-NOT-eq-dict
+  "Runs anti-test of function `f` based on map `arg-fval-map`
+     { data1 result1 data2 result2 ... }
+   The results should NOT be equal to those provided in map.
+   This is useful to document known defficiencies."
+   [ f arg-fval-map ]
+     (is-eq-dict f arg-fval-map #(not= %1 %2)))

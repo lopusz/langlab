@@ -1,18 +1,15 @@
 (ns langlab-base.core.parsers-test
   (:require 
     [ clojure.test :refer :all ]
-    [ langlab-base.cmns.tests :refer (run-dict-test)]
+    [ langlab-base.cmns.tests :refer (is-eq-dict is-NOT-eq-dict)]
     [ langlab-base.core.transformers :refer (trans-merge-punct) ]
     [ langlab-base.core.parsers :refer :all]))
 
-(def quotation-sentence-test-data
-  "\"And this also,\" said Marlow suddenly," 
-  "\"has been one of the dark places of the earth.\"")
 
-(def basic-tokenize-test-data 
+(def ^:private basic-split-tokens-test-data 
    { "John, you should try!"  [ "John" "," "you" "should" "try" "!"] })
 
-(def spec-chars-tokenize-test-data 
+(def ^:private spec-chars-split-tokens-test-data 
    {  "¡Que pase un buen día!"
       [ "¡" "Que" "pase" "un" "buen" "día" "!" ]
       "¿A qué debe atenerse el hombre sobre la realidad?"
@@ -28,37 +25,89 @@
       [ "Jeżeli" "tak" "będzie" "," "to" "dlatego" "," "że" "z" "tych" 
         "szewców" "wiedzie" "swój" "„" "rodowód" "…”" ]})
 
-(def multi-punct-tokenize-test-data 
+(def ^:private multi-punct-split-tokens-test-data 
    {"This; however; is false --- nothing is tested..."
        [ "This" ";" "however" ";"
           "is" "false" "---" "nothing" "is" "tested" "..."]
      "She loves you!!! Yeah?!? Yeah! Yeah!!!"
        [ "She" "loves" "you" "!!!"  "Yeah" "?!?"  "Yeah" "!" "Yeah" "!!!"] })
 
-(defn test-split-tokens [ split-f ]
-  (run-dict-test 
+(defn- test-split-tokens [ split-f ]
+  (is-eq-dict 
     (comp
       trans-merge-punct
       split-f) 
-     basic-tokenize-test-data)
+     basic-split-tokens-test-data)
 
-  (run-dict-test 
+  (is-eq-dict 
     (comp 
        trans-merge-punct
        split-f)
-    spec-chars-tokenize-test-data)
+    spec-chars-split-tokens-test-data)
 
-  (run-dict-test 
+  (is-eq-dict 
     (comp 
        trans-merge-punct
        split-f)
-    multi-punct-tokenize-test-data))
+    multi-punct-split-tokens-test-data))
 
 (deftest en-split-tokens-bi-test 
   (test-split-tokens en-split-tokens-bi))
 
-(deftest en-split-tokens-bi-test 
+(deftest en-split-tokens-icu-bi-test 
   (test-split-tokens en-split-tokens-icu-bi))
+
+(def ^:private basic-split-sentences-test-data
+  { (str 
+   "Dash it all! I thought to myself, they can't trade without using some "
+   "kind of craft on that lot of fresh water--steamboats! Why shouldn't I "
+   "try to get charge of one? I went on along Fleet Street, but could not "
+   "shake off the idea. The snake had charmed me.")
+   [ "Dash it all!"
+     (str "I thought to myself, they can't trade without using some kind "
+          "of craft on that lot of fresh water--steamboats!")
+     "Why shouldn't I try to get charge of one?"
+     "I went on along Fleet Street, but could not shake off the idea."
+     "The snake had charmed me."]})
+
+(def ^:private abbrev-split-sentences-test-data
+  { "I was born in the U.S.A. and other places. Anarchy is in the U.K. Bye!"
+    [ "I was born in the U.S.A. and other places."  
+       "Anarchy is in the U.K." "Bye!"] })
+
+(def ^:private multi-punct-split-sentences-test-data
+   { "Home... Is this a final place??? True. Nothing is set!"
+     [ "Home..." "Is this a final place???" "True." "Nothing is set!" ] })
+
+(def ^:private easy-spec-chars-split-sentences-test-data
+   {  (str "¡¡¡A qué debe atenerse el hombre sobre la realidad!!! "
+            "¿A qué debe atenerse el hombre sobre la realidad?")
+     [ "¡¡¡A qué debe atenerse el hombre sobre la realidad!!!"
+       "¿A qué debe atenerse el hombre sobre la realidad?"] })
+
+(def ^:private hard-spec-chars-split-sentences-test-data
+  {  
+   "Home… Is this a — final — place??? True. Nothing is set!"
+   [ "Home…" "Is this a — final — place???" "True." "Nothing is set!" ]})
+
+(def ^:private quote-split-sentences-test-data
+  { (str "\"And this also,\" said Marlow suddenly, " 
+         "\"has been one of the dark places of the earth.\"")
+    [""] })
+
+(defn test-split-sentences [ split-f ]
+  (is-eq-dict split-f basic-split-sentences-test-data)
+  (is-eq-dict split-f multi-punct-split-sentences-test-data)
+  (is-eq-dict split-f easy-spec-chars-split-sentences-test-data)
+  (is-eq-dict split-f abbrev-split-sentences-test-data)
+  ;; Unicode "…" are not recognized
+  (is-NOT-eq-dict split-f hard-spec-chars-split-sentences-test-data))
+
+(deftest en-split-sentences-bi-test
+  (test-split-sentences en-split-sentences-bi))
+
+(deftest en-split-sentences-icu-bi-test
+  (test-split-sentences en-split-sentences-icu-bi))
 
 
 

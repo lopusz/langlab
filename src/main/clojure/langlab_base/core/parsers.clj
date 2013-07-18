@@ -1,13 +1,14 @@
 (ns langlab-base.core.parsers
   "Module contains tools for parsing text into sentences and words."
-  (:import [ langlab.base.core.parsers
-             BreakIteratorWrapper ICUBreakIteratorWrapper ])
+  (:import 
+     [ org.apache.lucene.util Version]
+     [ org.apache.lucene.analysis.core SimpleAnalyzer]
+     [ langlab.base.core.parsers
+             BreakIteratorWrapper ICUBreakIteratorWrapper LuceneTools])
   (:require [ clojure.string :refer (trim) ]
             [ langlab-base.core.transformers  
-                :refer (trans-drop-whitespace) ]))
-
-;  (:require 
-;     [ opennlp nlp :refer (make-tokenizer make-sentence-detector)]))
+                :refer (trans-drop-whitespace) ]
+            [ opennlp.nlp :refer (make-tokenizer make-sentence-detector) ]))
 
 (defn split-sentences-nosplit 
   "Returns one-element vector with `s` without splitting it into sentences."
@@ -51,7 +52,7 @@
    _Note_: It is not clear to me how the locale is used by BreakIterator."
 
   [ ^String lang ^String s ]
-  (map (iterator-seq (ICUBreakIteratorWrapper/getSentenceIterator s lang))))
+  (iterator-seq (ICUBreakIteratorWrapper/getSentenceIterator s lang)))
 
 (defn en-split-sentences-icu-bi 
   "Convenience function alias for `lg-split-sentences-icu-bi` for English."
@@ -71,8 +72,17 @@
   [ ^String s ]
   (lg-split-tokens-icu-bi "en" s))
 
+;; LUCENE BASED PARSERS
+
+(defn split-tokens-simple-lucene 
+  "Splits `s` on whitespace and removes punctuation.
+   Splitter based on Simple Analyzer from Lucene."
+  [ ^String s ]
+  (LuceneTools/splitTokensWithAnalyzer 
+     (new SimpleAnalyzer Version/LUCENE_43) s))
+
 ;; ONLP BASED SPLITTER FACTORIES 
-(comment
+
 (defn make-split-tokens-onlp
   "Creates Open NLP token spliter using model from file `model-fname`."
   [ model-fname ]
@@ -81,4 +91,4 @@
 (defn make-split-sentences-onlp
   "Creates Open NLP sentence spliter using model from `model-fname`."
   [ model-fname ]
-  (make-sentence-detector model-fname)))
+  (make-sentence-detector model-fname))
