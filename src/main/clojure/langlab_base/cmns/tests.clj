@@ -2,7 +2,8 @@
   "Module includes test utilities."
   (:require
     [ clojure.test :refer (is) ]
-    [ clojure.math.numeric-tower :refer (abs)] ))
+    [ clojure.math.numeric-tower :refer (abs)] 
+    [ langlab-base.cmns.colls :refer (spprint-noeol) ]))
 
 (defn float-eq 
   "Return true if absolute value of a difference between `x` and `y` is 
@@ -29,7 +30,8 @@
            seq-is= 
              (fn [seq1 seq2] 
                (doall (map 
-                 #(is (eq-f %1 %2) (str  %1 " not equal " %2)) 
+                 #(is (eq-f %1 %2) (str  (spprint-noeol %1) " not equal " 
+                                         (spprint-noeol %2))) 
                  seq1 seq2)))
          ]
       (seq-is= fvals fvals*))))
