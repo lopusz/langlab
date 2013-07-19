@@ -5,7 +5,6 @@
     [ langlab-base.core.transformers :refer (trans-merge-punct) ]
     [ langlab-base.core.parsers :refer :all]))
 
-
 (def ^:private basic-split-tokens-test-data 
    { "John, you should try!"  [ "John" "," "you" "should" "try" "!"] })
 
@@ -32,7 +31,7 @@
      "She loves you!!! Yeah?!? Yeah! Yeah!!!"
        [ "She" "loves" "you" "!!!"  "Yeah" "?!?"  "Yeah" "!" "Yeah" "!!!"] })
 
-(defn- test-split-tokens [ split-f ]
+(defn- test-split-tokens-bi [ split-f ]
   (is-eq-dict 
     (comp
       trans-merge-punct
@@ -52,10 +51,34 @@
     multi-punct-split-tokens-test-data))
 
 (deftest en-split-tokens-bi-test 
-  (test-split-tokens en-split-tokens-bi))
+  (test-split-tokens-bi en-split-tokens-bi))
 
 (deftest en-split-tokens-icu-bi-test 
-  (test-split-tokens en-split-tokens-icu-bi))
+  (test-split-tokens-bi en-split-tokens-icu-bi))
+
+(deftest en-split-tokens-onlp
+  (let [
+         split-f
+          (make-split-tokens-onlp 
+            "src/test/clojure/langlab_base/core/data/en-token.bin")
+        ]
+  (is-eq-dict 
+    (comp
+      trans-merge-punct
+      split-f) 
+     basic-split-tokens-test-data)
+
+  (is-NOT-eq-dict 
+    (comp 
+       trans-merge-punct
+       split-f)
+    spec-chars-split-tokens-test-data)
+
+  (is-eq-dict 
+    (comp 
+       trans-merge-punct
+       split-f)
+    multi-punct-split-tokens-test-data)))
 
 (def ^:private basic-split-sentences-test-data
   { (str 
@@ -95,7 +118,7 @@
          "\"has been one of the dark places of the earth.\"")
     [""] })
 
-(defn test-split-sentences [ split-f ]
+(defn test-split-sentences-bi [ split-f ]
   (is-eq-dict split-f basic-split-sentences-test-data)
   (is-eq-dict split-f multi-punct-split-sentences-test-data)
   (is-eq-dict split-f easy-spec-chars-split-sentences-test-data)
@@ -104,10 +127,23 @@
   (is-NOT-eq-dict split-f hard-spec-chars-split-sentences-test-data))
 
 (deftest en-split-sentences-bi-test
-  (test-split-sentences en-split-sentences-bi))
+  (test-split-sentences-bi en-split-sentences-bi))
 
 (deftest en-split-sentences-icu-bi-test
-  (test-split-sentences en-split-sentences-icu-bi))
+  (test-split-sentences-bi en-split-sentences-icu-bi))
+
+(deftest en-split-sentences-onlp-test
+  (let [
+        split-f
+          (make-split-sentences-onlp 
+            "src/test/clojure/langlab_base/core/data/en-sent.bin")
+       ]
+  (is-eq-dict split-f basic-split-sentences-test-data)
+  ;; Default ONLP models seem to fail  on most fancy tests :(
+  (is-NOT-eq-dict split-f multi-punct-split-sentences-test-data)
+  (is-NOT-eq-dict split-f easy-spec-chars-split-sentences-test-data)
+  (is-NOT-eq-dict split-f abbrev-split-sentences-test-data)
+  (is-NOT-eq-dict split-f hard-spec-chars-split-sentences-test-data)))
 
 
 
