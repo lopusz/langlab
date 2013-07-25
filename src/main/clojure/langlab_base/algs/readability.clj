@@ -63,7 +63,7 @@
   "Calculates statistics of text `s`. 
    The `env` supports the following keys:
    - `:split-tokens-f`  (mandatory)
-   - `:trans-drop-punct-f` (defaulted to `trans-drop-punct`
+   - `:trans-drop-punct-f` (defaulted to `trans-drop-punct`)
    - `:is-hard-word-f` (defaulted to count-latin-vowel-groups-without-final>2)
    - `:split-sentences-f` (mandatory)
 

@@ -2,6 +2,7 @@ package langlab.base.core.characters;
 
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
+import java.util.Locale;
 
 public final class StringTools {
 
@@ -124,5 +125,92 @@ public final class StringTools {
         }
 
         return res;
+    }
+
+    public static boolean containsNonBmp(String s) {
+        boolean res=false;
+
+        for(int i = 0; i < s.length(); ) {
+            int cp = s.codePointAt(i);
+            if (!Character.isBmpCodePoint(cp)) {
+                res=true;
+                break;
+            }
+            i += Character.charCount(cp);
+        }
+
+        return res;
+    }
+
+    public static String removeNonBmp(String s) {
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0; i < s.length(); ) {
+            int cp = s.codePointAt(i);
+            if (Character.isBmpCodePoint(cp)) {
+                sb.appendCodePoint(cp);
+            }
+            i += Character.charCount(cp);
+        }
+        return sb.toString();
+    }
+
+    public static String removeBmp(String s) {
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0; i < s.length(); ) {
+            int cp = s.codePointAt(i);
+            if (!Character.isBmpCodePoint(cp)) {
+                sb.appendCodePoint(cp);
+            }
+            i += Character.charCount(cp);
+        }
+
+        return sb.toString();
+    }
+
+    public static int countCharactersBreakIterator(String s, Locale loc) {
+        // Based on SO
+        // http://stackoverflow.com/questions/6828076/how-to-correctly-compute-the-length-of-a-string-in-java
+
+        java.text.BreakIterator charIterator =
+            java.text.BreakIterator.getCharacterInstance(loc);
+
+        charIterator.setText(s);
+
+        int res = 0;
+
+        while(charIterator.next() != java.text.BreakIterator.DONE) {
+            res++;
+        }
+        return res;
+    }
+
+    public static int countCharactersBreakIterator(String s, String lang) {
+        Locale loc=new Locale(lang);
+        return countCharactersBreakIterator(s,loc);
+    }
+
+    public static int countCharactersICUBreakIterator(String s, Locale loc) {
+        // Based on SO
+        // http://stackoverflow.com/questions/6828076/how-to-correctly-compute-the-length-of-a-string-in-java
+
+        com.ibm.icu.text.BreakIterator charIterator =
+            com.ibm.icu.text.BreakIterator.getCharacterInstance(loc);
+
+        charIterator.setText(s);
+
+        int res = 0;
+
+        while(charIterator.next() != com.ibm.icu.text.BreakIterator.DONE) {
+            res++;
+        }
+
+        return res;
+    }
+
+    public static int countCharactersICUBreakIterator(String s, String lang) {
+        Locale loc=new Locale(lang);
+        return countCharactersICUBreakIterator(s,loc);
     }
 }
