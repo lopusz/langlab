@@ -6,7 +6,7 @@
   :url ""
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :aot :all
+  ; :aot :all
 
   ; DEPENDENCIES
 
@@ -34,7 +34,10 @@
   
   ; PLUGINS + CONFIGURATION
 
-  :plugins [[codox "0.6.4"]]
+  :plugins [ [codox "0.6.4"]
+             [lein-resource "0.3.1"] ]
+
+  ;; codox configuration 
 
   :codox {
           :output-dir "target/apidoc"
@@ -42,6 +45,21 @@
           ;; TODO Uncoment below before push to github
           ;; :src-dir-uri "http://github.com/lopusz/langlab-base/blob/master"
           ;; :src-linenum-anchor-prefix "L"
-          }  
+          }
+
+  ;; resource-plugin configuration
+  :hooks [ leiningen.resource ]
+
+  :resource {
+    :resource-paths [ "src-templates" ] 
+    :target-path "src" 
+    :extra-values { :should-enabled "false"} }
+    
+  ; PROFILES
+
+  :profiles {
+    :debug {
+        :resource { :extra-values { :should-enabled "true" } }}
+   }
   )
 
