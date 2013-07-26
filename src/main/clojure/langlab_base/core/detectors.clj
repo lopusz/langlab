@@ -19,8 +19,8 @@
 (defn detect-lang-cybozu
   "Detects language of string `s` using the cybozu labs library.
    The optional `env` parameter can contain the following optional keys:
-   `:alpha`   - alpha parameter of the cybozu alogirthm,
-   `:max-len` - maximum length of `s` to be taken for lang detection."
+   - `:alpha`   - alpha parameter of the cybozu alogirthm,
+   - `:max-len` - maximum length of `s` to be taken for lang detection."
   ([ ^String s env ]
     (let [
         _ @init-cybozu
@@ -41,8 +41,8 @@
   "Returns the most probable languages of string `s` according to the
    cybozu labs library. The result is a map { lang_id prob }.
    The optional `env` parameter can contain the following optional keys:
-   `:alpha`   - alpha parameter of the cybozu alogirthm,
-   `:max-len` - maximum length of `s` to be taken for lang detection."
+   - `:alpha`   - alpha parameter of the cybozu alogirthm,
+   - `:max-len` - maximum length of `s` to be taken for lang detection."
   ([ ^String s env ]
      (let [
            _ @init-cybozu

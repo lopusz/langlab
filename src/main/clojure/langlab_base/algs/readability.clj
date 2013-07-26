@@ -11,7 +11,7 @@
   "Counts the numer of words in `s` based on the provided `env`. 
    The `env` supports keys:
    - `:split-tokens-f` (mandatory) 
-   - `:trans-drop-punct-f` (defaulted to `trans-drop-punct`)"
+   - `:trans-drop-punct-f` (defaults to `trans-drop-punct`)"
 
   [ ^String s env ]
 
@@ -59,7 +59,7 @@
 (defn calc-text-stats 
   "Calculates statistics of text `s`. 
    The `env` supports the following keys:
-   - `:count-chars-f` (defaults to `en-count-chars-bi`
+   - `:count-chars-f` (defaults to `en-count-chars-bi`)
    - `:is-hard-word-f` (defaults to count-latin-vowel-groups-without-final>2)
    - `:split-tokens-f`  (mandatory)
    - `:split-sentences-f` (mandatory)
