@@ -1,52 +1,46 @@
 (ns langlab.algs.readability
   "Module includes functions for computing readability indices."
-  (:require 
-     [ langlab.cmns.should :refer (should) ]
-     [ langlab.core.characters 
+  (:require
+     [ langlab.cmns.must :refer (must) ]
+     [ langlab.core.characters
          :refer (count-latin-vowel-groups-without-final en-count-chars-bi) ]
-     [ langlab.core.transformers 
+     [ langlab.core.transformers
          :refer (trans-drop-punct trans-drop-whitespace) ]))
 
 (defn count-words
-  "Counts the numer of words in `s` based on the provided `env`. 
+  "Counts the numer of words in `s` based on the provided `env`.
    The `env` supports keys:
-   - `:split-tokens-f` (mandatory) 
+   - `:split-tokens-f` (mandatory)
    - `:trans-drop-punct-f` (defaults to `trans-drop-punct`)"
 
   [ ^String s env ]
 
   ;; Prerequisites
-  (should 
-    (every? 
-      #(contains? env %)
-      [ :split-tokens-f ]))
+  (must  (contains? env :split-tokens-f))
 
   (let [
-        env-default 
+        env-default
           { :trans-drop-punct-f trans-drop-punct }
 
-        env* 
+        env*
           (merge env-default env)
 
         { :keys (trans-drop-punct-f split-tokens-f) }
-          env* 
+          env*
         ]
     (-> s
         split-tokens-f
         trans-drop-punct-f
         count)))
- 
-(defn count-sentences 
-  "Counts the numer of sentences in `s` based on the provided `env`. 
+
+(defn count-sentences
+  "Counts the numer of sentences in `s` based on the provided `env`.
    The `env` supports key `:split-sentences-f` (mandatory)."
 
   [ ^String s env ]
 
   ;; Prerequisites
-  (should 
-    (every? 
-      #(contains? env %)
-      [ :split-sentences-f ]))
+  (must (contains? env :split-sentences-f))
 
   (let [
         { :keys (split-sentences-f) } env
@@ -56,8 +50,8 @@
       trans-drop-whitespace
       count)))
 
-(defn calc-text-stats 
-  "Calculates statistics of text `s`. 
+(defn calc-text-stats
+  "Calculates statistics of text `s`.
    The `env` supports the following keys:
    - `:count-chars-f` (defaults to `en-count-chars-bi`)
    - `:is-hard-word-f` (defaults to count-latin-vowel-groups-without-final>2)
@@ -74,35 +68,33 @@
   [ ^String s env ]
 
   ;; Prerequisites
-  (should 
-    (every? 
-      #(contains? env %)
-      [ :split-sentences-f :split-tokens-f ]))
-  
+  (must (contains? env :split-sentences-f))
+  (must (contains? env :split-tokens-f))
+
   (let [
-        env-default 
-          { :trans-drop-punct-f  trans-drop-punct 
+        env-default
+          { :trans-drop-punct-f  trans-drop-punct
             :count-chars-f en-count-chars-bi
-            :is-hard-word-f 
+            :is-hard-word-f
               #(< 2 (count-latin-vowel-groups-without-final %)) }
         env*
           (merge env-default env)
 
         { :keys [ count-chars-f
                   is-hard-word-f
-                  split-sentences-f 
+                  split-sentences-f
                   split-tokens-f
-                  trans-drop-punct-f ] } 
+                  trans-drop-punct-f ] }
           env*
 
-        n-sentences 
+        n-sentences
           (count-sentences s env)
 
-        words 
+        words
           (-> s
             split-tokens-f
             trans-drop-punct-f)
-          
+
         n-words
           (count words)
 
@@ -110,57 +102,56 @@
           (reduce +
             (map count-chars-f words))
 
-        hard-words  
+        hard-words
           (filter is-hard-word-f words)
-        
+
         n-hard-words
           (count hard-words)
         ]
-    { :n-chars n-chars, :n-words n-words, 
+    { :n-chars n-chars, :n-words n-words,
       :n-hard-words n-hard-words, :n-sentences n-sentences } ))
 
-(defn calc-gunning-fog-index 
+(defn calc-gunning-fog-index
 
   "Calculates Gunning Fog Readability Index based on the given `stats`.
-   Stats should include fields `:n-words`, `:n-hard-words`, 
+   Stats should include fields `:n-words`, `:n-hard-words`,
    `:n-sentences`."
 
   [ stats ]
 
   ;; Prerequisites
-  (should 
-    (every? 
-      #(contains? stats %)
-      [ :n-words :n-hard-words :n-sentences ]))
+  (must (contains? stats :n-hard-words))
+  (must (contains? stats :n-sentences))
+  (must (contains? stats :n-words))
 
   (let [
          { :keys [ n-words n-hard-words n-sentences ] } stats
         ]
     (float
-      (* 0.4 
-        (+ 
+      (* 0.4
+        (+
           (/ n-words n-sentences)
-          (* 100.0  
-            (/ n-hard-words n-words))))))) 
+          (* 100.0
+            (/ n-hard-words n-words)))))))
 
-(defn calc-coleman-liau-index 
+(defn calc-coleman-liau-index
   "Calculates Coleman-Liau Readability Index based on the given `stats`.
-   Stats should include fields `:n-words`, `:n-hard-words`, 
+   Stats should include fields `:n-words`, `:n-hard-words`,
    `:n-sentences`, `n-chars`."
 
   [ stats ]
 
   ;; Prerequisites
-  (should 
-    (every? 
-      #(contains? stats %)
-      [ :n-words :n-hard-words :n-sentences :n-chars]))
+  (must (contains? stats :n-chars))
+  (must (contains? stats :n-hard-words))
+  (must (contains? stats :n-sentences))
+  (must (contains? stats :n-words))
 
   (let [
          { :keys [ n-chars n-words n-hard-words n-sentences ] } stats
         ]
      (+
-       -15.8 
+       -15.8
        (*
          5.88
          (float (/ n-chars n-words)))
@@ -168,24 +159,24 @@
          -29.59
          (float (/ n-sentences n-words))))))
 
-(defn calc-automated-readability-index 
+(defn calc-automated-readability-index
   "Calculates Automated Readability Index based on the given `stats`.
-   Stats should include fields `:n-words`, `:n-hard-words`, 
+   Stats should include fields `:n-words`, `:n-hard-words`,
    `:n-sentences`, `n-chars`."
 
   [ stats ]
 
   ;; Prerequisites
-  (should 
-    (every? 
-      #(contains? stats %)
-      [ :n-words :n-hard-words :n-sentences :n-chars]))
+  (must (contains? stats :n-chars))
+  (must (contains? stats :n-hard-words))
+  (must (contains? stats :n-sentences))
+  (must (contains? stats :n-words))
 
   (let [
          { :keys [ n-chars n-words n-hard-words n-sentences ] } stats
        ]
     (+
-      -21.43 
+      -21.43
        (*
          4.71
          (float (/ n-chars n-words)))
