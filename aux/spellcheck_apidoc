@@ -1,0 +1,28 @@
+#!/bin/bash
+
+APIDOCS_DIR="target/apidoc"
+
+DICT_FILE=dict.aspell
+
+DIR=`dirname $0`
+echo ${DIR}
+
+DICT_FILE_WITH_PATH=${DIR}/${DICT_FILE}
+
+FILES_HTML=`find ${APIDOCS_DIR} -name "*.html" -print`
+
+cp ${DICT_FILE_WITH_PATH} ${DICT_FILE}.tmp
+
+for F in ${FILES_HTML}; do 
+    aspell --lang=en_EN -p ./${DICT_FILE}.tmp -c ${F}
+done
+
+rm ./${DICT_FILE}.tmp
+
+echo "Checked:"
+
+for F in ${FILES_HTML}; do 
+    echo $F
+done
+
+
