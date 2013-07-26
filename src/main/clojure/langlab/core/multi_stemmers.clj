@@ -1,5 +1,5 @@
 (ns  langlab.core.multi-stemmers
-  "Module includes stemming algorithms returning multiple results."
+  "Module contains stemming algorithms returning multiple results."
   (:import 
     [ java.lang CharSequence ]
     [ morfologik.stemming WordData ]

@@ -1,5 +1,5 @@
 (ns langlab.algs.readability
-  "Module includes functions for computing readability indices."
+  "Module contains functions for computing readability indices."
   (:require
      [ langlab.cmns.must :refer (must) ]
      [ langlab.core.characters
@@ -8,7 +8,7 @@
          :refer (trans-drop-punct trans-drop-whitespace) ]))
 
 (defn count-words
-  "Counts the numer of words in `s` based on the provided `env`.
+  "Counts the number of words in `s` based on the provided `env`.
    The `env` supports keys:
    - `:split-tokens-f` (mandatory)
    - `:trans-drop-punct-f` (defaults to `trans-drop-punct`)"
@@ -34,7 +34,7 @@
         count)))
 
 (defn count-sentences
-  "Counts the numer of sentences in `s` based on the provided `env`.
+  "Counts the number of sentences in `s` based on the provided `env`.
    The `env` supports key `:split-sentences-f` (mandatory)."
 
   [ ^String s env ]

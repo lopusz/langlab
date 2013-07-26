@@ -85,11 +85,11 @@
 ;; ONLP BASED SPLITTER FACTORIES 
 
 (defn make-split-tokens-onlp
-  "Creates Open NLP token spliter using model from file `model-fname`."
+  "Creates Open NLP token splitter using model from file `model-fname`."
   [ model-fname ]
   (make-tokenizer model-fname))
 
 (defn make-split-sentences-onlp
-  "Creates Open NLP sentence spliter using model from `model-fname`."
+  "Creates Open NLP sentence splitter using model from `model-fname`."
   [ model-fname ]
   (make-sentence-detector model-fname))

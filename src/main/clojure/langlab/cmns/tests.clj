@@ -1,5 +1,5 @@
 (ns langlab.cmns.tests
-  "Module includes test utilities."
+  "Module contains test utilities."
   (:require
     [ clojure.test :refer (is) ]
     [ clojure.math.numeric-tower :refer (abs)] 
@@ -40,6 +40,6 @@
   "Runs anti-test of function `f` based on map `arg-fval-map`
      { data1 result1 data2 result2 ... }
    The results should NOT be equal to those provided in map.
-   This is useful to document known defficiencies."
+   This is useful to document known deficiencies."
    [ f arg-fval-map ]
      (is-eq-dict f arg-fval-map #(not= %1 %2)))

@@ -1,5 +1,5 @@
 (ns langlab.cmns.colls
-  "Module includes various collection utilitites."
+  "Module contains various collection utilities."
   (:import java.io.StringWriter)
   (:require 
    clojure.string  

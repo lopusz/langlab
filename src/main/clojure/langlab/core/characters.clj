@@ -1,7 +1,8 @@
 (ns langlab.core.characters
-  "Module includes string utilities operating on characters.
+  "Module contains string utilities operating on characters.
 
-   This includes, e.g., diacritics removal,  vowel groups detection, etc."
+   This includes, e.g., diacritics removal,  vowel groups detection, 
+   character counting, non-BMP characters removal, etc."
   (:import [ langlab.jcore.characters CharacterTools StringTools ]))
 
 (defn remove-diacritics
@@ -49,7 +50,7 @@
 
 (defn contains-whitespace?
   "Checks if `s` contains whitespace according to `Character.isWhitespace(cp)`.
-   Some intuitivelly whitespace characters from Unicode are excluded
+   Some intuitively whitespace characters from Unicode are excluded
    (e.g., hard spaces). See tests."
   [ ^String s ]
   (StringTools/containsWhitespace s))
@@ -57,7 +58,7 @@
 (defn contains-whitespace-only?
   "Checks if `s` contains *only* whitespace according to
    `Character.isWhitespace(cp)`.
-   Be warned that some intuitivelly whitespace characters from Unicode are
+   Be warned that some intuitively whitespace characters from Unicode are
    excluded (e.g., hard spaces). See tests."
   [ ^String s ]
   (StringTools/containsWhitespaceOnly s))
