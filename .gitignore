@@ -1,5 +1,5 @@
 /target
-src/main/clojure/langlab/cmns/should.clj
+src/main/clojure/langlab/cmns/must.clj
 profiles.clj
 .lein-deps-sum
 .lein-failures

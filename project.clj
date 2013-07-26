@@ -6,7 +6,7 @@
   :url ""
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  ; :aot :all
+  :aot :all 
 
   ; DEPENDENCIES
 
@@ -53,13 +53,13 @@
   :resource {
     :resource-paths [ "src-templates" ] 
     :target-path "src" 
-    :extra-values { :should-enabled "false"} }
+    :extra-values { :must-enabled "false"} }
     
   ; PROFILES
 
   :profiles {
     :debug {
-        :resource { :extra-values { :should-enabled "true" } }}
+        :resource { :extra-values { :must-enabled "true" } }}
    }
   )
 
