@@ -1,8 +1,8 @@
-(defproject langlab-base "0.1.0-SNAPSHOT"
+(defproject langlab "0.1.0-SNAPSHOT"
 
   ; GENERAL OPTIONS
 
-  :description "langlab-base library"
+  :description "langlab library"
   :url ""
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
@@ -43,7 +43,7 @@
           :output-dir "target/apidoc"
           :sources [ "src/main/clojure"]
           ;; TODO Uncoment below before push to github
-          ;; :src-dir-uri "http://github.com/lopusz/langlab-base/blob/master"
+          ;; :src-dir-uri "http://github.com/lopusz/langlab/blob/master"
           ;; :src-linenum-anchor-prefix "L"
           }
 
