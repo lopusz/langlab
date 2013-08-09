@@ -9,6 +9,7 @@
 ;; The resources trick is from Chass Emerick. Thanks!
 ;; See http://code.google.com/p/language-detection/issues/detail?id=9
 
+;; LANGUAGE DETECTORS
 
 (defn get-lang-avail-cybozu 
   "Returns the set of available languages in Cybozu Labs library."
@@ -85,8 +86,21 @@
         ]
     (. li getLanguage)))
 
+(defn get-lang-avail-icu 
+  "No function to get actual available language list is present in ICU lib.
+   This was obtained by running grep in the com.ibm.icu sources:
+
+   grep -h -o -e "\"[a-z][a-z]\"" Charset*.java  | sort | uniq 
+  "  
+  []
+  #{ "ar" "cs" "da" "de" "el" "en" "es" "fr" "he" "hu" "it" "ja" "ko"
+     "nl" "no" "pl" "pt" "ro" "ru"  "sv" "tr" "zh"})
+
+
 (defn detect-lang-icu [ ^String s ]
   (EncodDetectorTools/detectLangICU s))
+
+;; ENCODING DETECTORS
 
 (defn get-encod-avail-unichardet [] 
   (into #{} (EncodDetectorTools/getEncodAvailUnichardet)))
