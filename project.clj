@@ -22,6 +22,10 @@
     [org.carrot2/morfologik-polish "1.6.0"]
     ;; ICU for improved parsing (BreakIterator)
     [com.ibm.icu/icu4j "51.1"]
+    
+    ;; Encoding detector
+    [com.googlecode.juniversalchardet/juniversalchardet "1.0.3"]
+    
     ;; OpenNLP Clojure wrappers
     [clojure-opennlp "0.3.1"]
     ]
