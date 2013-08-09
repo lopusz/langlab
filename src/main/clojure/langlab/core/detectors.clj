@@ -1,6 +1,6 @@
 (ns langlab.core.detectors
   "Module contains language detection utilities."
-  (:import [ com.cybozu.labs.langdetect Detector DetectorFactory ]
+  (:import [ com.cybozu.labs.langdetect Language Detector DetectorFactory ]
            [ com.ibm.icu.text CharsetDetector ]
            [ org.apache.tika.language LanguageIdentifier ]
            [ langlab.jcore.detectors EncodDetectorTools ])
@@ -8,6 +8,8 @@
 
 ;; The resources trick is from Chass Emerick. Thanks!
 ;; See http://code.google.com/p/language-detection/issues/detail?id=9
+
+(set! *warn-on-reflection* true)
 
 ;; LANGUAGE DETECTORS
 
@@ -19,12 +21,15 @@
      "nl" "no" "pa" "pl" "pt" "ro" "ru" "sk" "sl" "so" "sq" "sv" "sw" "ta" "te"
      "th" "tl" "tr" "uk" "ur" "vi" "zh-cn" "zh-tw"})
 
+(defn- load-profile-cybozu [ ^java.util.List f ]
+  (DetectorFactory/loadProfile f))
+ 
 (def ^:private init-cybozu 
   (delay
    (->> (get-lang-avail-cybozu)
      (map (partial str "profiles/"))
      (map (comp slurp clojure.java.io/resource))
-     com.cybozu.labs.langdetect.DetectorFactory/loadProfile)))
+     load-profile-cybozu)))
 
 (defn detect-lang-cybozu
   "Detects language of string `s` using the Cybozu Labs library.
@@ -68,9 +73,9 @@
            lang-object-list 
              (. detector getProbabilities)
            langs
-             (map #(. % lang) lang-object-list)
+             (map #(. ^Language % lang) lang-object-list)
            probs
-             (map #(. % prob) lang-object-list)
+             (map #(. ^Language % prob) lang-object-list)
         ]
        (zipmap langs probs)))
 
@@ -90,12 +95,10 @@
   "No function to get actual available language list is present in ICU lib.
    This was obtained by running grep in the com.ibm.icu sources:
 
-   grep -h -o -e "\"[a-z][a-z]\"" Charset*.java  | sort | uniq 
-  "  
+   grep -h -o -e '\"[a-z][a-z]\"' Charset*.java  | sort | uniq"  
   []
   #{ "ar" "cs" "da" "de" "el" "en" "es" "fr" "he" "hu" "it" "ja" "ko"
      "nl" "no" "pl" "pt" "ro" "ru"  "sv" "tr" "zh"})
-
 
 (defn detect-lang-icu [ ^String s ]
   (EncodDetectorTools/detectLangICU s))

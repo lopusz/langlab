@@ -146,7 +146,7 @@ public final class EncodDetectorTools {
          
          detector.setText(bfis);
 
-         Map<String,Double> res=new HashMap();
+         Map<String,Double> res=new HashMap<String,Double>();
 
          matches = detector.detectAll();
          for(CharsetMatch match:matches) {

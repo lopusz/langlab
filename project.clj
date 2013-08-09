@@ -7,6 +7,9 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :aot :all 
+  
+  ; hints on java code, sometimes maybe useful  
+  ;:javac-options [ "-Xlint"]
 
   ; DEPENDENCIES
 
@@ -34,6 +37,7 @@
     ;; OpenNLP Clojure wrappers
     [clojure-opennlp "0.3.1"]
     ]
+  
 
   ; SOURCE DIRECTORY RECONFIGURATION
 
