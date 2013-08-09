@@ -1,10 +1,14 @@
 (ns langlab.core.detectors
   "Module contains language detection utilities."
   (:import [ com.cybozu.labs.langdetect Detector DetectorFactory ]
-           [ langlab.jcore.detectors EncodDetectorTools ]))
+           [ com.ibm.icu.text CharsetDetector ]
+           [ org.apache.tika.language LanguageIdentifier ]
+           [ langlab.jcore.detectors EncodDetectorTools ])
+  (:require [ clojure.string :refer (upper-case)]))
 
 ;; The resources trick is from Chass Emerick. Thanks!
 ;; See http://code.google.com/p/language-detection/issues/detail?id=9
+
 
 (defn get-lang-avail-cybozu 
   "Returns the set of available languages in Cybozu Labs library."
@@ -42,7 +46,7 @@
   ([ ^String s ]
      (detect-lang-cybozu  s {})))
 
-(defn detect-lang-prob-cybozu 
+(defn detect-all-lang-prob-cybozu 
   "Returns the most probable languages of string `s` according to the
    Cybozu Labs library. The result is a map { lang_id prob }.
    The optional `env` parameter can contain the following optional keys:
@@ -70,16 +74,35 @@
        (zipmap langs probs)))
 
   ([ ^String s ]
-     (detect-lang-prob-cybozu s {})))
+     (detect-all-lang-prob-cybozu s {})))
 
-(defn detect-lang-tika []
-  )
+(defn get-lang-avail-tika []
+  (into #{} (LanguageIdentifier/getSupportedLanguages)))
+
+(defn detect-lang-tika [ ^String s ]
+  (let [
+         li (new LanguageIdentifier s)
+        ]
+    (. li getLanguage)))
+
+(defn detect-lang-icu [ ^String s ]
+  (EncodDetectorTools/detectLangICU s))
 
 (defn get-encod-avail-unichardet [] 
-  (EncodDetectorTools/getEncodAvailUnichardet))
+  (into #{} (EncodDetectorTools/getEncodAvailUnichardet)))
  
 (defn detect-encod-unichardet [ ^String fname ]
   (EncodDetectorTools/detectEncodUnichardet fname))
 
+(defn get-encod-avail-icu [] 
+  (into #{} 
+    (map upper-case (CharsetDetector/getAllDetectableCharsets))))
+
 (defn detect-encod-icu [ ^String fname ]
-  )
+  (EncodDetectorTools/detectEncodICU fname))
+
+(defn detect-encod-prob-icu [ ^String fname ]
+  (EncodDetectorTools/detectEncodProbICU fname))
+
+(defn detect-all-encod-prob-icu [ ^String fname ]
+  (EncodDetectorTools/detectAllEncodProbICU fname))

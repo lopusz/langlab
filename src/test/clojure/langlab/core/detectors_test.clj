@@ -21,16 +21,16 @@
 ;; (i.e., it uses some kind of random number generator), so be careful when
 ;; performing tests.
 
-(deftest detect-lang-prob-cybozu-test
+(deftest detect-all-lang-prob-cybozu-test
   (is (=
           "pl"
           (->>
-            (detect-lang-prob-cybozu  test-data-pl-en  {:max-len 20 } )
+            (detect-all-lang-prob-cybozu  test-data-pl-en  {:max-len 20 } )
             (keys-sorted-by-val-desc)
             (first))))
   (is (=
           "en"
           (->>
-            (detect-lang-prob-cybozu  test-data-pl-en )
+            (detect-all-lang-prob-cybozu  test-data-pl-en )
             (keys-sorted-by-val-desc)
             (first)))))

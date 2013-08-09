@@ -13,17 +13,22 @@
   :dependencies [   
     [org.clojure/clojure "1.5.1"]
     [org.clojure/math.numeric-tower "0.0.2"]
-    ;; language detection
+
+    ;; ICU - various tools used in parsers, lang+encoding detectors
+    [com.ibm.icu/icu4j "51.1"]
+ 
+    ;; language detectors
     [com.cybozu.labs/langdetect "1.1-20120112"]         
+    [org.apache.tika/tika-core "1.4"] 
+
     ;; stemmers family + useful analysis utilities
     [org.apache.lucene/lucene-analyzers-common "4.3.1"]
-    ;; Polish multistemming
+
+    ;; Polish multistemmers
     [org.carrot2/morfologik-stemming "1.6.0"]
     [org.carrot2/morfologik-polish "1.6.0"]
-    ;; ICU for improved parsing (BreakIterator)
-    [com.ibm.icu/icu4j "51.1"]
-    
-    ;; Encoding detector
+   
+    ;; encoding detector based on mozilla algorithm
     [com.googlecode.juniversalchardet/juniversalchardet "1.0.3"]
     
     ;; OpenNLP Clojure wrappers
