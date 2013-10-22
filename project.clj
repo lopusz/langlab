@@ -7,15 +7,22 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :aot :all 
-  
-  ; hints on java code, sometimes maybe useful  
-  ;:javac-options [ "-Xlint"]
+ 
+  ;; options of used by Java 
+  ;;; run repl with assertions enabled
+  :jvm-opts ["-ea"]
+  ;;; lint report on on java code (sometimes maybe useful)
+  ;;; :javac-options [ "-Xlint"]
+ 
 
   ; DEPENDENCIES
 
   :dependencies [   
     [org.clojure/clojure "1.5.1"]
     [org.clojure/math.numeric-tower "0.0.2"]
+ 
+    ;; Runtime assertions
+    [pjstadig/assertions "0.1.0"]
 
     ;; ICU - various tools used in parsers, lang+encoding detectors
     [com.ibm.icu/icu4j "51.1"]
@@ -38,7 +45,6 @@
     [clojure-opennlp "0.3.1"]
     ]
   
-
   ; SOURCE DIRECTORY RECONFIGURATION
 
   :source-paths ["src" "src/main/clojure"]
@@ -47,8 +53,7 @@
   
   ; PLUGINS + CONFIGURATION
 
-  :plugins [ [codox "0.6.4"]
-             [lein-resource "0.3.1"] ]
+  :plugins [ [codox "0.6.6"] ]
 
   ;; codox configuration 
 
@@ -59,20 +64,4 @@
           ;; :src-dir-uri "http://github.com/lopusz/langlab/blob/master"
           ;; :src-linenum-anchor-prefix "L"
           }
-
-  ;; resource-plugin configuration
-  :hooks [ leiningen.resource ]
-
-  :resource {
-    :resource-paths [ "src-templates" ] 
-    :target-path "src" 
-    :extra-values { :must-enabled "false"} }
-    
-  ; PROFILES
-
-  :profiles {
-    :debug {
-        :resource { :extra-values { :must-enabled "true" } }}
-   }
   )
-

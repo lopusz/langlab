@@ -1,7 +1,8 @@
 (ns langlab.algs.readability
   "Module contains functions for computing readability indices."
+  (:refer-clojure :exclude [assert])
   (:require
-     [ langlab.cmns.must :refer (must) ]
+     [ pjstadig.assertions :refer [assert]]
      [ langlab.core.characters
          :refer (count-latin-vowel-groups-without-final en-count-chars-bi) ]
      [ langlab.core.transformers
@@ -16,7 +17,7 @@
   [ ^String s env ]
 
   ;; Prerequisites
-  (must  (contains? env :split-tokens-f))
+  (assert  (contains? env :split-tokens-f))
 
   (let [
         env-default
@@ -40,7 +41,7 @@
   [ ^String s env ]
 
   ;; Prerequisites
-  (must (contains? env :split-sentences-f))
+  (assert (contains? env :split-sentences-f))
 
   (let [
         { :keys (split-sentences-f) } env
@@ -68,8 +69,8 @@
   [ ^String s env ]
 
   ;; Prerequisites
-  (must (contains? env :split-sentences-f))
-  (must (contains? env :split-tokens-f))
+  (assert (contains? env :split-sentences-f))
+  (assert (contains? env :split-tokens-f))
 
   (let [
         env-default
@@ -120,9 +121,9 @@
   [ stats ]
 
   ;; Prerequisites
-  (must (contains? stats :n-hard-words))
-  (must (contains? stats :n-sentences))
-  (must (contains? stats :n-words))
+  (assert  (contains? stats :n-hard-words))
+  (assert  (contains? stats :n-sentences))
+  (assert  (contains? stats :n-words))
 
   (let [
          { :keys [ n-words n-hard-words n-sentences ] } stats
@@ -142,10 +143,10 @@
   [ stats ]
 
   ;; Prerequisites
-  (must (contains? stats :n-chars))
-  (must (contains? stats :n-hard-words))
-  (must (contains? stats :n-sentences))
-  (must (contains? stats :n-words))
+  (assert (contains? stats :n-chars))
+  (assert (contains? stats :n-hard-words))
+  (assert (contains? stats :n-sentences))
+  (assert (contains? stats :n-words))
 
   (let [
          { :keys [ n-chars n-words n-hard-words n-sentences ] } stats
@@ -167,10 +168,10 @@
   [ stats ]
 
   ;; Prerequisites
-  (must (contains? stats :n-chars))
-  (must (contains? stats :n-hard-words))
-  (must (contains? stats :n-sentences))
-  (must (contains? stats :n-words))
+  (assert (contains? stats :n-chars))
+  (assert (contains? stats :n-hard-words))
+  (assert (contains? stats :n-sentences))
+  (assert (contains? stats :n-words))
 
   (let [
          { :keys [ n-chars n-words n-hard-words n-sentences ] } stats
