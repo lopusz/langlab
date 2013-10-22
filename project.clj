@@ -61,7 +61,7 @@
   :codox {
           :output-dir "target/apidoc"
           :sources [ "src/main/clojure"]
-          :src-dir-uri "http://github.com/lopusz/langlab/blob/master"
+          :src-dir-uri "http://github.com/lopusz/langlab/blob/master/"
           :src-linenum-anchor-prefix "L"
           }
   )
