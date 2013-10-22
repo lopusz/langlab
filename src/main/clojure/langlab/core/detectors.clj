@@ -5,7 +5,7 @@
    ISO 639-1 codes. 
    (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 
-   Unfortunatelly there is no standard for encoding string
+   Unfortunately, there is no standard for encoding string
    representation."
 
   (:import [ com.cybozu.labs.langdetect Language Detector DetectorFactory ]
