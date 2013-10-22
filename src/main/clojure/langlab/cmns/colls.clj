@@ -1,10 +1,5 @@
 (ns langlab.cmns.colls
-  "Module contains various collection utilities."
-  (:import java.io.StringWriter)
-  (:require 
-   clojure.string  
-   [ clojure.pprint :refer (pprint)] )
-  (:refer clojure.string :only (replace) :rename {replace replace-str}))
+  "Module contains various collection utilities.")
 
 ;; This does not follow the rule of verb in function name.
 ;; This is analogy for function keys.
@@ -28,20 +23,3 @@
   "Returns keys of map `m` sorted in descending order."
   [ m ]
   (sort #(compare %2 %1) (keys m)))
-
-(defn spprint [ o ] 
-  (let [
-      w (new StringWriter)  
-      _ (pprint o w)
-        ]
-      (. w toString)))
-
-(def ^:private ^String system-eol
-  (System/getProperty "line.separator"))
-
-(defn spprint-noeol [ o ] 
-  (let [
-      w (new StringWriter)  
-      _ (pprint o w)
-        ]
-      (replace-str (. w toString) system-eol "")))

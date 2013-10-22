@@ -1,9 +1,34 @@
 (ns langlab.cmns.tests
   "Module contains test utilities."
+  (:import java.io.StringWriter)
   (:require
     [ clojure.test :refer (is) ]
     [ clojure.math.numeric-tower :refer (abs)] 
-    [ langlab.cmns.colls :refer (spprint-noeol) ]))
+    clojure.string  
+   [ clojure.pprint :refer (pprint)] )
+  (:refer clojure.string :only (replace) :rename {replace replace-str}))
+
+
+(defn spprint 
+  "Pretty prints 'o' to string."
+  [ o ] 
+  (let [
+      w (new StringWriter)  
+      _ (pprint o w)
+        ]
+      (. w toString)))
+
+(def ^:private ^String system-eol
+  (System/getProperty "line.separator"))
+
+(defn spprint-noeol 
+  "Pretty prints 'o' to string and removes all end of line characters."
+  [ o ] 
+  (let [
+      w (new StringWriter)  
+      _ (pprint o w)
+        ]
+      (replace-str (. w toString) system-eol "")))
 
 (defn float-eq 
   "Return true if absolute value of a difference between `x` and `y` is 
