@@ -61,8 +61,7 @@
   :codox {
           :output-dir "target/apidoc"
           :sources [ "src/main/clojure"]
-          ;; TODO Uncoment below before push to github
-          ;; :src-dir-uri "http://github.com/lopusz/langlab/blob/master"
-          ;; :src-linenum-anchor-prefix "L"
+          :src-dir-uri "http://github.com/lopusz/langlab/blob/master"
+          :src-linenum-anchor-prefix "L"
           }
   )
