@@ -5,7 +5,7 @@
        This may solve the probles of different encodings in files.
 * TODO [detectors] Investigage the issue of ICU language detection problems
   Why it works only for texts with removed diacritics?
-  Does manual removal affect the non-lait alphabet text detection?
+  Does manual removal affect the non-latin alphabet text detection?
 * TODO [characters] Add function to detect/normalize some UTF-8 characters
   Examples 
   -  "…" -> "..." 
