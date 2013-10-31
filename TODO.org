@@ -1,57 +1,51 @@
-* TODO [detectors] Add tests for language detection.
-* TODO [detectors] Add tests for encoding.
-* TODO [detectors] Add option of seed initialization fro Cybozu lang detector
-* TODO [:general] Check for ICU automatic detection + decoding facilities
-       This may solve the probles of different encodings in files.
-* TODO [detectors] Investigage the issue of ICU language detection problems
-  Why it works only for texts with removed diacritics?
-  Does manual removal affect the non-latin alphabet text detection?
-* TODO [characters] Add function to detect/normalize some UTF-8 characters
-  Examples 
-  -  "…" -> "..." 
-  - "„" -> "\""
-  - "”" -> "\"" 
-  - "—" -> "-" 
-  - hard spaces to spaces
-  - what more ?
-* TODO [stopwords] Create a module and add general stopwords filter 
-* TODO [stopwords] Convert en-drop-articles so it uses stopwords with 
-* TODO [detectors] Create wrappers for language detection module in Apache Tika
-* TODO [tagging] Refactor tagging module so it works with langlab
-* DONE [:general] Refactor langlab-base -> langlab
-  CLOSED: [2013-07-26 Fri 18:09]
-* DONE [readability] Correct test to the infix notation
-  CLOSED: [2013-07-26 Fri 12:20]
-* DONE [readablilty] Correct counting characters to bi version
-  CLOSED: [2013-07-26 Fri 12:20]
-* DONE [characters] Add functions detecting/removing non-MBP characters
-  CLOSED: [2013-07-26 Fri 12:18]
-* DONE [transformers] Add tests to transformers  
-  CLOSED: [2013-07-18 Thu 15:54]
-* DONE [parsers] Add tests to sentence splitters
-  CLOSED: [2013-07-18 Thu 15:54]
-* DONE [parsers] Add simple tokenizer based on Analyzer from Lucene
-  CLOSED: [2013-07-17 Wed 16:12]
-  http://stackoverflow.com/questions/6334692/how-to-use-a-lucene-analyzer-to-tokenize-a-string
-  See post by Ben McCann for Lucene 4.1
-* DONE [characters] Make use of punctuation classes from Unicode 
-  CLOSED: [2013-07-17 Wed 14:21]
-  [Pc] 	Punctuation, Connector
-  [Pd] 	Punctuation, Dash
-  [Pe] 	Punctuation, Close
-  [Pf] 	Punctuation, Final quote (may behave like Ps or Pe depending on usage)
-  [Pi] 	Punctuation, Initial quote (may behave like Ps or Pe depending on usage)
-  [Po] 	Punctuation, Other
-  [Ps] 	Punctuation, Open
-  see http://www.fileformat.info/info/unicode/category/index.htm
-* DONE [characters] Add tokenizer based on module ICU4j and its break iterator
-  CLOSED: [2013-07-17 Wed 14:21]
-  It implements unicode segmentatior rules http://www.unicode.org/reports/tr29/
-  http://icu-project.org/apiref/icu4j/com/ibm/icu/text/BreakIterator.html
-  More http://site.icu-project.org/
-* DONE [characters] Add Java functions to characters module
-  CLOSED: [2013-07-17 Wed 14:21]
-  containsPunctuation(String s)
-  containsPunctuationOnly(String s)
-  containsWhitespace(String s)
-  containsWhitespaceOnly(String s)
+* Issues
+  + *detectors* Lookup new method from Cybozu for tweeets
+   http://shuyo.wordpress.com/2012/05/17/short-text-language-detection-with-infinity-gram/
+  + *detectors* Add tests for language detection.
+  + *detectors* Add tests for encoding.
+  + *detectors* Add option of seed initialization fro Cybozu lang detector
+  + *general* Check for ICU automatic detection + decoding facilities
+    This may solve the probles of different encodings in files.
+  + *detectors* Investigage the issue of ICU language detection problems
+    Why it works only for texts with removed diacritics?
+    Does manual removal affect the non-latin alphabet text detection?
+  + *characters* Add function to detect/normalize some UTF-8 characters
+    Examples
+    - "…" -> "..."
+    - "„" -> "\""
+    - "”" -> "\"" 
+    - "—" -> "-" 
+    - hard spaces to spaces
+    - what more ?
+   + *stopwords* Create a module and add general stopwords filter 
+   + *stopwords* Convert en-drop-articles so it uses stopwords with 
+   + *detectors* Create wrappers for language detection module in Apache Tika
+   + *tagging*   Refactor tagging module so it works with langlab
+* Done
+  + *general* Refactor langlab-base -> langlab
+  + *readability* Correct test to the infix notation
+  + *readablilty* Correct counting characters to bi version
+  + *characters* Add functions detecting/removing non-MBP characters
+  + *transformers* Add tests to transformers  
+  + *parsers* Add tests to sentence splitters
+  + *parsers* Add simple tokenizer based on Analyzer from Lucene
+    http://stackoverflow.com/questions/6334692/how-to-use-a-lucene-analyzer-to-tokenize-a-string
+    See post by Ben McCann for Lucene 4.1
+  + *characters* Make use of punctuation classes from Unicode 
+    [Pc] Punctuation, Connector
+    [Pd] Punctuation, Dash
+    [Pe] Punctuation, Close
+    [Pf] Punctuation, Final quote (may behave like Ps or Pe depending on usage)
+    [Pi] Punctuation, Initial quote (may behave like Ps or Pe depending on usage)
+    [Po] Punctuation, Other
+    [Ps] Punctuation, Open
+     see http://www.fileformat.info/info/unicode/category/index.htm
+  + *characters* Add tokenizer based on module ICU4j and its break iterator
+     It implements unicode segmentatior rules http://www.unicode.org/reports/tr29/
+     http://icu-project.org/apiref/icu4j/com/ibm/icu/text/BreakIterator.html
+     More http://site.icu-project.org/
+  + *characters* Add Java functions to characters module
+    containsPunctuation(String s)
+    containsPunctuationOnly(String s)
+    containsWhitespace(String s)
+    containsWhitespaceOnly(String s)

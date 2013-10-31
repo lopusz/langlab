@@ -1,5 +1,5 @@
 * langlab
-A Clojure library integrating language processing tools available in Java.
+Clojure library integrating language processing tools available in Java.
 
 Currently, this is in work in progress stage. API is subject to change.
 

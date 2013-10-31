@@ -3,14 +3,14 @@
   ; GENERAL OPTIONS
 
   :description "langlab library"
-  :url ""
+  :url "http://github.com/lopusz/langlab"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :aot :all 
   :omit-source true
  
-  ;; options of used by Java 
-  ;;; run repl with assertions enabled
+  ;; Options used by Java 
+  ;;; run with assertions enabled
   :jvm-opts ["-ea"]
   ;;; lint report on on java code (sometimes maybe useful)
   ;;; :javac-options [ "-Xlint"]
