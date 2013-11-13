@@ -1,9 +1,13 @@
 (ns  langlab.core.multi-stemmers
   "Module contains stemming algorithms returning multiple results."
+  (:require [ clojure.java.io :refer (resource input-stream)])
   (:import 
-    [ java.lang CharSequence ]
-    [ morfologik.stemming WordData ]
-    [ morfologik.stemming PolishStemmer ]))
+    [java.lang CharSequence]
+    [morfologik.stemming WordData]
+    [morfologik.stemming PolishStemmer]
+    [org.apache.lucene.util Version]
+    [org.apache.lucene.analysis.hunspell 
+     HunspellDictionary HunspellStemmer HunspellStemmer$Stem ]))
 
 (set! *warn-on-reflection* true)
 
@@ -20,3 +24,28 @@
                (. stemmer lookup word))
        ]
     stems))
+
+(defn read-hunspell-dict 
+  "Reads the affix file `aff-fname` and the dictionary `dict-fname` and
+   makes `HunspellDictionary` necessary for hunspell stemmer."
+  [aff-fname dic-fname]
+  (with-open 
+      [
+         as (input-stream aff-fname)
+         ds (input-stream dic-fname)
+      ]
+    (HunspellDictionary. as ds Version/LUCENE_43)))
+
+(defn multi-stem-hunspell 
+  "Given the dictionary `d`, stems the `word`. 
+   Language depends on provided dictionary `d`, which is created using 
+   `read-hunspell-dict`."
+  [^HunspellDictionary d  ^String word]
+  (let [
+        stemmer (HunspellStemmer. d)
+        conv-stem-to-string  #(. ^HunspellStemmer$Stem % getStemString)
+       ]
+    (distinct 
+      (map  
+        conv-stem-to-string
+        (.stem stemmer word)))))
