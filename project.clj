@@ -33,8 +33,9 @@
     [org.apache.tika/tika-core "1.4"] 
 
     ;; stemmers family + useful analysis utilities
-    [org.apache.lucene/lucene-analyzers-common "4.3.1"]
-
+    [org.apache.lucene/lucene-analyzers-common "4.5.1"]
+    [org.apache.lucene/lucene-analyzers-stempel "4.5.1"]
+    
     ;; Polish multistemmers
     [org.carrot2/morfologik-stemming "1.6.0"]
     [org.carrot2/morfologik-polish "1.6.0"]
