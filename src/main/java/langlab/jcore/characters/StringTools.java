@@ -79,6 +79,23 @@ public final class StringTools {
         return res;
     }
 
+    public static boolean containsLettersOrDigitsOnly(String s) {
+        boolean res=true;
+
+        for(int i = 0; i < s.length(); ) {
+            int cp = s.codePointAt(i);
+            if (!Character.isLetterOrDigit(cp)) {
+                res=false;
+                break;
+            }
+            i += Character.charCount(cp);
+        }
+
+        if (s.length()==0) { res=false; }
+
+        return res;
+    }
+
     public static boolean containsWhitespace(String s) {
         boolean res=false;
 

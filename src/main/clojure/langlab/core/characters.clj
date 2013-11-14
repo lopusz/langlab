@@ -75,6 +75,12 @@
   [ ^String s ]
   (StringTools/containsPunctOnly s))
 
+(defn contains-letters-or-digits-only?
+  "Checks if `s` contains *only* letters or digits according to
+   `Character.isLetterOrDigit(cp)`."
+  [ ^String s ]
+  (StringTools/containsLettersOrDigitsOnly s))
+
 (defn contains-non-bmp?
   "Checks if `s` contains non-bmp characters according to
    `!Character.isBmpCodePoint(cp)`."

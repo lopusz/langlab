@@ -91,6 +91,12 @@
          [ "A"  "qué" "debe" "atenerse" "el" "hombre" 
          "sobre" "la" "realidad"  "Bynajmniej" ])))
 
+(deftest trans-keep-digits-or-letters-test
+    (is (= (trans-keep-letters-or-digits []) []))
+    (is (= (trans-keep-letters-or-digits [ "--" ]) []))
+    (is (= (trans-keep-letters-or-digits ["Żółw" "-" "qué" "…"]) 
+           ["Żółw" "qué"])))
+
 (deftest trans-lower-case-test
   (is (= (trans-lower-case []) []))
   (is (= (trans-lower-case [ "" "" ]) [ "" "" ]))

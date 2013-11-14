@@ -61,6 +61,15 @@
   (is (= (contains-punct-only? "z…¿„”—") false))
   (is (= (contains-punct-only? ",;!b") false)))
 
+(deftest contains-letters-or-digits-only
+  (is (= (contains-letters-or-digits-only? "") false))
+  (is (= (contains-letters-or-digits-only? "ala123") true))
+  (is (= (contains-letters-or-digits-only? "99żółw ") false))
+  (is (= (contains-letters-or-digits-only? "99zółw-stary") false))
+  (is (= (contains-letters-or-digits-only? "99zółw,późno") false))
+  (is (= (contains-letters-or-digits-only? 
+           "àâçéèêëïîôùûüÿÀÂÇÉÈÊËÏÎÔÙÛÜ") true)))
+
 (deftest contains-whitespace-test
   (is (= (contains-whitespace? "") false))
   (is (= (contains-whitespace? "z…¿„”—") false))

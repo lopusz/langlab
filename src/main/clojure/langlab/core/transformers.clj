@@ -2,7 +2,9 @@
   "Module contains utilities for transforming tokens."
   (:require [ clojure.string :refer (blank? split lower-case) ]
             [ langlab.core.characters 
-               :refer (contains-whitespace-only? contains-punct-only?)]))
+               :refer (contains-whitespace-only? contains-punct-only?
+                       contains-letters-or-digits-only?)
+              ]))
 
 (defn merge-tokens-with-space
   "Creates a string from `tokens` seq, by inserting space between them.
@@ -67,6 +69,12 @@
   "Drops all items from `tokens` that contains only punctuation tokens."
   [ tokens ]
   (filter #(not (contains-punct-only? %)) tokens))
+
+(defn trans-keep-letters-or-digits
+  "Drops all items from `tokens` that contain other characters
+   than letters or digits."
+  [ tokens ]
+  (filter #(contains-letters-or-digits-only? %) tokens))
 
 (defn trans-lower-case 
   "Lowercases all `tokens`."
