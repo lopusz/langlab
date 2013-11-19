@@ -70,6 +70,25 @@
   (is (= (contains-letters-or-digits-only? 
            "àâçéèêëïîôùûüÿÀÂÇÉÈÊËÏÎÔÙÛÜ") true)))
 
+(deftest contains-letters-only
+  (is (= (contains-letters-only? "") false))
+  (is (= (contains-letters-only? "ala") true))
+  (is (= (contains-letters-only? "ala123") false))
+  (is (= (contains-letters-only? "żółwŹŻ") true))
+  (is (= (contains-letters-only? "żółwŹŻ99") false))
+  (is (= (contains-letters-only? " żółwŹŻ") false))
+  (is (= (contains-letters-only? "żółwŹŻ ") false))
+  (is (= (contains-letters-only? 
+           "àâçéèêëïîôùûüÿÀÂÇÉÈÊËÏÎÔÙÛÜ") true)))
+
+(deftest contains-digits-only
+  (is (= (contains-digits-only? "") false))
+  (is (= (contains-digits-only? "123") true))
+  (is (= (contains-digits-only? "ala123") false))
+  (is (= (contains-digits-only? "888żółwŹŻ ") false))
+  (is (= (contains-digits-only? "888-999 ") false))
+  (is (= (contains-digits-only? "888+999 ") false)))
+
 (deftest contains-whitespace-test
   (is (= (contains-whitespace? "") false))
   (is (= (contains-whitespace? "z…¿„”—") false))

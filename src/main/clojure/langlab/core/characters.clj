@@ -75,6 +75,18 @@
   [ ^String s ]
   (StringTools/containsPunctOnly s))
 
+(defn contains-letters-only?
+  "Checks if `s` contains *only* letters according to 
+   `Character.isLetter(cp)`."
+  [ ^String s ]
+  (StringTools/containsLettersOnly s))
+
+(defn contains-digits-only?
+  "Checks if `s` contains *only* digits according to 
+   `Character.isDigit(cp)`."
+  [ ^String s ]
+  (StringTools/containsDigitsOnly s))
+
 (defn contains-letters-or-digits-only?
   "Checks if `s` contains *only* letters or digits according to
    `Character.isLetterOrDigit(cp)`."

@@ -11,7 +11,7 @@ public final class StringTools {
     public static int countLatinVowelGroups (String word) {
         boolean lastCharWasConsonant=true;
         int numVowelGroups=0;
-        
+
         for(int i = 0; i < word.length(); ) {
              int cp = word.codePointAt(i);
              if (CharacterTools.isLatinVowel(cp)) {
@@ -23,16 +23,16 @@ public final class StringTools {
              }
             i += Character.charCount(cp);
          }
-        
+
         if (numVowelGroups<0) numVowelGroups=0;
-         
+
         return numVowelGroups;
     }
 
     public static int countLatinVowelGroupsWithoutFinal (String word) {
         boolean lastCharWasConsonant=true;
         int numVowelGroups=0;
-        
+
         for(int i = 0; i < word.length(); ) {
             int cp = word.codePointAt(i);
             if (CharacterTools.isLatinVowel(cp)) {
@@ -50,10 +50,10 @@ public final class StringTools {
         }
 
         if (numVowelGroups<0) numVowelGroups=0;
-         
+
         return numVowelGroups;
     }
-    
+
     public static String removeDiacritics(String s) {
         return Normalizer.normalize(s, Form.NFD)
             .replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
@@ -63,8 +63,11 @@ public final class StringTools {
     }
 
     public static boolean containsWhitespaceOnly(String s) {
+
+        if (s.length()==0) { return false; }
+
         boolean res=true;
-    
+
         for(int i = 0; i < s.length(); ) {
             int cp = s.codePointAt(i);
             if (!Character.isWhitespace(cp)) {
@@ -74,12 +77,48 @@ public final class StringTools {
             i += Character.charCount(cp);
         }
 
-        if (s.length()==0) { res=false; } 
+        return res;
+    }
+
+    public static boolean containsLettersOnly(String s) {
+
+        if (s.length()==0) { return false; }
+
+        boolean res=true;
+
+        for(int i = 0; i < s.length(); ) {
+            int cp = s.codePointAt(i);
+            if (!Character.isLetter(cp)) {
+                res=false;
+                break;
+            }
+            i += Character.charCount(cp);
+        }
+
+        return res;
+    }
+
+    public static boolean containsDigitsOnly(String s) {
+        boolean res=true;
+
+        if (s.length()==0) { return false; }
+
+        for(int i = 0; i < s.length(); ) {
+            int cp = s.codePointAt(i);
+            if (!Character.isDigit(cp)) {
+                res=false;
+                break;
+            }
+            i += Character.charCount(cp);
+        }
 
         return res;
     }
 
     public static boolean containsLettersOrDigitsOnly(String s) {
+
+        if (s.length()==0) { return false; }
+
         boolean res=true;
 
         for(int i = 0; i < s.length(); ) {
@@ -90,8 +129,6 @@ public final class StringTools {
             }
             i += Character.charCount(cp);
         }
-
-        if (s.length()==0) { res=false; }
 
         return res;
     }
@@ -112,6 +149,9 @@ public final class StringTools {
     }
 
     public static boolean containsPunctOnly(String s) {
+
+        if (s.length()==0) { return false; }
+
         boolean res=true;
 
         for(int i = 0; i < s.length(); ) {
@@ -120,12 +160,10 @@ public final class StringTools {
                 res=false;
                 break;
             }
-           
+
             i += Character.charCount(cp);
         }
 
-        if (s.length()==0) { res=false; } 
-    
         return res;
     }
 
