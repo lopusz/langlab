@@ -4,12 +4,14 @@ BMP
 BreakIterator
 Charset
 Codox
+HunspellDictionary
 Kraaij
 Langlab
 Lowercases
 NLP
 Namespaces
 Pohlmann
+aff
 apidocs
 arg
 asc
@@ -23,6 +25,7 @@ cybozu
 da
 de
 desc
+dic
 encod
 encodings
 env
@@ -34,10 +37,14 @@ fval
 ga
 getType
 hu
+hunspell
 hy
 icu
 indices
 isBmpCodePoint
+isDigit
+isLetter
+isLetterOrDigit
 isReasonablyCertain
 isWhitespace
 juniversalchardet
@@ -63,6 +70,7 @@ ro
 ru
 spprint
 stemmer
+stempel
 sv
 tika
 tol
