@@ -1,10 +1,14 @@
 * langlab
-Clojure library integrating language processing tools available in Java.
 
-Currently, this is in work in progress stage. API is subject to change.
+  Clojure library integrating language processing tools available in Java.
 
-API docs are available [[http://lopusz.github.io/langlab][here]].
+  Currently, this is in work in progress stage. API is subject to change.
 
+  API docs are available [[http://lopusz.github.io/langlab][here]].
+* Acknowledgments
+  Great thanks for Damian Doyle and [[http://www.ranks.nl][ranks.nl]]
+  for making their  [[http://www.ranks.nl/resources/stopwords.html][stopwords lists]]
+  available for the project.
 * License
 
 Distributed under the Eclipse Public License, the same as Clojure.
