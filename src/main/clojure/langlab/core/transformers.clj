@@ -54,17 +54,6 @@
         ]
     (mapcat trans-f tokens)))
 
-(defn en-trans-drop-articles
-  "Drops every item from `tokens` that lowercases to English articles 
-   (a/an/the)."  
-  [ tokens ]
-  (let [
-        is-not-article? 
-          (fn [s] (not (contains? #{ "a" "an" "the" } 
-                                 (lower-case s)))) 
-        ]
-    (filter is-not-article? tokens)))
-
 (defn trans-drop-punct   
   "Drops all items from `tokens` that contains only punctuation tokens."
   [ tokens ]

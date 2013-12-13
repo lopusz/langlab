@@ -74,15 +74,6 @@
          ["¿" "¿" "¿" "A" "qué" "debe" "atenerse" "el" "hombre" "sobre" "la" 
             "realidad" "?" "?" "?"])))
 
-(deftest en-trans-drop-articles-test 
-  (is (= (en-trans-drop-articles []) []))
-  (is (= (en-trans-drop-articles 
-            [ "The" "question" "of" "an" "article" "." 
-              "THe" "question" "." "AN" "answer" "." 
-              "A" "test" "of" "a" "test" "."])
-        [ "question" "of" "article" "." "question" "." "answer" "." 
-              "test" "of" "test" "."])))
-
 (deftest trans-drop-punct-test
   (is (= (trans-drop-punct []) []))
   (is (= (trans-drop-punct ["." "." "."] ) []))
