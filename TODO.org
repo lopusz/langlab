@@ -1,6 +1,4 @@
 * Issues
-  + *[stopwords]* Add basic unit tests to stopwords functions
-  + *[stopwords]* Convert en-drop-articles so it uses stopwords 
   + *[stemmers]* Should I rewrite stemmers in the spirit of create and apply?
     It should yield performance improvement but what about concurrency?
     Alternative is to keep all the stemmers in delays.
@@ -23,12 +21,15 @@
     - hard spaces to spaces
     - what more ?
 
-  + *[detectors]* Create wrappers for language detection module in Apache Tika
-  + *[tagging]*   Refactor tagging module so it works with langlab
-  + *[stopwords]* Verify norwegian stopwords (no-stopwords) 
+  + *[tagging]* Refactor tagging module so it works with langlab
+  + *[stopwords]* Verify norwegian stopwords (no-sw) 
     I had to do some uppercase conversions, so something migh be wrong there.
 
 * Done
+  + *[stopwords]* Add docs to stopwords functions 
+  + *[stopwords]* Convert en-drop-articles so it uses stopwords
+  + *[stopwords]* Add basic unit tests to stopwords functions
+  + *[detectors]* Create wrappers for language detection module in Apache Tika
   + *[stopwords]* Add constants containing articles
   + *[stopwords]* Create a module and add general stopwords filter 
   + *[general]* Refactor langlab-base -> langlab
