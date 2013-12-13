@@ -1,24 +1,33 @@
 (ns langlab.core.stopwords
-  "Module contains predefined sets of stopwords/articles for various languages 
+  "Module contains predefined sets of stopwords/articles for various languages
    and functions to operate on them.
 
    All constants are lowercase."
-   
+
    (:require [ clojure.string :refer [lower-case]]))
 
-(defn trans-drop-sw [ sw  tokens ]
-  (filter #(not (contains? sw %)) tokens))
+(defn trans-drop-set
+  "Drop all elements of 'tokens' that are included in the 'drop-set'.
+   For 'drop-set' one of the module constatns representig stopwords or
+   articles can be used."
+  [ drop-set tokens ]
+  (filter #(not (contains? drop-set %)) tokens))
 
-(defn trans-drop-sw-all-case [ sw  tokens ]
-  (filter #(not (contains? sw (lower-case %))) tokens))
+(defn trans-drop-set-all-case
+  "Drop all elements of 'tokens' that are included in the 'drop-set'.
+   Ignore case.
+   For 'drop-set' one of the module constatns representig stopwords or
+   articles can be used."
+  [ drop-set tokens ]
+  (filter #(not (contains? drop-set (lower-case %))) tokens))
 
 (def en-articles
   "English articles."
-  #{ "a" "the" "en"})
+  #{ "a" "the" "an"})
 
 (def de-articles
   "German articles."
-  #{ "der" "das" "die" "den" "dem" "des" 
+  #{ "der" "das" "die" "den" "dem" "des"
      "ein" "eine" "einer" "einem" "einen" "eines"
      "kein" "keine" "keiner" "keinem" "keinen" "keines"})
 
@@ -4587,4 +4596,3 @@
      "þunda"
      "þundan"
      "þunu"})
-
