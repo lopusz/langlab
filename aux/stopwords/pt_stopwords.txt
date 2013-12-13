@@ -1,4 +1,4 @@
-#  "Portugese stopwords.
+#  "Portuguese stopwords.
 #   Taken from http://www.ranks.nl/resources/stopwords.html."
 último
 é

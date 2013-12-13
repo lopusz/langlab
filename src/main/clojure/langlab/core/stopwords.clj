@@ -8,7 +8,7 @@
 
 (defn trans-drop-set
   "Drop all elements of 'tokens' that are included in the 'drop-set'.
-   For 'drop-set' one of the module constatns representig stopwords or
+   For 'drop-set' one of the module constants representing stopwords or
    articles can be used."
   [ drop-set tokens ]
   (filter #(not (contains? drop-set %)) tokens))
@@ -16,7 +16,7 @@
 (defn trans-drop-set-all-case
   "Drop all elements of 'tokens' that are included in the 'drop-set'.
    Ignore case.
-   For 'drop-set' one of the module constatns representig stopwords or
+   For 'drop-set' one of the module constants representing stopwords or
    articles can be used."
   [ drop-set tokens ]
   (filter #(not (contains? drop-set (lower-case %))) tokens))
@@ -50,7 +50,6 @@
 (def pt-articles
   "Portuguese articles."
   #{ "o" "a" "os" "as" "um" "uns" "uma" "umas"})
-
 (def ca-sw
   "Catalan stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
@@ -3514,7 +3513,7 @@
      "że"})
 
 (def pt-sw
-  "Portugese stopwords.
+  "Portuguese stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   #{ "acerca"
      "agora"
@@ -4596,3 +4595,4 @@
      "þunda"
      "þundan"
      "þunu"})
+

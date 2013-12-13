@@ -2,13 +2,13 @@
   + *[stemmers]* Should I rewrite stemmers in the spirit of create and apply?
     It should yield performance improvement but what about concurrency?
     Alternative is to keep all the stemmers in delays.
-  + *[detectors]* Lookup new method from Cybozu for tweeets
+  + *[detectors]* Look up new method from Cybozu for tweets
     http://shuyo.wordpress.com/2012/05/17/short-text-language-detection-with-infinity-gram/
   + *[detectors]* Add tests for language detection.
   + *[detectors]* Add tests for encoding.
   + *[detectors]* Add option of seed initialization fro Cybozu lang detector
   + *[general]* Check for ICU automatic detection + decoding facilities
-    This may solve the probles of different encodings in files.
+    This may solve the problems of different encodings in files.
   + *[detectors]* Investigate the issue of ICU language detection problems
     Why it works only for texts with removed diacritics?
     Does manual removal affect the non-latin alphabet text detection?
@@ -22,8 +22,8 @@
     - what more ?
 
   + *[tagging]* Refactor tagging module so it works with langlab
-  + *[stopwords]* Verify norwegian stopwords (no-sw) 
-    I had to do some uppercase conversions, so something migh be wrong there.
+  + *[stopwords]* Verify Norwegian stopwords (no-sw) 
+    I had to do some uppercase conversions, so something might be wrong there.
 
 * Done
   + *[stopwords]* Add docs to stopwords functions 
@@ -34,7 +34,7 @@
   + *[stopwords]* Create a module and add general stopwords filter 
   + *[general]* Refactor langlab-base -> langlab
   + *[readability]* Correct test to the infix notation
-  + *[readablilty]* Correct counting characters to bi version
+  + *[readability]* Correct counting characters to bi version
   + *[characters]* Add functions detecting/removing non-MBP characters
   + *[transformers]* Add tests to transformers  
   + *[parsers]* Add tests to sentence splitters
@@ -51,7 +51,7 @@
     [Ps] Punctuation, Open
      see http://www.fileformat.info/info/unicode/category/index.htm
   + *[characters]* Add tokenizer based on module ICU4j and its break iterator
-    It implements unicode segmentatior rules 
+    It implements Unicode segmentation rules 
     http://www.unicode.org/reports/tr29/
     http://icu-project.org/apiref/icu4j/com/ibm/icu/text/BreakIterator.html
     More http://site.icu-project.org/

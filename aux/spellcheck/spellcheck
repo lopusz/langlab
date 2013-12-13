@@ -11,9 +11,11 @@ DICT_FILE_WITH_PATH=${DIR}/${DICT_FILE}
 
 FILES_HTML=`find ${APIDOCS_DIR} -name "*.html" -print`
 
+FILES_ALL="${FILES_HTML} TODO.org README.org"
+
 cp ${DICT_FILE_WITH_PATH} ${DICT_FILE}.tmp
 
-for F in ${FILES_HTML}; do 
+for F in ${FILES_ALL}; do 
     aspell --lang=en_EN -p ./${DICT_FILE}.tmp -c ${F}
 done
 
@@ -21,7 +23,7 @@ rm ./${DICT_FILE}.tmp
 
 echo "Checked:"
 
-for F in ${FILES_HTML}; do 
+for F in ${FILES_ALL}; do 
     echo $F
 done
 
