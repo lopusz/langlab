@@ -1,4 +1,4 @@
-#  "Returns Catalan stopwords.
+#  "Returns Catalan stopword set.
 #   Taken from http://www.ranks.nl/resources/stopwords.html."
 de
 es

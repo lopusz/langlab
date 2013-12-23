@@ -1,4 +1,4 @@
-#  "Returns Turkish stopwords.
+#  "Returns Turkish stopword set.
 #   Taken from http://www.ranks.nl/resources/stopwords.html."
 acaba
 altmýþ

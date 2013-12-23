@@ -1,4 +1,4 @@
-#  "Returns Danish stopwords.
+#  "Returns Danish stopword set.
 #   Taken from http://www.ranks.nl/resources/stopwords.html."
 af
 alle

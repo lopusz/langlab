@@ -1,4 +1,4 @@
-#  "Returns English stopwords.
+#  "Returns English stopword set.
 #   Taken from http://www.ranks.nl/resources/stopwords.html."
 a
 about

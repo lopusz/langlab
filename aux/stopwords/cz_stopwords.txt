@@ -1,4 +1,4 @@
-#  "Returns Czech stopwords.
+#  "Returns Czech stopword set.
 #   Taken from http://www.ranks.nl/resources/stopwords.html."
 dnes
 cz

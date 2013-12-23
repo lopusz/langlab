@@ -5,16 +5,16 @@
    All constants are lowercase."
 
   (:require [ clojure.string :refer [lower-case]])
-  (:import 
+  (:import
              [ org.apache.lucene.analysis.ar ArabicAnalyzer ]
-             [ org.apache.lucene.analysis.hy ArmenianAnalyzer ] 
-             [ org.apache.lucene.analysis.eu BasqueAnalyzer ] 
-             [ org.apache.lucene.analysis.br BrazilianAnalyzer ] 
+             [ org.apache.lucene.analysis.hy ArmenianAnalyzer ]
+             [ org.apache.lucene.analysis.eu BasqueAnalyzer ]
+             [ org.apache.lucene.analysis.br BrazilianAnalyzer ]
              [ org.apache.lucene.analysis.bg BulgarianAnalyzer ]
              [ org.apache.lucene.analysis.ca CatalanAnalyzer ]
              [ org.apache.lucene.analysis.cz CzechAnalyzer ]
              [ org.apache.lucene.analysis.da DanishAnalyzer ]
-             [ org.apache.lucene.analysis.en EnglishAnalyzer ] 
+             [ org.apache.lucene.analysis.en EnglishAnalyzer ]
              [ org.apache.lucene.analysis.fi FinnishAnalyzer ]
              [ org.apache.lucene.analysis.fr FrenchAnalyzer ]
              [ org.apache.lucene.analysis.gl GalicianAnalyzer ]
@@ -28,9 +28,9 @@
              [ org.apache.lucene.analysis.lv LatvianAnalyzer ]
              [ org.apache.lucene.analysis.no NorwegianAnalyzer ]
              [ org.apache.lucene.analysis.fa PersianAnalyzer ]
-             [ org.apache.lucene.analysis.pt PortugueseAnalyzer ] 
+             [ org.apache.lucene.analysis.pt PortugueseAnalyzer ]
              [ org.apache.lucene.analysis.ro RomanianAnalyzer ]
-             [ org.apache.lucene.analysis.ru RussianAnalyzer ] 
+             [ org.apache.lucene.analysis.ru RussianAnalyzer ]
              [ org.apache.lucene.analysis.es SpanishAnalyzer ]
              [ org.apache.lucene.analysis.sv SwedishAnalyzer ]
              [ org.apache.lucene.analysis.th ThaiAnalyzer ]
@@ -52,192 +52,191 @@
   (filter #(not (contains? drop-set (lower-case %))) tokens))
 
 (defn en-get-articles
-  "Returns English articles."
+  "Returns English article set."
   []
   #{ "a" "the" "an"})
 
 (defn de-get-articles
-  "Returns German articles."
+  "Returns German article set."
   []
   #{ "der" "das" "die" "den" "dem" "des"
      "ein" "eine" "einer" "einem" "einen" "eines"
      "kein" "keine" "keiner" "keinem" "keinen" "keines"})
 
 (defn nl-get-articles
-  "Returns Dutch articles."
+  "Returns Dutch article set."
   []
   #{ "de" "het" "een" "geen" })
 
 (defn fr-get-articles
-  "Returns French articles."
+  "Returns French article set."
   []
   #{ "le" "la" "l'" "les" "un" "une" "des"})
 
 (defn it-get-articles
-  "Returns Italian articles."
+  "Returns Italian article set."
   []
   #{ "il" "lo" "i" "gli" "la" "le" "un" "uno" "una"})
 
 (defn es-get-articles
-  "Returns Spanish articles."
+  "Returns Spanish article set."
   []
   #{ "el" "la" "los" "las" "un" "una" "unos" "unas"})
 
 (defn pt-get-articles
-  "Return Portuguese articles."
+  "Return Portuguese article set."
   []
   #{ "o" "a" "os" "as" "um" "uns" "uma" "umas"})
 
 (defn- conv-char-array-set-to-str-set [ char-array-set ]
   (into #{} (map #(String. %) char-array-set)))
 
-(defn ar-get-stopwords-lucene 
-  "Returns default Arabic stop word set used by Lucene."
-  [] 
+(defn ar-get-stopwords-lucene
+  "Returns default Arabic stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (ArabicAnalyzer/getDefaultStopSet)))
 
-(defn hy-get-stopwords-lucene 
-  "Returns default Armenian stop word set used by Lucene."
-  [] 
-  (conv-char-array-set-to-str-set (ArmenianAnalyzer/getDefaultStopSet))) 
+(defn hy-get-stopwords-lucene
+  "Returns default Armenian stopword set used by Lucene."
+  []
+  (conv-char-array-set-to-str-set (ArmenianAnalyzer/getDefaultStopSet)))
 
-(defn eu-get-stopwords-lucene 
-  "Returns default Basque stop word set used by Lucene."
-  [] 
-  (conv-char-array-set-to-str-set (BasqueAnalyzer/getDefaultStopSet))) 
+(defn eu-get-stopwords-lucene
+  "Returns default Basque stopword set used by Lucene."
+  []
+  (conv-char-array-set-to-str-set (BasqueAnalyzer/getDefaultStopSet)))
 
-(defn br-get-stopwords-lucene 
-  "Returns default Brazilian stop word set used by Lucene."
-  [] 
-  (conv-char-array-set-to-str-set (BrazilianAnalyzer/getDefaultStopSet))) 
+(defn br-get-stopwords-lucene
+  "Returns default Brazilian stopword set used by Lucene."
+  []
+  (conv-char-array-set-to-str-set (BrazilianAnalyzer/getDefaultStopSet)))
 
-(defn bg-get-stopwords-lucene 
-  "Returns default Bulgarianstop word set used by Lucene."
-  [] 
+(defn bg-get-stopwords-lucene
+  "Returns default Bulgarian stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (BulgarianAnalyzer/getDefaultStopSet)))
 
-(defn ca-get-stopwords-lucene 
-  "Returns default Catalan stop word set used by Lucene."
-  [] 
+(defn ca-get-stopwords-lucene
+  "Returns default Catalan stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (CatalanAnalyzer/getDefaultStopSet)))
 
-(defn cz-get-stopwords-lucene 
-  "Returns default Czech stop word set used by Lucene."
-  [] 
+(defn cz-get-stopwords-lucene
+  "Returns default Czech stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (CzechAnalyzer/getDefaultStopSet)))
 
-(defn da-get-stopwords-lucene 
-  "Returns default Danish nstop word set used by Lucene."
-  [] 
+(defn da-get-stopwords-lucene
+  "Returns default Danish stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (DanishAnalyzer/getDefaultStopSet)))
 
-(defn en-get-stopwords-lucene 
-  "Returns default Bulgarian stop word set used by Lucene."
-  [] 
+(defn en-get-stopwords-lucene
+  "Returns default Bulgarian stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (EnglishAnalyzer/getDefaultStopSet)))
 
-(defn fi-get-stopwords-lucene 
-  "Returns default Finish stop word set used by Lucene."
-  [] 
+(defn fi-get-stopwords-lucene
+  "Returns default Finish stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (FinnishAnalyzer/getDefaultStopSet)))
 
-(defn fr-get-stopwords-lucene 
-  "Returns default French stop word set used by Lucene."
-  [] 
+(defn fr-get-stopwords-lucene
+  "Returns default French stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (FrenchAnalyzer/getDefaultStopSet)))
 
-(defn gl-get-stopwords-lucene 
-  "Returns default Galician stop word set used by Lucene."
-  [] 
+(defn gl-get-stopwords-lucene
+  "Returns default Galician stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (GalicianAnalyzer/getDefaultStopSet)))
 
-(defn de-get-stopwords-lucene 
-  "Returns default German stop word set used by Lucene."
-  [] 
+(defn de-get-stopwords-lucene
+  "Returns default German stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (GermanAnalyzer/getDefaultStopSet)))
 
-(defn el-get-stopwords-lucene 
-  "Returns default Greek stop word set used by Lucene."
-  [] 
+(defn el-get-stopwords-lucene
+  "Returns default Greek stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (GreekAnalyzer/getDefaultStopSet)))
 
-(defn hi-get-stopwords-lucene 
-  "Returns default Hindi stop word set used by Lucene."
-  [] 
+(defn hi-get-stopwords-lucene
+  "Returns default Hindi stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (HindiAnalyzer/getDefaultStopSet)))
 
-(defn hu-get-stopwords-lucene 
-  "Returns default Hungarian stop word set used by Lucene."
-  [] 
+(defn hu-get-stopwords-lucene
+  "Returns default Hungarian stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (HungarianAnalyzer/getDefaultStopSet)))
 
-(defn id-get-stopwords-lucene 
-  "Returns default Indonesian stop word set used by Lucene."
-  [] 
+(defn id-get-stopwords-lucene
+  "Returns default Indonesian stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (IndonesianAnalyzer/getDefaultStopSet)))
 
-(defn ga-get-stopwords-lucene 
-  "Returns default Irish stop word set used by Lucene."
-  [] 
+(defn ga-get-stopwords-lucene
+  "Returns default Irish stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (IrishAnalyzer/getDefaultStopSet)))
 
-(defn it-get-stopwords-lucene 
-  "Returns default Italian stop word set used by Lucene."
-  [] 
+(defn it-get-stopwords-lucene
+  "Returns default Italian stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (ItalianAnalyzer/getDefaultStopSet)))
 
-(defn lv-get-stopwords-lucene 
-  "Returns default Latvian stop word set used by Lucene."
-  [] 
+(defn lv-get-stopwords-lucene
+  "Returns default Latvian stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (LatvianAnalyzer/getDefaultStopSet)))
 
-(defn no-get-stopwords-lucene 
-  "Returns default Norwegian stop word set used by Lucene."
-  [] 
+(defn no-get-stopwords-lucene
+  "Returns default Norwegian stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (NorwegianAnalyzer/getDefaultStopSet)))
 
-(defn fa-get-stopwords-lucene  
-  "Returns default Persian stop word set used by Lucene."
-  [] 
+(defn fa-get-stopwords-lucene
+  "Returns default Persian stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (PersianAnalyzer/getDefaultStopSet)))
 
-(defn pt-get-stopwords-lucene 
-  "Returns default Portuguese stop word set used by Lucene."
-  [] 
+(defn pt-get-stopwords-lucene
+  "Returns default Portuguese stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (PortugueseAnalyzer/getDefaultStopSet)))
- 
-(defn ro-get-stopwords-lucene 
-  "Returns default romanian stop word set used by Lucene."
-  [] 
+
+(defn ro-get-stopwords-lucene
+  "Returns default Romanian stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (RomanianAnalyzer/getDefaultStopSet)))
 
-(defn ru-get-stopwords-lucene 
-  "Returns default Russian stop word set used by Lucene."
-  [] 
-  (conv-char-array-set-to-str-set (RussianAnalyzer/getDefaultStopSet))) 
+(defn ru-get-stopwords-lucene
+  "Returns default Russian stopword set used by Lucene."
+  []
+  (conv-char-array-set-to-str-set (RussianAnalyzer/getDefaultStopSet)))
 
-(defn es-get-stopwords-lucene 
-  "Returns default Spanish stop word set used by Lucene."
-  [] 
+(defn es-get-stopwords-lucene
+  "Returns default Spanish stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (SpanishAnalyzer/getDefaultStopSet)))
 
-(defn sv-get-stopwords-lucene 
-  "Returns default Swedish stop word set used by Lucene."
-  [] 
+(defn sv-get-stopwords-lucene
+  "Returns default Swedish stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (SwedishAnalyzer/getDefaultStopSet)))
 
-(defn th-get-stopwords-lucene 
-  "Returns default Thai stop word set used by Lucene."
-  [] 
+(defn th-get-stopwords-lucene
+  "Returns default Thai stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (ThaiAnalyzer/getDefaultStopSet)))
 
-(defn tr-get-stopwords-lucene 
-  "Returns default Turkish stop word set used by Lucene."
-  [] 
+(defn tr-get-stopwords-lucene
+  "Returns default Turkish stopword set used by Lucene."
+  []
   (conv-char-array-set-to-str-set (TurkishAnalyzer/getDefaultStopSet)))
-
 (defn ca-get-stopwords
-  "Returns Catalan stopwords.
+  "Returns Catalan stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "a"
@@ -366,7 +365,7 @@
      "vosaltres"})
 
 (defn cz-get-stopwords
-  "Returns Czech stopwords.
+  "Returns Czech stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "aby"
@@ -509,7 +508,7 @@
      "zpravy"})
 
 (defn de-get-stopwords
-  "Returns German stopwords.
+  "Returns German stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "aber"
@@ -643,7 +642,7 @@
      "zur"})
 
 (defn dk-get-stopwords
-  "Returns Danish stopwords.
+  "Returns Danish stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "af"
@@ -749,7 +748,7 @@
      "var"})
 
 (defn en-get-stopwords
-  "Returns English stopwords.
+  "Returns English stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "a"
@@ -928,7 +927,7 @@
      "you've"})
 
 (defn en-get-stopwords*
-  "English stopwords - alternative longer list.
+  "Returns English stopword set (alternative longer list)."
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "a"
@@ -1477,7 +1476,7 @@
      "zero"})
 
 (defn en-get-stopwords**
-  "Returns English stopwords - alternative very long list.
+  "Returns English stopword (alternative very long list).
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "a"
@@ -2149,7 +2148,7 @@
      "zero"})
 
 (defn es-get-stopwords
-  "Returns Spanish stopwords.
+  "Returns Spanish stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "algún"
@@ -2332,7 +2331,7 @@
      "yo"})
 
 (defn fi-get-stopwords
-  "Returns Finish stopwords.
+  "Returns Finish stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "aiemmin"
@@ -3084,7 +3083,7 @@
      "ympäri"})
 
 (defn fr-get-stopwords
-  "Returns French stopwords.
+  "Returns French stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "alors"
@@ -3215,7 +3214,7 @@
      "vu"})
 
 (defn hu-get-stopwords
-  "Returns Hungarian stopwords.
+  "Returns Hungarian stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "a"
@@ -3255,7 +3254,7 @@
      "volt"})
 
 (defn it-get-stopwords
-  "Returns Italian stopwords.
+  "Returns Italian stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "a"
@@ -3394,7 +3393,7 @@
      "vostro"})
 
 (defn nl-get-stopwords
-  "Returns Dutch stopwords.
+  "Returns Dutch stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "aan"
@@ -3447,7 +3446,7 @@
      "zou"})
 
 (defn no-get-stopwords
-  "Returns Norwegian stopwords.
+  "Returns Norwegian stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "å"
@@ -3571,7 +3570,7 @@
      "vört"})
 
 (defn pl-get-stopwords
-  "Returns Polish stopwords.
+  "Returns Polish stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "ach"
@@ -3714,7 +3713,7 @@
      "że"})
 
 (defn pt-get-stopwords
-  "Returns Portuguese stopwords.
+  "Returns Portuguese stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "acerca"
@@ -3866,7 +3865,7 @@
      "você"})
 
 (defn ru-get-stopwords
-  "Returns Russian stopwords.
+  "Returns Russian stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "а"
@@ -4292,7 +4291,7 @@
      "я"})
 
 (defn sv-get-stopwords
-  "Returns Swedish stopwords.
+  "Returns Swedish stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "aderton"
@@ -4683,7 +4682,7 @@
      "vill"})
 
 (defn tr-get-stopwords
-  "Returns Turkish stopwords.
+  "Returns Turkish stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "acaba"

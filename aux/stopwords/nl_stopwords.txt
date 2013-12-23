@@ -1,4 +1,4 @@
-#  "Returns Dutch stopwords.
+#  "Returns Dutch stopword set.
 #   Taken from http://www.ranks.nl/resources/stopwords.html."
 aan
 af

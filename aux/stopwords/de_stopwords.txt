@@ -1,4 +1,4 @@
-#  "Returns German stopwords.
+#  "Returns German stopword set.
 #   Taken from http://www.ranks.nl/resources/stopwords.html."
 aber
 als

@@ -1,4 +1,4 @@
-#  "Returns Russian stopwords.
+#  "Returns Russian stopword set.
 #   Taken from http://www.ranks.nl/resources/stopwords.html."
 а
 е

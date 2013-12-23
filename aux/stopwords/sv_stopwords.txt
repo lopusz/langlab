@@ -1,4 +1,4 @@
-#  "Returns Swedish stopwords.
+#  "Returns Swedish stopword set.
 #   Taken from http://www.ranks.nl/resources/stopwords.html."
 aderton
 adertonde

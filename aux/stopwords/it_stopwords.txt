@@ -1,4 +1,4 @@
-#  "Returns Italian stopwords.
+#  "Returns Italian stopword set.
 #   Taken from http://www.ranks.nl/resources/stopwords.html."
 a
 adesso
