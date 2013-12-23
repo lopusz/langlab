@@ -1,4 +1,4 @@
-#  "Norwegian stopwords.
+#  "Returns Norwegian stopwords.
 #   Taken from http://www.ranks.nl/resources/stopwords.html."
 alle
 andre

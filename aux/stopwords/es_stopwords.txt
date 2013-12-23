@@ -1,4 +1,4 @@
-#  "Spanish stopwords.
+#  "Returns Spanish stopwords.
 #   Taken from http://www.ranks.nl/resources/stopwords.html."
 un
 una

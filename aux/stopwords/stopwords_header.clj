@@ -228,3 +228,4 @@
   "Returns default Turkish stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (TurkishAnalyzer/getDefaultStopSet)))
+

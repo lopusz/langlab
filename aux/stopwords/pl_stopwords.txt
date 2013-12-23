@@ -1,4 +1,4 @@
-#  "Polish stopwords.
+#  "Returns Polish stopwords.
 #   Taken from http://www.ranks.nl/resources/stopwords.html."
 ach
 aj

@@ -1,4 +1,4 @@
-#  "Hungarian stopwords.
+#  "Returns Hungarian stopwords.
 #   Taken from http://www.ranks.nl/resources/stopwords.html."
 a
 az

@@ -1,4 +1,4 @@
-#  "French stopwords.
+#  "Returns French stopwords.
 #   Taken from http://www.ranks.nl/resources/stopwords.html."
 alors
 au

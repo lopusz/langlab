@@ -137,7 +137,7 @@
 (defn fr-get-sw-lucene 
   "Returns default French stop word set used by Lucene."
   [] 
-  (conv-char-array-set-to-str-set ( FrenchAnalyzer/getDefaultStopSet)))
+  (conv-char-array-set-to-str-set (FrenchAnalyzer/getDefaultStopSet)))
 
 (defn gl-get-sw-lucene 
   "Returns default Galician stop word set used by Lucene."
@@ -147,7 +147,7 @@
 (defn de-get-sw-lucene 
   "Returns default German stop word set used by Lucene."
   [] 
-  (conv-char-array-set-to-str-set ( GermanAnalyzer/getDefaultStopSet)))
+  (conv-char-array-set-to-str-set (GermanAnalyzer/getDefaultStopSet)))
 
 (defn el-get-sw-lucene 
   "Returns default Greek stop word set used by Lucene."
@@ -222,15 +222,17 @@
 (defn th-get-sw-lucene 
   "Returns default Thai stop word set used by Lucene."
   [] 
-  (conv-char-array-set-to-str-set ( ThaiAnalyzer/getDefaultStopSet)))
+  (conv-char-array-set-to-str-set (ThaiAnalyzer/getDefaultStopSet)))
 
 (defn tr-get-sw-lucene 
   "Returns default Turkish stop word set used by Lucene."
   [] 
-  (conv-char-array-set-to-str-set ( TurkishAnalyzer/getDefaultStopSet)))
-(def ca-sw
-  "Catalan stopwords.
+  (conv-char-array-set-to-str-set (TurkishAnalyzer/getDefaultStopSet)))
+
+(defn ca-get-sw
+  "Returns Catalan stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "a"
      "abans"
      "algun"
@@ -356,9 +358,10 @@
      "van"
      "vosaltres"})
 
-(def cz-sw
-  "Czech stopwords.
+(defn cz-get-sw
+  "Returns Czech stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "aby"
      "aj"
      "ale"
@@ -498,9 +501,10 @@
      "zpet"
      "zpravy"})
 
-(def de-sw
-  "German stopwords.
+(defn de-get-sw
+  "Returns German stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "aber"
      "als"
      "am"
@@ -631,9 +635,10 @@
      "zum"
      "zur"})
 
-(def dk-sw
-  "Danish stopwords.
+(defn dk-get-sw
+  "Returns Danish stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "af"
      "alle"
      "andet"
@@ -736,9 +741,10 @@
      "ud"
      "var"})
 
-(def en-sw
-  "English stopwords.
+(defn en-get-sw
+  "Returns English stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "a"
      "about"
      "above"
@@ -914,9 +920,10 @@
      "yourselves"
      "you've"})
 
-(def en-sw-1
+(defn en-get-sw*
   "English stopwords - alternative longer list.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "a"
      "able"
      "about"
@@ -1462,9 +1469,10 @@
      "you've"
      "zero"})
 
-(def en-sw-2
-  "English stopwords - alternative very long list.
+(defn en-get-sw**
+  "Returns English stopwords - alternative very long list.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "a"
      "able"
      "about"
@@ -2133,9 +2141,10 @@
      "z"
      "zero"})
 
-(def es-sw
-  "Spanish stopwords.
+(defn es-get-sw
+  "Returns Spanish stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "algún"
      "alguna"
      "algunas"
@@ -2315,9 +2324,10 @@
      "voy"
      "yo"})
 
-(def fi-sw
-  "Finish stopwords.
+(defn fi-get-sw
+  "Returns Finish stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "aiemmin"
      "aika"
      "aikaa"
@@ -3066,9 +3076,10 @@
      "ylös"
      "ympäri"})
 
-(def fr-sw
-  "French stopwords.
+(defn fr-get-sw
+  "Returns French stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "alors"
      "au"
      "aucuns"
@@ -3196,9 +3207,10 @@
      "vous"
      "vu"})
 
-(def hu-sw
-  "Hungarian stopwords.
+(defn hu-get-sw
+  "Returns Hungarian stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "a"
      "át"
      "az"
@@ -3235,9 +3247,10 @@
      "vissza"
      "volt"})
 
-(def it-sw
-  "Italian stopwords.
+(defn it-get-sw
+  "Returns Italian stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "a"
      "adesso"
      "ai"
@@ -3373,9 +3386,10 @@
      "volte"
      "vostro"})
 
-(def nl-sw
-  "Dutch stopwords.
+(defn nl-get-sw
+  "Returns Dutch stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "aan"
      "af"
      "al"
@@ -3425,9 +3439,10 @@
      "zo"
      "zou"})
 
-(def no-sw
-  "Norwegian stopwords.
+(defn no-get-sw
+  "Returns Norwegian stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "å"
      "alle"
      "andre"
@@ -3548,9 +3563,10 @@
      "vöre"
      "vört"})
 
-(def pl-sw
-  "Polish stopwords.
+(defn pl-get-sw
+  "Returns Polish stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "ach"
      "aj"
      "albo"
@@ -3690,9 +3706,10 @@
      "zawsze"
      "że"})
 
-(def pt-sw
-  "Portuguese stopwords.
+(defn pt-get-sw
+  "Returns Portuguese stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "acerca"
      "agora"
      "algmas"
@@ -3841,9 +3858,10 @@
      "verdadeiro"
      "você"})
 
-(def ru-sw
-  "Russian stopwords.
+(defn ru-get-sw
+  "Returns Russian stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "а"
      "алло"
      "без"
@@ -4266,9 +4284,10 @@
      "эту"
      "я"})
 
-(def sv-sw
-  "Swedish stopwords.
+(defn sv-get-sw
+  "Returns Swedish stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "aderton"
      "adertonde"
      "adjö"
@@ -4656,9 +4675,10 @@
      "vilket"
      "vill"})
 
-(def tr-sw
-  "Turkish stopwords.
+(defn tr-get-sw
+  "Returns Turkish stopwords.
    Taken from http://www.ranks.nl/resources/stopwords.html."
+  []
   #{ "acaba"
      "altmýþ"
      "altý"

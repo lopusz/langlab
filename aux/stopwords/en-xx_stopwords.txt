@@ -1,4 +1,4 @@
-#  "English stopwords - alternative very long list.
+#  "Returns English stopwords - alternative very long list.
 #   Taken from http://www.ranks.nl/resources/stopwords.html."
 a
 able
