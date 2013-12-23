@@ -927,7 +927,7 @@
      "you've"})
 
 (defn en-get-stopwords*
-  "Returns English stopword set (alternative longer list)."
+  "Returns English stopword set (alternative longer list).
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "a"
