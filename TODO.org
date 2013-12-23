@@ -1,17 +1,14 @@
 * Issues
-  + *[stemmers]* Should I rewrite stemmers in the spirit of create and apply?
-    It should yield performance improvement but what about concurrency?
-    Alternative is to keep all the stemmers in delays.
   + *[detectors]* Look up new method from Cybozu for tweets
     http://shuyo.wordpress.com/2012/05/17/short-text-language-detection-with-infinity-gram/
   + *[detectors]* Add tests for language detection.
   + *[detectors]* Add tests for encoding.
   + *[detectors]* Add option of seed initialization fro Cybozu lang detector
-  + *[general]* Check for ICU automatic detection + decoding facilities
-    This may solve the problems of different encodings in files.
   + *[detectors]* Investigate the issue of ICU language detection problems
     Why it works only for texts with removed diacritics?
     Does manual removal affect the non-latin alphabet text detection?
+  + *[general]* Check for ICU automatic detection + decoding facilities
+    This may solve the problems of different encodings in files.
   + *[characters]* Add function to detect/normalize some UTF-8 characters
     Examples
     - "…" -> "..."
@@ -24,8 +21,19 @@
   + *[tagging]* Refactor tagging module so it works with langlab
   + *[stopwords]* Verify Norwegian stopwords (no-sw) 
     I had to do some uppercase conversions, so something might be wrong there.
+  + *[parsers]* There is a (closed source?) sentence parser library from 
+     Scott Piao
+     http://text0.mib.man.ac.uk:8080/scottpiao/apidocs/api_sentpar_breaker.jsp
+     https://sites.google.com/site/scottpiaosite/
+     http://www.research.lancs.ac.uk/portal/en/people/Scott-Piao/
+  + *[stemmers]* Should I rewrite stemmers in the spirit of create and apply?
+    It should yield performance improvement but what about concurrency?
+    Alternative is to keep all the stemmers in delays.
+  + *[stemmers]* Should I rename multi-stemmers to lemmatizers and move there morpha
+    stemmer (lemmatizer)?
 
 * Done
+  + *[stopwords]* Refactor constants into functions
   + *[stopwords]* Add docs to stopwords functions 
   + *[stopwords]* Convert en-drop-articles so it uses stopwords
   + *[stopwords]* Add basic unit tests to stopwords functions
