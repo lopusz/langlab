@@ -91,147 +91,147 @@
 (defn- conv-char-array-set-to-str-set [ char-array-set ]
   (into #{} (map #(String. %) char-array-set)))
 
-(defn ar-get-sw-lucene 
+(defn ar-get-stopwords-lucene 
   "Returns default Arabic stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (ArabicAnalyzer/getDefaultStopSet)))
 
-(defn hy-get-sw-lucene 
+(defn hy-get-stopwords-lucene 
   "Returns default Armenian stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (ArmenianAnalyzer/getDefaultStopSet))) 
 
-(defn eu-get-sw-lucene 
+(defn eu-get-stopwords-lucene 
   "Returns default Basque stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (BasqueAnalyzer/getDefaultStopSet))) 
 
-(defn br-get-sw-lucene 
+(defn br-get-stopwords-lucene 
   "Returns default Brazilian stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (BrazilianAnalyzer/getDefaultStopSet))) 
 
-(defn bg-get-sw-lucene 
-  "Returns default bulgarianstop word set used by Lucene."
+(defn bg-get-stopwords-lucene 
+  "Returns default Bulgarianstop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (BulgarianAnalyzer/getDefaultStopSet)))
 
-(defn ca-get-sw-lucene 
+(defn ca-get-stopwords-lucene 
   "Returns default Catalan stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (CatalanAnalyzer/getDefaultStopSet)))
 
-(defn cz-get-sw-lucene 
+(defn cz-get-stopwords-lucene 
   "Returns default Czech stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (CzechAnalyzer/getDefaultStopSet)))
 
-(defn da-get-sw-lucene 
+(defn da-get-stopwords-lucene 
   "Returns default Danish nstop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (DanishAnalyzer/getDefaultStopSet)))
 
-(defn en-get-sw-lucene 
-  "Returns default bulgarianstop word set used by Lucene."
+(defn en-get-stopwords-lucene 
+  "Returns default Bulgarian stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (EnglishAnalyzer/getDefaultStopSet)))
 
-(defn fi-get-sw-lucene 
+(defn fi-get-stopwords-lucene 
   "Returns default Finish stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (FinnishAnalyzer/getDefaultStopSet)))
 
-(defn fr-get-sw-lucene 
+(defn fr-get-stopwords-lucene 
   "Returns default French stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (FrenchAnalyzer/getDefaultStopSet)))
 
-(defn gl-get-sw-lucene 
+(defn gl-get-stopwords-lucene 
   "Returns default Galician stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (GalicianAnalyzer/getDefaultStopSet)))
 
-(defn de-get-sw-lucene 
+(defn de-get-stopwords-lucene 
   "Returns default German stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (GermanAnalyzer/getDefaultStopSet)))
 
-(defn el-get-sw-lucene 
+(defn el-get-stopwords-lucene 
   "Returns default Greek stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (GreekAnalyzer/getDefaultStopSet)))
 
-(defn hi-get-sw-lucene 
+(defn hi-get-stopwords-lucene 
   "Returns default Hindi stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (HindiAnalyzer/getDefaultStopSet)))
 
-(defn hu-get-sw-lucene 
+(defn hu-get-stopwords-lucene 
   "Returns default Hungarian stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (HungarianAnalyzer/getDefaultStopSet)))
 
-(defn id-get-sw-lucene 
+(defn id-get-stopwords-lucene 
   "Returns default Indonesian stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (IndonesianAnalyzer/getDefaultStopSet)))
 
-(defn ga-get-sw-lucene 
+(defn ga-get-stopwords-lucene 
   "Returns default Irish stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (IrishAnalyzer/getDefaultStopSet)))
 
-(defn it-get-sw-lucene 
+(defn it-get-stopwords-lucene 
   "Returns default Italian stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (ItalianAnalyzer/getDefaultStopSet)))
 
-(defn lv-get-sw-lucene 
+(defn lv-get-stopwords-lucene 
   "Returns default Latvian stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (LatvianAnalyzer/getDefaultStopSet)))
 
-(defn no-get-sw-lucene 
+(defn no-get-stopwords-lucene 
   "Returns default Norwegian stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (NorwegianAnalyzer/getDefaultStopSet)))
 
-(defn fa-get-sw-lucene  
+(defn fa-get-stopwords-lucene  
   "Returns default Persian stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (PersianAnalyzer/getDefaultStopSet)))
 
-(defn pt-get-sw-lucene 
+(defn pt-get-stopwords-lucene 
   "Returns default Portuguese stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (PortugueseAnalyzer/getDefaultStopSet)))
  
-(defn ro-get-sw-lucene 
+(defn ro-get-stopwords-lucene 
   "Returns default romanian stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (RomanianAnalyzer/getDefaultStopSet)))
 
-(defn ru-get-sw-lucene 
+(defn ru-get-stopwords-lucene 
   "Returns default Russian stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (RussianAnalyzer/getDefaultStopSet))) 
 
-(defn es-get-sw-lucene 
+(defn es-get-stopwords-lucene 
   "Returns default Spanish stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (SpanishAnalyzer/getDefaultStopSet)))
 
-(defn sv-get-sw-lucene 
+(defn sv-get-stopwords-lucene 
   "Returns default Swedish stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (SwedishAnalyzer/getDefaultStopSet)))
 
-(defn th-get-sw-lucene 
+(defn th-get-stopwords-lucene 
   "Returns default Thai stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (ThaiAnalyzer/getDefaultStopSet)))
 
-(defn tr-get-sw-lucene 
+(defn tr-get-stopwords-lucene 
   "Returns default Turkish stop word set used by Lucene."
   [] 
   (conv-char-array-set-to-str-set (TurkishAnalyzer/getDefaultStopSet)))

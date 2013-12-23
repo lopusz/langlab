@@ -10,7 +10,7 @@ for F in ${FILES}; do
                     | sed -e "s/^[^-]*//" \
                     | sed -e "s/-//" \
                     | sed -e "s/x/*/g"`
-    echo "(defn ${VAR1}-get-sw${VAR2}"
+    echo "(defn ${VAR1}-get-stopwords${VAR2}"
     grep -e "^#" ${F} | sed -e "s/^#//"
     STOPWORDS=`grep -v -e "^#" ${F} | sort | uniq`
     LAST=`grep -v -e "^#" ${F} | sort | uniq | tail -n1`
