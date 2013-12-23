@@ -51,37 +51,44 @@
   [ drop-set tokens ]
   (filter #(not (contains? drop-set (lower-case %))) tokens))
 
-(def en-articles
-  "English articles."
+(defn en-get-articles
+  "Returns English articles."
+  []
   #{ "a" "the" "an"})
 
-(def de-articles
-  "German articles."
+(defn de-get-articles
+  "Returns German articles."
+  []
   #{ "der" "das" "die" "den" "dem" "des"
      "ein" "eine" "einer" "einem" "einen" "eines"
      "kein" "keine" "keiner" "keinem" "keinen" "keines"})
 
-(def nl-articles
-  "Dutch articles."
+(defn nl-get-articles
+  "Returns Dutch articles."
+  []
   #{ "de" "het" "een" "geen" })
 
-(def fr-articles
-  "French articles."
+(defn fr-get-articles
+  "Returns French articles."
+  []
   #{ "le" "la" "l'" "les" "un" "une" "des"})
 
-(def it-articles
-  "Italian articles."
+(defn it-get-articles
+  "Returns Italian articles."
+  []
   #{ "il" "lo" "i" "gli" "la" "le" "un" "uno" "una"})
 
-(def es-articles
-  "Spanish articles."
+(defn es-get-articles
+  "Returns Spanish articles."
+  []
   #{ "el" "la" "los" "las" "un" "una" "unos" "unas"})
 
-(def pt-articles
-  "Portuguese articles."
+(defn pt-get-articles
+  "Return Portuguese articles."
+  []
   #{ "o" "a" "os" "as" "um" "uns" "uma" "umas"})
 
-(defn- conv-char-array-set-to-str-set [ char-array-set]
+(defn- conv-char-array-set-to-str-set [ char-array-set ]
   (into #{} (map #(String. %) char-array-set)))
 
 (defn ar-get-sw-lucene 
