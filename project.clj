@@ -15,7 +15,6 @@
   ;;; lint report on on java code (sometimes maybe useful)
   ;;; :javac-options [ "-Xlint"]
  
-
   ; DEPENDENCIES
 
   :dependencies [   
@@ -39,7 +38,10 @@
     ;; Polish multistemmers
     [org.carrot2/morfologik-stemming "1.6.0"]
     [org.carrot2/morfologik-polish "1.6.0"]
-   
+
+    ;; Morpha stemmer
+    [edu.washington.cs.knowitall/morpha-stemmer "1.0.5"]
+
     ;; encoding detector based on mozilla algorithm
     [com.googlecode.juniversalchardet/juniversalchardet "1.0.3"]
     
