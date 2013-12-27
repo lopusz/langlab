@@ -1,10 +1,21 @@
 * langlab
 
-  Clojure library integrating language processing tools available in Java.
+  Clojure library integrating and extending language processing tools
+  available in Java.
+
+  It includes:
+  + parsing tools,
+  + stopwords/articles filtering,
+  + stemming tools,
+  + languate detection,
+  + encoding detection,
+  + n-grams generation,
+  + ...
 
   Currently, this is in work in progress stage. API is subject to change.
 
   API docs are available [[http://lopusz.github.io/langlab][here]].
+
 * Acknowledgments
   Great thanks for Damian Doyle and [[http://www.ranks.nl][ranks.nl]]
   for making their  [[http://www.ranks.nl/resources/stopwords.html][stopwords lists]]
