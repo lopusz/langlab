@@ -7,12 +7,12 @@
   + parsing tools,
   + stopwords/articles filtering,
   + stemming tools,
-  + languate detection,
+  + language detection,
   + encoding detection,
   + n-grams generation,
   + ...
 
-  Currently, this is in work in progress stage. API is subject to change.
+  Currently, this is work in progress. API is subject to change.
 
   API docs are available [[http://lopusz.github.io/langlab][here]].
 
