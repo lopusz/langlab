@@ -1,6 +1,4 @@
 * Issues
-  + *[detectors]* Look up new method from Cybozu for tweets
-    http://shuyo.wordpress.com/2012/05/17/short-text-language-detection-with-infinity-gram/
   + *[detectors]* Add tests for language detection.
   + *[detectors]* Add tests for encoding.
   + *[detectors]* Add option of seed initialization fro Cybozu lang detector
@@ -17,10 +15,7 @@
     - "—" -> "-" 
     - hard spaces to spaces
     - what more ?
-
   + *[tagging]* Refactor tagging module so it works with langlab
-  + *[stopwords]* Verify Norwegian stopwords (no-sw) 
-    I had to do some uppercase conversions, so something might be wrong there.
   + *[parsers]* There is a (closed source?) sentence parser library from 
      Scott Piao
      http://text0.mib.man.ac.uk:8080/scottpiao/apidocs/api_sentpar_breaker.jsp
@@ -31,8 +26,16 @@
     Alternative is to keep all the stemmers in delays.
   + *[stemmers]* Should I rename multi-stemmers to lemmatizers and move there morpha
     stemmer (lemmatizer)?
+  + *[detectors]* Look up new method from Cybozu for tweets
+    http://shuyo.wordpress.com/2012/05/17/short-text-language-detection-with-infinity-gram/
+    Difficult because of the maximal substring implementation needed
+    http://code.google.com/p/esaxx/
 
 * Done
+  + *[stopwords]* Verify Norwegian stopwords (no-sw) 
+    I had to do some uppercase conversions, so something might be wrong there.
+    Checked by comparison of intersection with Lucene stopwords (70 out of 119
+    are common).
   + *[stopwords]* Refactor constants into functions
   + *[stopwords]* Add docs to stopwords functions 
   + *[stopwords]* Convert en-drop-articles so it uses stopwords
