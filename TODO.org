@@ -1,4 +1,9 @@
-* Issues
+* Issues & ideas
+  + *[ngrams]* Correct ngrams module so it uses partition
+  + *[ngrams]* Efficient computing of all n-grams using prefix arrays
+    http://dl.acm.org/citation.cfm?id=972779
+    http://www.mibel.cs.tsukuba.ac.jp/~myama/tfdf/index.html
+    http://cm.bell-labs.com/cm/cs/who/doug/ssort.c
   + *[detectors]* Add tests for language detection.
   + *[detectors]* Add tests for encoding.
   + *[detectors]* Add option of seed initialization fro Cybozu lang detector
