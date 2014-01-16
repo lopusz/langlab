@@ -1,5 +1,5 @@
 language: clojure
 lein: lein2
-script: lein do test, uberjar, install
+script: lein2 do test, uberjar, install
 jdk:
   - oraclejdk7
