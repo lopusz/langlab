@@ -1,5 +1,5 @@
 * langlab
-  [[https://secure.travis-ci.org/basho/lager_syslog.png]] - [[http://travis-ci.org/lopusz/lager_syslog][details]] 
+  [[https://api.travis-ci.org/lopusz/langlab.png?branch=master]] - [[http://travis-ci.org/lopusz/langlab][details]] 
 
   Clojure library integrating and extending language processing tools
   available in Java.
