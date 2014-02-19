@@ -1,5 +1,4 @@
 * Issues & ideas
-  + *[ngrams]* Correct ngrams module so it uses partition
   + *[ngrams]* Efficient computing of all n-grams using prefix arrays
     http://dl.acm.org/citation.cfm?id=972779
     http://www.mibel.cs.tsukuba.ac.jp/~myama/tfdf/index.html
@@ -16,12 +15,12 @@
     Examples
     - "…" -> "..."
     - "„" -> "\""
-    - "”" -> "\"" 
-    - "—" -> "-" 
+    - "”" -> "\""
+    - "—" -> "-"
     - hard spaces to spaces
     - what more ?
   + *[tagging]* Refactor tagging module so it works with langlab
-  + *[parsers]* There is a (closed source?) sentence parser library from 
+  + *[parsers]* There is a (closed source?) sentence parser library from
      Scott Piao
      http://text0.mib.man.ac.uk:8080/scottpiao/apidocs/api_sentpar_breaker.jsp
      https://sites.google.com/site/scottpiaosite/
@@ -37,27 +36,28 @@
     http://code.google.com/p/esaxx/
 
 * Done
-  + *[stopwords]* Verify Norwegian stopwords (no-sw) 
+  + *[ngrams]* Correct ngrams module so it uses partition
+  + *[stopwords]* Verify Norwegian stopwords (no-sw)
     I had to do some uppercase conversions, so something might be wrong there.
     Checked by comparison of intersection with Lucene stopwords (70 out of 119
     are common).
   + *[stopwords]* Refactor constants into functions
-  + *[stopwords]* Add docs to stopwords functions 
+  + *[stopwords]* Add docs to stopwords functions
   + *[stopwords]* Convert en-drop-articles so it uses stopwords
   + *[stopwords]* Add basic unit tests to stopwords functions
   + *[detectors]* Create wrappers for language detection module in Apache Tika
   + *[stopwords]* Add constants containing articles
-  + *[stopwords]* Create a module and add general stopwords filter 
+  + *[stopwords]* Create a module and add general stopwords filter
   + *[general]* Refactor langlab-base -> langlab
   + *[readability]* Correct test to the infix notation
   + *[readability]* Correct counting characters to bi version
   + *[characters]* Add functions detecting/removing non-MBP characters
-  + *[transformers]* Add tests to transformers  
+  + *[transformers]* Add tests to transformers
   + *[parsers]* Add tests to sentence splitters
   + *[parsers]* Add simple tokenizer based on Analyzer from Lucene
     http://stackoverflow.com/questions/6334692/how-to-use-a-lucene-analyzer-to-tokenize-a-string
     See post by Ben McCann for Lucene 4.1
-  + *[characters]* Make use of punctuation classes from Unicode 
+  + *[characters]* Make use of punctuation classes from Unicode
     [Pc] Punctuation, Connector
     [Pd] Punctuation, Dash
     [Pe] Punctuation, Close
@@ -67,7 +67,7 @@
     [Ps] Punctuation, Open
      see http://www.fileformat.info/info/unicode/category/index.htm
   + *[characters]* Add tokenizer based on module ICU4j and its break iterator
-    It implements Unicode segmentation rules 
+    It implements Unicode segmentation rules
     http://www.unicode.org/reports/tr29/
     http://icu-project.org/apiref/icu4j/com/ibm/icu/text/BreakIterator.html
     More http://site.icu-project.org/

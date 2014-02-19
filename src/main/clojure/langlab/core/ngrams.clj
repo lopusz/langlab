@@ -4,23 +4,18 @@
 (defn gen-ngrams
   "Function generates n-grams from a given 'tokens' sequence.
 
-   Two invocations are possible:
-   (gen-n-grams n tokens) <- generates all n-grams
-   (gen-n-grams n m tokens) <- generates all n-grams,(n+1)-grams,...,(m)-grams
+   Following invocations are possible:
+   (gen-ngrams n tokens) <- generates all n-grams
+   (gen-ngrams n m tokens) <- generates all n-grams,(n+1)-grams,...,(m)-grams
+   (gen-ngrams tokens) <- generates 1 .. (count tokens) n-grams
   "
+  ([ tokens ]
+     (gen-ngrams 1 (count tokens) tokens))
+
   ([ n tokens ]
-    (let [
-          tokens-len (count tokens)
-          tokens-rests (take (+ (- tokens-len n) 1)
-                         (iterate rest tokens))
-          ngrams-seq (for [ c tokens-rests ] (take n c))
-         ]
-      ngrams-seq))
+    (partition n 1 tokens))
+
   ([ n m tokens ]
-    (let [
-          tokens-len (count tokens)
-          m* (min tokens-len m)
-          n-range (range n (+ m* 1))
-          gen-coll-ngrams #(gen-ngrams % tokens)
-         ]
-      (mapcat gen-coll-ngrams n-range))))
+    (mapcat
+      #(gen-ngrams % tokens)
+      (range n (inc m)))))
