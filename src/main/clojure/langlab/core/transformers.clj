@@ -1,6 +1,6 @@
 (ns langlab.core.transformers
   "Module contains utilities for transforming tokens."
-  (:require [ clojure.string :refer (blank? split lower-case) ]
+  (:require [ clojure.string :refer (blank? split lower-case join) ]
             [ langlab.core.characters
                :refer (contains-whitespace-only? contains-punct-only?
                        contains-letters-or-digits-only?)
