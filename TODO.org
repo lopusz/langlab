@@ -1,8 +1,16 @@
 * Issues & ideas
-  + *[ngrams]* Efficient computing of all n-grams using prefix arrays
-    http://dl.acm.org/citation.cfm?id=972779
-    http://www.mibel.cs.tsukuba.ac.jp/~myama/tfdf/index.html
-    http://cm.bell-labs.com/cm/cs/who/doug/ssort.c
+  + *[general]* Consider using perforate lein plugin to add benchmarks.
+    https://github.com/davidsantiago/perforate
+    This however need to be microbenchmarks.
+  + *[tagging]* Add API DOCS to tagging module.
+  + *[tagging]* Add function to tag collection of string.
+    The tagger fun is created only once that way, so it shoul improve perf.
+    The sample stale should follow `calc-tags-union`, where `make-norm-f` 
+    creates normalizer function.
+  + *[tagging]* Add some kind of gen-dict-from-file.
+    Check how does with-open works (is it reasonable to take reader as param).
+  + *[tagging]* Review tests for get-min-tokens, get-max-tokens tests.
+  + *[tagging]* Should get-min/max-tokens really return nil on empty dict?
   + *[detectors]* Add tests for language detection.
   + *[detectors]* Add tests for encoding.
   + *[detectors]* Add option of seed initialization fro Cybozu lang detector
@@ -34,6 +42,10 @@
     http://shuyo.wordpress.com/2012/05/17/short-text-language-detection-with-infinity-gram/
     Difficult because of the maximal substring implementation needed
     http://code.google.com/p/esaxx/
+  + *[ngrams]* Efficient computing of all n-grams using prefix arrays
+    http://dl.acm.org/citation.cfm?id=972779
+    http://www.mibel.cs.tsukuba.ac.jp/~myama/tfdf/index.html
+    http://cm.bell-labs.com/cm/cs/who/doug/ssort.c
 
 * Done
   + *[ngrams]* Correct ngrams module so it uses partition
