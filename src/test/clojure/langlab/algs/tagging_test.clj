@@ -8,6 +8,8 @@
     [ langlab.core.stopwords :refer [trans-drop-set  en-get-articles]]
     [ langlab.algs.tagging :refer :all]))
 
+; TEST READING TAGS DICTIONARY FUNCTIONS
+
 (def ^:private env-gen-dict
  { :split-tokens-f split-tokens-with-space
    :trans-tokens-f trans-drop-punct-lower
@@ -73,66 +75,73 @@
          (get-max-tokens-in-dict {})
          nil))))
 
-(deftest test-tag-str
+; TEST TAGGING FUNCTIONS
+
+(deftest test-make-tag-f
   (let [
         s "Old school method for generative intelligence was reviewed.
            The general outcome is that old school methods works great."
-        env-tag  { :stem-f en-stem-snowball
+        env  { :stem-f en-stem-snowball
                :split-tokens-f #(lg-split-tokens-bi "en" %)
                :trans-tokens-f trans-drop-punct-lower }
         dict (gen-dict-from-seq
                  [ "old school" "generative intelligence" "old school method" ]
-                 env-tag)
-        env-tag* (assoc env-tag :dict dict)
+                 env)
+        tag-f (make-tag-f dict env)
         ]
     (is (=
-         (tag-str "" env-tag*)
+         (tag-f "")
          {}))
 
     (is (=
-         (tag-str "Empty, empty world." env-tag*)
+         (tag-f "Empty, empty world.")
          {}))
     (is (=
-         (tag-str s env-tag*)
+         (tag-f s)
          { "generative intelligence" 1
            "old school" 2
            "old school method" 2 } ))))
 
-(deftest test-tag-str-with-sentences
+(deftest test-make-tag-f-with-sentences
   (let [
         s
           "He was devoted to the old school.
            His approach belonged to the old school.
            Method of describing generative intelligence, more general than
            this one, was proposed recently."
-        env-tag-with-sentences
+        env-no-sentences-split
           { :stem-f en-stem-snowball
             :split-tokens-f #(lg-split-tokens-bi "en" %)
-            :split-sentences-f #(lg-split-sentences-bi "en" %)
             :trans-tokens-f trans-drop-punct-lower }
+        env-with-sentences-split
+          (assoc env-no-sentences-split
+            :split-sentences-f #(lg-split-sentences-bi "en" %))
         dict
           (gen-dict-from-seq
             [ "old school" "generative intelligence" "old school method" ]
-            env-tag-with-sentences)
-        env-tag-with-sentences
-          (assoc env-tag-with-sentences :dict dict)
+            env-no-sentences-split)
+        tag-no-sentences-split-f
+          (make-tag-f dict env-no-sentences-split)
+        tag-with-sentences-split-f
+          (make-tag-f dict env-with-sentences-split)
         ]
     (is (=
-          (tag-str-with-sentences s
-           (dissoc env-tag-with-sentences :split-sentences-f))
+          (tag-no-sentences-split-f s)
           { "generative intelligence" 1
             "old school" 2
             "old school method" 1 } ))
     (is (=
-          (tag-str-with-sentences "" env-tag-with-sentences)
+          (tag-with-sentences-split-f "")
           { }))
     (is (=
-          (tag-str-with-sentences "Empty, empty world." env-tag-with-sentences)
+          (tag-with-sentences-split-f "Empty, empty world.")
           { } ))
     (is (=
-          (tag-str-with-sentences s env-tag-with-sentences)
+          (tag-with-sentences-split-f s)
           { "generative intelligence" 1
-            "old school" 2 } ))))
+            "old school" 2 }))))
+
+; TEST TAGS ALGEBRA FUNCTIONS (UNION/DIFFERENCE/INTERSECTION)
 
 (def ^:private env-tag-algebra
   { :split-tokens-f split-tokens-with-space

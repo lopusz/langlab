@@ -3,7 +3,7 @@
    The implemented functionality can be divided into three main areas:
    * generating dictionaries and frequency dictionaries,
    * tagging itself,
-   * tagg algebra (union/intersection/difference) etc.
+   * tags algebra (union/intersection/difference) etc.
   "
   (:refer-clojure :exclude [assert])
   (:require
@@ -12,6 +12,8 @@
        :refer [merge-tokens-with-space split-tokens-with-space] ]
      [ langlab.core.ngrams :refer [gen-ngrams]]
      [ langlab.core.parsers :refer [split-sentences-nosplit]]))
+
+; READING TAGS DICTIONARY FUNCTIONS
 
 (defn- gen-dict-entry [s env]
   (let [
@@ -114,53 +116,53 @@
     (with-open [ r (make-gzip-or-normal-reader fname)]
       (gen-dict-from-seq (line-seq r) gen-dict-env))))
 
-(defn tag-str [ s env ]
+; TAGGING FUNCTIONS
+
+(defn- make-tag-single-str-f [ dict env ]
+  (let [
+        env-default
+           { :merge-tokens-f merge-tokens-with-space
+             :trans-tokens-f identity }
+        env*
+           (merge env-default env)
+        nmin (get-min-tokens-in-dict dict)
+        nmax (get-max-tokens-in-dict dict)
+        gen-all-ngrams #(gen-ngrams nmin nmax %)
+        { :keys [ stem-f split-tokens-f trans-tokens-f merge-tokens-f ] }
+           env*
+       ]
+    (fn [s]
+      (->> s
+           split-tokens-f
+           trans-tokens-f
+           (map stem-f)
+           gen-all-ngrams
+           (map merge-tokens-f)
+           (filter #(contains? dict %))
+           (map #(dict %))
+           frequencies))))
+
+(defn make-tag-f [ dict env ]
+  (assert (map? dict))
   (assert (contains? env :stem-f))
   (assert (contains? env :split-tokens-f))
-  (assert (contains? env :dict))
 
-  (let [
-        env-default
-          { :merge-tokens-f merge-tokens-with-space
-            :trans-tokens-f identity }
-        env* (merge env-default env)
-        { :keys [ stem-f split-tokens-f trans-tokens-f merge-tokens-f dict ] }
-          env*
-        nmin
-          (if (contains? env :dict-min-tokens)
-            (env :dict-min-tokens)
-            (get-min-tokens-in-dict dict))
-        nmax
-          (if (contains? env :dict-min-tokens)
-            (env :dict-max-tokens)
-            (get-max-tokens-in-dict dict))
-        gen-all-ngrams #(gen-ngrams nmin nmax %)
-        ]
-        (->> s
-             (split-tokens-f)
-             (trans-tokens-f)
-             (map stem-f)
-             (gen-all-ngrams)
-             (map merge-tokens-f)
-             (filter #(contains? dict %))
-             (map #(dict %))
-             (frequencies))))
+  (if (contains? env :split-sentences-f)
+    (let [
+            split-sentences-f
+              (:split-sentences-f env)
+            tag-single-str-f
+              (make-tag-single-str-f dict env)
+          ]
+      (fn [s]
+         (let [
+                sentences (split-sentences-f s)
+                sentences-tags (map tag-single-str-f sentences)
+               ]
+           (reduce (partial merge-with +) {} sentences-tags))))
+    (make-tag-single-str-f dict env)))
 
-(defn tag-str-with-sentences [ s env ]
-  (let [
-        env-default
-          { :split-sentences-f split-sentences-nosplit }
-        env*
-          (merge env-default env)
-        split-sentences-f (:split-sentences-f env*)
-        tag
-          #(tag-str % env)
-        sentence-tags
-          (->> s
-               split-sentences-f
-               (map tag))
-        ]
-    (reduce (partial merge-with +) {} sentence-tags)))
+; TAGS ALGEBRA FUNCTIONS (UNION/DIFFERENCE/INTERSECTION)
 
 (defn- make-norm-f [ env ]
   (let [
