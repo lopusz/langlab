@@ -64,7 +64,7 @@
 (defn gen-dict-from-seq
   "Generates dictionary from a given `seq`. The result is a map of the form
      {  normalized-entry normalized-entry-without-stemming }.
-   Normalization function splits tokens, transfomrs them, stems,
+   Normalization function splits tokens, transforms them, stems,
    and finally merges. It is constructed according to the keys in `env`.
 
    The following keywords mapping to functions can be included in `env`:
@@ -223,7 +223,7 @@
    :merge-tokens-f - merging tokens (default: merge-tokens-with-space),
    :split-sentences-f - parses string into sentences (optional).
 
-    If :split-sentences-f is given, senteces are parsed separately and tag
+    If :split-sentences-f is given, sentences are parsed separately and tag
     maps from all sentences are merged."
   [ dict env ]
   (assert (map? dict))
@@ -250,7 +250,7 @@
 (defn calc-tags-intersection
   "Returns all the `{ tag freq }` pairs from `tags1` map, where
    normalized `tag` is among normalized tags from `tags2`.
-   Normalization function splits tokens, transfomrs them, stems
+   Normalization function splits tokens, transforms them, stems
    and finally merges. The normalization function is constructed
    according to the keys in `env`.
 
@@ -273,8 +273,8 @@
 
 (defn calc-tags-union
   "Returns all the `{ tag freq }` pairs from `tags1` and those
-   pairs from `tags2` where normalized tag is not incldued already from `tags1`.
-   Normalization function splits tokens, transfomrs them, stems
+   pairs from `tags2` where normalized tag is not included already from `tags1`.
+   Normalization function splits tokens, transforms them, stems
    and finally merges. It is constructed according to the keys in `env`.
 
    The following keywords mapping to functions can be included in `env`:
@@ -301,7 +301,7 @@
 (defn calc-tags-difference
   "Returns all the `{ tag freq }` pairs from `tags1` map, where
    normalized `tag` is not among normalized tags from `tags2`.
-   Normalization function splits tokens, transfomrs them, stems
+   Normalization function splits tokens, transforms them, stems
    and finally merges. It is constructed according to the keys in `env`.
 
    The following keywords mapping to functions can be included in `env`:

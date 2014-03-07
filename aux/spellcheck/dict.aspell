@@ -113,3 +113,6 @@ unichardet
 uniq
 whitespace
 zolw
+conv
+fdict
+microbenchmarks
