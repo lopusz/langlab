@@ -38,6 +38,23 @@
         { "awesom car" { "awesome cars" 1 "awesome car" 1 }
           "first floor" { "first floors" 1 "first floor" 1 }})))
 
+(deftest test-fdict-from-seq
+  (is (=
+        (conv-fdict-to-dict {})
+        { }))
+  (is (=
+        (conv-fdict-to-dict
+          { "awesom car" { "awesome cars" 1 "awesome car" 1 }
+            "first floor" { "first floors" 1 "first floor" 1 } })
+          { "awesom car" "awesome car"
+            "first floor" "first floor"}))
+  (is (=
+        (conv-fdict-to-dict
+          { "awesom car" { "awesome cars" 1 "awesome car" 3 }
+            "first floor" { "first floors" 3 "first floor" 1 } })
+          { "awesom car" "awesome car"
+            "first floor" "first floors"})))
+
 (deftest test-get-min-tokens-in-dict
   (let [
         test-dict {
@@ -49,14 +66,14 @@
         ]
 
     (is (=
-         (get-min-tokens-in-dict test-dict)
+         (@#'langlab.algs.tagging/get-min-tokens-in-dict test-dict)
          1))
     (is (=
-         (get-min-tokens-in-dict (assoc test-dict " " " "))
+         (@#'langlab.algs.tagging/get-min-tokens-in-dict (assoc test-dict " " " "))
          0))
 
     (is (=
-         (get-min-tokens-in-dict { })
+         (@#'langlab.algs.tagging/get-min-tokens-in-dict { })
          nil))))
 
 (deftest test-get-max-tokens-in-dict
@@ -69,10 +86,10 @@
                    "really nice and long film" "really nice and long film" }
         ]
     (is (=
-         (get-max-tokens-in-dict test-dict)
+         (@#'langlab.algs.tagging/get-max-tokens-in-dict test-dict)
          5))
     (is (=
-         (get-max-tokens-in-dict {})
+         (@#'langlab.algs.tagging/get-max-tokens-in-dict {})
          nil))))
 
 ; TEST TAGGING FUNCTIONS
