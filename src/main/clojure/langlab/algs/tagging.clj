@@ -128,6 +128,20 @@
       {}
       fdict-entries-seq)))
 
+(defn gen-dict-from-reader
+  "Generates dictionary from a given reader `r`, passing `env` to
+   the `gen-dict-from-seq`."
+  [ r env ]
+    (with-open [ r* r ]
+      (gen-dict-from-seq (line-seq r*) env)))
+
+(defn gen-fdict-from-reader
+  "Generates frequency dictionary from a given reader `r`. passing `env` to
+   the `gen-fdict-from-seq`."
+  [ r env ]
+    (with-open [ r* r ]
+      (gen-fdict-from-seq (line-seq r*) env)))
+
 (defn- select-most-freq-shortest-entry [ m ]
   (let [
           m-keys (keys m)
@@ -175,13 +189,6 @@
          (keys)
          (map (comp count split-tokens-f))
          (apply max))))
-
-(comment
-  ;; Decouple from reader types
-  (defn gen-dict-from-file
-    [ fname gen-dict-env ]
-    (with-open [ r (make-gzip-or-normal-reader fname)]
-      (gen-dict-from-seq (line-seq r) gen-dict-env))))
 
 ; TAGGING FUNCTIONS
 
