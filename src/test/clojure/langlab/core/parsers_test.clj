@@ -5,6 +5,16 @@
     [ langlab.core.transformers :refer (trans-merge-punct) ]
     [ langlab.core.parsers :refer :all]))
 
+(def ^:private split-tokens-with-whitespace-data
+  { "" []
+    " \t " []
+    "token1 \t token2\t " [ "token1" "token2" ] })
+
+(deftest split-tokens-with-whitespace-test
+  (is-eq-dict
+    split-tokens-with-whitespace
+    split-tokens-with-whitespace-data))
+
 (def ^:private basic-split-tokens-test-data 
    { "John, you should try!"  [ "John" "," "you" "should" "try" "!"] })
 

@@ -3,15 +3,16 @@
     [ clojure.test :refer :all ]
     [ langlab.core.stemmers :refer [en-stem-snowball]]
     [ langlab.core.transformers :refer
-       [split-tokens-with-space merge-tokens-with-space trans-drop-punct-lower]]
-    [ langlab.core.parsers :refer [lg-split-tokens-bi lg-split-sentences-bi]]
+       [merge-tokens-with-space trans-drop-punct-lower]]
+    [ langlab.core.parsers :refer
+       [split-tokens-with-whitespace lg-split-tokens-bi lg-split-sentences-bi]]
     [ langlab.core.stopwords :refer [trans-drop-set  en-get-articles]]
     [ langlab.algs.tagging :refer :all]))
 
 ; TEST READING TAGS DICTIONARY FUNCTIONS
 
 (def ^:private env-gen-dict
- { :split-tokens-f split-tokens-with-space
+ { :split-tokens-f split-tokens-with-whitespace
    :trans-tokens-f trans-drop-punct-lower
    :stem-f en-stem-snowball
    :merge-tokens merge-tokens-with-space})
@@ -161,7 +162,7 @@
 ; TEST TAGS ALGEBRA FUNCTIONS (UNION/DIFFERENCE/INTERSECTION)
 
 (def ^:private env-tag-algebra
-  { :split-tokens-f split-tokens-with-space
+  { :split-tokens-f split-tokens-with-whitespace
     :stem-f en-stem-snowball
     :trans-tokens-f
       (comp

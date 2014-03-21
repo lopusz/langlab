@@ -8,7 +8,9 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :aot :all 
   :omit-source true
- 
+
+  ;; :global-vars {*warn-on-reflection* true}
+
   ;; Options used by Java 
   ;;; run with assertions enabled
   :jvm-opts ["-ea"]
@@ -51,7 +53,7 @@
   
   ; SOURCE DIRECTORY RECONFIGURATION
 
-  :source-paths ["src" "src/main/clojure"]
+  :source-paths ["src/main/clojure"]
   :java-source-paths ["src/main/java"] 
   :test-paths [ "src/test/clojure"]
   

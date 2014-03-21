@@ -7,18 +7,9 @@
               ]))
 
 (defn merge-tokens-with-space
-  "Creates a string from `tokens` seq, by inserting space between them.
-   Inverse of `split-tokens-with-space`."
+  "Creates a string from `tokens` seq, by inserting space between them."
   [ tokens ]
   (join " " tokens))
-
-(defn split-tokens-with-space
-  "Splits `s` into tokens on whitespace (using regexp \\s+).
-   Inverse of `merge-tokens-with-space`."
-  [ s ]
-  (if (= s "")
-    []
-    (split s #"\s+")))
 
 (defn trans-drop-whitespace
   "From seq `tokens` removes all entries that contain only whitespace."

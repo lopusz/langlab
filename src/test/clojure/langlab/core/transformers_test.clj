@@ -11,14 +11,6 @@
   (is (= (merge-tokens-with-space [ "???" "!!!" "---"])
          "??? !!! ---")))
 
-(deftest split-tokens-with-space-test
-  (is (= (split-tokens-with-space "")
-         []))
-  (is (= (split-tokens-with-space " \t ")
-         []))
-  (is (= (split-tokens-with-space "token1 \t token2\t ")
-         [ "token1" "token2"])))
-
 (def ^:private whitespace-utf-test-data
   [ "A" "\u0009" "B" "\u000A" "C" "\u000B" "D" "\u000C" "E" "\u000D"
     "F" "\u0020" "G"  "H"  "I" "\u1680" "J" "\u180E"

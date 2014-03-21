@@ -5,16 +5,19 @@
      [ org.apache.lucene.analysis.core SimpleAnalyzer]
      [ langlab.jcore.parsers
              BreakIteratorWrapper ICUBreakIteratorWrapper LuceneTools])
-  (:require [ clojure.string :refer (trim) ]
+  (:require [ clojure.string :refer (trim split) ]
             [ opennlp.nlp :refer (make-tokenizer make-sentence-detector) ] 
             [ langlab.core.transformers  
                 :refer (trans-drop-whitespace) ]
             ))
 
-(defn split-sentences-nosplit 
-  "Returns one-element vector with `s` without splitting it into sentences."
-  [s]
-  [s])
+(defn split-tokens-with-whitespace
+  "Splits `s` into tokens on whitespace (using regexp \\s+).
+   Inverse of `merge-tokens-with-space`."
+  [ s ]
+  (if (= s "")
+    []
+    (split s #"\s+")))
 
 ;; BreakIterator BASED SPLITTERS
 

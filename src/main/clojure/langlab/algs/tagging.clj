@@ -8,10 +8,9 @@
   (:refer-clojure :exclude [assert])
   (:require
      [ pjstadig.assertions :refer [assert]]
-     [ langlab.core.transformers
-       :refer [merge-tokens-with-space split-tokens-with-space] ]
-     [ langlab.core.ngrams :refer [gen-ngrams]]
-     [ langlab.core.parsers :refer [split-sentences-nosplit]]))
+     [ langlab.core.parsers :refer [split-tokens-with-whitespace] ]
+     [ langlab.core.transformers :refer [ merge-tokens-with-space ] ]
+     [ langlab.core.ngrams :refer [gen-ngrams]]))
 
 ; READING TAGS DICTIONARY FUNCTIONS
 
@@ -168,7 +167,7 @@
   "Calculates the smallest number of tokens contained in all keys
    of given `dict`."
   [ dict & { :keys [ split-tokens-f ]
-             :or { split-tokens-f split-tokens-with-space} } ]
+             :or { split-tokens-f split-tokens-with-whitespace} } ]
 
   (if (empty? dict)
     nil
@@ -181,7 +180,7 @@
   "Calculates the smallest number of tokens contained in all keys
    of given `dict`. The optional key is :split-tokens-f"
   [ dict  & { :keys [ split-tokens-f ]
-              :or { split-tokens-f split-tokens-with-space} } ]
+              :or { split-tokens-f split-tokens-with-whitespace} } ]
 
   (if (empty? dict)
     nil
