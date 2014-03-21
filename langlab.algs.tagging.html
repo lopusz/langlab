@@ -13,7 +13,7 @@ The following keywords mapping to functions can be included in `env`:
 :split-tokens-f - tokenizer function (mandatory),
 :stem-f - stemming function (mandatory),
 :trans-tokens-f - transforming function (default: identity),
-:merge-tokens-f - merging tokens (default: merge-tokens-with-space).</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L308">Source</a></div></div><div class="public" id="var-calc-tags-intersection"><h3>calc-tags-intersection</h3><div class="usage"><code>(calc-tags-intersection tags1 tags2 env)</code></div><pre class="doc">Returns all the `{ tag freq }` pairs from `tags1` map, where
+:merge-tokens-f - merging tokens (default: merge-tokens-with-space).</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L307">Source</a></div></div><div class="public" id="var-calc-tags-intersection"><h3>calc-tags-intersection</h3><div class="usage"><code>(calc-tags-intersection tags1 tags2 env)</code></div><pre class="doc">Returns all the `{ tag freq }` pairs from `tags1` map, where
 normalized `tag` is among normalized tags from `tags2`.
 Normalization function splits tokens, transforms them, stems
 and finally merges. The normalization function is constructed
@@ -23,7 +23,7 @@ The following keywords mapping to functions can be included in `env`:
 :split-tokens-f - tokenizer function (mandatory),
 :stem-f - stemming function (mandatory),
 :trans-tokens-f - transforming function (default: identity),
-:merge-tokens-f - merging tokens (default: merge-tokens-with-space).</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L257">Source</a></div></div><div class="public" id="var-calc-tags-union"><h3>calc-tags-union</h3><div class="usage"><code>(calc-tags-union tags1 tags2 env)</code></div><pre class="doc">Returns all the `{ tag freq }` pairs from `tags1` and those
+:merge-tokens-f - merging tokens (default: merge-tokens-with-space).</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L256">Source</a></div></div><div class="public" id="var-calc-tags-union"><h3>calc-tags-union</h3><div class="usage"><code>(calc-tags-union tags1 tags2 env)</code></div><pre class="doc">Returns all the `{ tag freq }` pairs from `tags1` and those
 pairs from `tags2` where normalized tag is not included already from `tags1`.
 Normalization function splits tokens, transforms them, stems
 and finally merges. It is constructed according to the keys in `env`.
@@ -32,11 +32,11 @@ The following keywords mapping to functions can be included in `env`:
 :split-tokens-f - tokenizer function (mandatory),
 :stem-f - stemming function (mandatory),
 :trans-tokens-f - transforming function (default: identity),
-:merge-tokens-f - merging tokens (default: merge-tokens-with-space).</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L281">Source</a></div></div><div class="public" id="var-conv-fdict-to-dict"><h3>conv-fdict-to-dict</h3><div class="usage"><code>(conv-fdict-to-dict fdict)</code></div><pre class="doc">Converts frequency dictionary `fdict` of the form
+:merge-tokens-f - merging tokens (default: merge-tokens-with-space).</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L280">Source</a></div></div><div class="public" id="var-conv-fdict-to-dict"><h3>conv-fdict-to-dict</h3><div class="usage"><code>(conv-fdict-to-dict fdict)</code></div><pre class="doc">Converts frequency dictionary `fdict` of the form
   { normalized-entry { entry1 freq1 entry2 freq2 }, ... },
 to an ordinary dictionary by selecting most frequent `entry1`, `entry2`, ...
-From the entries having the same frequencies the shortest is selected.</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L157">Source</a></div></div><div class="public" id="var-gen-dict-from-reader"><h3>gen-dict-from-reader</h3><div class="usage"><code>(gen-dict-from-reader r env)</code></div><pre class="doc">Generates dictionary from a given reader `r`, passing `env` to
-the `gen-dict-from-seq`.</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L131">Source</a></div></div><div class="public" id="var-gen-dict-from-seq"><h3>gen-dict-from-seq</h3><div class="usage"><code>(gen-dict-from-seq seq env)</code></div><pre class="doc">Generates dictionary from a given `seq`. The result is a map of the form
+From the entries having the same frequencies the shortest is selected.</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L156">Source</a></div></div><div class="public" id="var-gen-dict-from-reader"><h3>gen-dict-from-reader</h3><div class="usage"><code>(gen-dict-from-reader r env)</code></div><pre class="doc">Generates dictionary from a given reader `r`, passing `env` to
+the `gen-dict-from-seq`.</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L130">Source</a></div></div><div class="public" id="var-gen-dict-from-seq"><h3>gen-dict-from-seq</h3><div class="usage"><code>(gen-dict-from-seq seq env)</code></div><pre class="doc">Generates dictionary from a given `seq`. The result is a map of the form
   {  normalized-entry normalized-entry-without-stemming }.
 Normalization function splits tokens, transforms them, stems,
 and finally merges. It is constructed according to the keys in `env`.
@@ -45,8 +45,8 @@ The following keywords mapping to functions can be included in `env`:
 :split-tokens-f - tokenizer function (mandatory),
 :stem-f - stemming function (mandatory),
 :trans-tokens-f - transforming function (default: identity),
-:merge-tokens-f - merging tokens (default: merge-tokens-with-space).</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L64">Source</a></div></div><div class="public" id="var-gen-fdict-from-reader"><h3>gen-fdict-from-reader</h3><div class="usage"><code>(gen-fdict-from-reader r env)</code></div><pre class="doc">Generates frequency dictionary from a given reader `r`. passing `env` to
-the `gen-fdict-from-seq`.</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L138">Source</a></div></div><div class="public" id="var-gen-fdict-from-seq"><h3>gen-fdict-from-seq</h3><div class="usage"><code>(gen-fdict-from-seq seq env)</code></div><pre class="doc">Generate frequency dictionary (fdict) from `seq`.
+:merge-tokens-f - merging tokens (default: merge-tokens-with-space).</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L63">Source</a></div></div><div class="public" id="var-gen-fdict-from-reader"><h3>gen-fdict-from-reader</h3><div class="usage"><code>(gen-fdict-from-reader r env)</code></div><pre class="doc">Generates frequency dictionary from a given reader `r`. passing `env` to
+the `gen-fdict-from-seq`.</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L137">Source</a></div></div><div class="public" id="var-gen-fdict-from-seq"><h3>gen-fdict-from-seq</h3><div class="usage"><code>(gen-fdict-from-seq seq env)</code></div><pre class="doc">Generate frequency dictionary (fdict) from `seq`.
 The fdict is useful when there are many tokens that stem to the same entry
 in a given `seq`.
 The resulting fdict has the form:
@@ -59,7 +59,7 @@ The following keywords mapping to functions can be included in `env`:
 :split-tokens-f - tokenizer function (mandatory),
 :stem-f - stemming function (mandatory),
 :trans-tokens-f - transforming function (default: identity),
-:merge-tokens-f - merging tokens (default: merge-tokens-with-space).</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L100">Source</a></div></div><div class="public" id="var-make-tag-f"><h3>make-tag-f</h3><div class="usage"><code>(make-tag-f dict env)</code></div><pre class="doc">Creates a function that tags string with dictionary `dict` based on
+:merge-tokens-f - merging tokens (default: merge-tokens-with-space).</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L99">Source</a></div></div><div class="public" id="var-make-tag-f"><h3>make-tag-f</h3><div class="usage"><code>(make-tag-f dict env)</code></div><pre class="doc">Creates a function that tags string with dictionary `dict` based on
 functions contained in the `env`. The result is a map `{ tag freq }`.
 
 The following keywords mapping to functions can be included in `env`:
@@ -70,4 +70,4 @@ The following keywords mapping to functions can be included in `env`:
 :split-sentences-f - parses string into sentences (optional).
 
  If :split-sentences-f is given, sentences are parsed separately and tag
- maps from all sentences are merged.</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L222">Source</a></div></div></div></body></html>
+ maps from all sentences are merged.</pre><div class="src-link"><a href="http://github.com/lopusz/langlab/blob/master/src/main/clojure/langlab/algs/tagging.clj#L221">Source</a></div></div></div></body></html>
