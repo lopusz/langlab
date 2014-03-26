@@ -14,6 +14,8 @@
   + n-grams generation,
   + ...
 
+  You need *Java 7* and *lein 2* to play with this project.
+
   Currently, this is work in progress. API is subject to change.
 
   API docs are available [[http://lopusz.github.io/langlab][here]].
