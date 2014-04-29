@@ -8,25 +8,25 @@
   (is (= (remove-diacritics "żółw") "zolw"))
   (is (= (remove-diacritics "ąćęłńóżźĄĆĘŁŃÓŻŹ") "acelnozzACELNOZZ"))
   (is (= (remove-diacritics "äöüßÄÖÜ") "aoußAOU"))
-  (is (= (remove-diacritics "àâçéèêëïîôùûüÿÀÂÇÉÈÊËÏÎÔÙÛÜŸ") 
+  (is (= (remove-diacritics "àâçéèêëïîôùûüÿÀÂÇÉÈÊËÏÎÔÙÛÜŸ")
          "aaceeeeiiouuuyAACEEEEIIOUUUY")))
 
 (def ^:private count-chars-test-data
   { "To be or not to be?" 19
-    "Thîs lóo̰ks we̐ird."  17 
-    "queer chars …¿„”— wow!" 22 
+    "Thîs lóo̰ks we̐ird."  17
+    "queer chars …¿„”— wow!" 22
      " \uD840\uDC00 " 3})
 
-(deftest lg-count-chars-bi-test 
+(deftest lg-count-chars-bi-test
   (is-eq-dict #(lg-count-chars-bi "en" %) count-chars-test-data))
 
-(deftest en-count-chars-bi-test 
+(deftest en-count-chars-bi-test
   (is-eq-dict en-count-chars-bi count-chars-test-data))
 
 (deftest lg-count-chars-icu-bi-test
   (is-eq-dict #(lg-count-chars-icu-bi "en" %) count-chars-test-data))
 
-(deftest en-count-chars-icu-bi-test 
+(deftest en-count-chars-icu-bi-test
   (is-eq-dict en-count-chars-icu-bi count-chars-test-data))
 
 (deftest count-latin-vowel-groups-test
@@ -67,7 +67,7 @@
   (is (= (contains-letters-or-digits-only? "99żółw ") false))
   (is (= (contains-letters-or-digits-only? "99zółw-stary") false))
   (is (= (contains-letters-or-digits-only? "99zółw,późno") false))
-  (is (= (contains-letters-or-digits-only? 
+  (is (= (contains-letters-or-digits-only?
            "àâçéèêëïîôùûüÿÀÂÇÉÈÊËÏÎÔÙÛÜ") true)))
 
 (deftest contains-letters-only
@@ -78,8 +78,17 @@
   (is (= (contains-letters-only? "żółwŹŻ99") false))
   (is (= (contains-letters-only? " żółwŹŻ") false))
   (is (= (contains-letters-only? "żółwŹŻ ") false))
-  (is (= (contains-letters-only? 
+  (is (= (contains-letters-only?
            "àâçéèêëïîôùûüÿÀÂÇÉÈÊËÏÎÔÙÛÜ") true)))
+
+(deftest contains-non-letters-only
+  (is (= (contains-non-letters-only? "") false))
+  (is (= (contains-non-letters-only? "ala") false))
+  (is (= (contains-non-letters-only? "ala123") false))
+  (is (= (contains-non-letters-only? "żółwŹŻ") false))
+  (is (= (contains-non-letters-only? "99") true))
+  (is (= (contains-non-letters-only? " -...") true))
+  (is (= (contains-non-letters-only? "…¿ \n„”—" ) true)))
 
 (deftest contains-digits-only
   (is (= (contains-digits-only? "") false))

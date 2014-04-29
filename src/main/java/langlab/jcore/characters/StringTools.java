@@ -98,6 +98,24 @@ public final class StringTools {
         return res;
     }
 
+    public static boolean containsNonLettersOnly(String s) {
+
+        if (s.length()==0) { return false; }
+
+        boolean res=true;
+
+        for(int i = 0; i < s.length(); ) {
+            int cp = s.codePointAt(i);
+            if (Character.isLetter(cp)) {
+                res=false;
+                break;
+            }
+            i += Character.charCount(cp);
+        }
+
+        return res;
+    }
+
     public static boolean containsDigitsOnly(String s) {
         boolean res=true;
 

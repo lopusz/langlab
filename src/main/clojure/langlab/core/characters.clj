@@ -1,7 +1,7 @@
 (ns langlab.core.characters
   "Module contains string utilities operating on characters.
 
-   This includes, e.g., diacritics removal,  vowel groups detection, 
+   This includes, e.g., diacritics removal,  vowel groups detection,
    character counting, non-BMP characters removal, etc."
   (:import [ langlab.jcore.characters CharacterTools StringTools ]))
 
@@ -76,13 +76,19 @@
   (StringTools/containsPunctOnly s))
 
 (defn contains-letters-only?
-  "Checks if `s` contains *only* letters according to 
+  "Checks if `s` contains *only* letters according to
    `Character.isLetter(cp)`."
   [ ^String s ]
   (StringTools/containsLettersOnly s))
 
+(defn contains-non-letters-only?
+  "Checks if `s` contains *only* letters according to
+   `Character.isLetter(cp)`."
+  [ ^String s ]
+  (StringTools/containsNonLettersOnly s))
+
 (defn contains-digits-only?
-  "Checks if `s` contains *only* digits according to 
+  "Checks if `s` contains *only* digits according to
    `Character.isDigit(cp)`."
   [ ^String s ]
   (StringTools/containsDigitsOnly s))
