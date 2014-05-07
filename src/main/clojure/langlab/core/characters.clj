@@ -1,5 +1,5 @@
 (ns langlab.core.characters
-  "Module contains string utilities operating on characters.
+  "xxx Module contains string utilities operating on characters.
 
    This includes, e.g., diacritics removal,  vowel groups detection,
    character counting, non-BMP characters removal, etc.
@@ -8,7 +8,7 @@
    regular expression matching with Unicode support:
    http://www.regular-expressions.info/unicode.html
 
-   General convetion is that all `contains-*` functions return `false`
+   General convention is that all `contains-*` functions return `false`
    on empty string.
    "
   (:import [ langlab.jcore.characters CharacterTools StringTools ]))
