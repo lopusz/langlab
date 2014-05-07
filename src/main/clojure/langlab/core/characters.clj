@@ -2,7 +2,15 @@
   "Module contains string utilities operating on characters.
 
    This includes, e.g., diacritics removal,  vowel groups detection,
-   character counting, non-BMP characters removal, etc."
+   character counting, non-BMP characters removal, etc.
+
+   Part of this module functionality can be also replaced by
+   regular expression matching with Unicode support:
+   http://www.regular-expressions.info/unicode.html
+
+   General convetion is that all `contains-*` functions return `false`
+   on empty string.
+   "
   (:import [ langlab.jcore.characters CharacterTools StringTools ]))
 
 (defn remove-diacritics
@@ -75,26 +83,34 @@
   [ ^String s ]
   (StringTools/containsPunctOnly s))
 
+(defn contains-letters?
+  "Checks if `s` contains any letters according to `Character.isLetter(cp)`."
+  [ ^String s ]
+  (StringTools/containsLetters s))
+
 (defn contains-letters-only?
-  "Checks if `s` contains *only* letters according to
-   `Character.isLetter(cp)`."
+  "Checks if `s` contains *only* letters according to `Character.isLetter(cp)`."
   [ ^String s ]
   (StringTools/containsLettersOnly s))
 
-(defn contains-non-letters-only?
-  "Checks if `s` contains *only* letters according to
-   `Character.isLetter(cp)`."
+(defn contains-digits?
+  "Checks if `s` contains any digits according to `Character.isDigit(cp)`."
   [ ^String s ]
-  (StringTools/containsNonLettersOnly s))
+  (StringTools/containsDigits s))
 
 (defn contains-digits-only?
-  "Checks if `s` contains *only* digits according to
-   `Character.isDigit(cp)`."
+  "Checks if `s` contains *only* digits according to `Character.isDigit(cp)`."
   [ ^String s ]
   (StringTools/containsDigitsOnly s))
 
+(defn contains-letters-or-digits?
+  "Checks if `s` contains any letters or any digits according to
+   `Character.isLetterOrDigit(cp)`."
+  [ ^String s ]
+  (StringTools/containsLettersOrDigits s))
+
 (defn contains-letters-or-digits-only?
-  "Checks if `s` contains *only* letters or digits according to
+  "Checks if `s` contains *only* letters and digits according to
    `Character.isLetterOrDigit(cp)`."
   [ ^String s ]
   (StringTools/containsLettersOrDigitsOnly s))

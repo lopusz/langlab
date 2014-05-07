@@ -62,7 +62,22 @@ public final class StringTools {
 
     }
 
-    public static boolean containsWhitespaceOnly(String s) {
+    public static boolean containsPunct(String s) {
+        boolean res=false;
+
+        for(int i = 0; i < s.length(); ) {
+            int cp = s.codePointAt(i);
+            if (CharacterTools.isPunctuation(cp)) {
+                res=true;
+                break;
+            }
+            i += Character.charCount(cp);
+        }
+
+        return res;
+    }
+
+    public static boolean containsPunctOnly(String s) {
 
         if (s.length()==0) { return false; }
 
@@ -70,8 +85,25 @@ public final class StringTools {
 
         for(int i = 0; i < s.length(); ) {
             int cp = s.codePointAt(i);
-            if (!Character.isWhitespace(cp)) {
+            if (!CharacterTools.isPunctuation(cp)) {
                 res=false;
+                break;
+            }
+
+            i += Character.charCount(cp);
+        }
+
+        return res;
+    }
+
+    public static boolean containsLetters(String s) {
+
+        boolean res=false;
+
+        for(int i = 0; i < s.length(); ) {
+            int cp = s.codePointAt(i);
+            if (Character.isLetter(cp)) {
+                res=true;
                 break;
             }
             i += Character.charCount(cp);
@@ -98,16 +130,14 @@ public final class StringTools {
         return res;
     }
 
-    public static boolean containsNonLettersOnly(String s) {
+    public static boolean containsDigits(String s) {
 
-        if (s.length()==0) { return false; }
-
-        boolean res=true;
+        boolean res=false;
 
         for(int i = 0; i < s.length(); ) {
             int cp = s.codePointAt(i);
-            if (Character.isLetter(cp)) {
-                res=false;
+            if (Character.isDigit(cp)) {
+                res=true;
                 break;
             }
             i += Character.charCount(cp);
@@ -117,9 +147,10 @@ public final class StringTools {
     }
 
     public static boolean containsDigitsOnly(String s) {
-        boolean res=true;
 
         if (s.length()==0) { return false; }
+
+        boolean res=true;
 
         for(int i = 0; i < s.length(); ) {
             int cp = s.codePointAt(i);
@@ -132,6 +163,23 @@ public final class StringTools {
 
         return res;
     }
+
+    public static boolean containsLettersOrDigits(String s) {
+
+        boolean res=false;
+
+        for(int i = 0; i < s.length(); ) {
+            int cp = s.codePointAt(i);
+            if (Character.isLetterOrDigit(cp)) {
+                res=true;
+                break;
+            }
+            i += Character.charCount(cp);
+        }
+
+        return res;
+    }
+
 
     public static boolean containsLettersOrDigitsOnly(String s) {
 
@@ -166,7 +214,7 @@ public final class StringTools {
         return res;
     }
 
-    public static boolean containsPunctOnly(String s) {
+    public static boolean containsWhitespaceOnly(String s) {
 
         if (s.length()==0) { return false; }
 
@@ -174,31 +222,16 @@ public final class StringTools {
 
         for(int i = 0; i < s.length(); ) {
             int cp = s.codePointAt(i);
-            if (!CharacterTools.isPunctuation(cp)) {
+            if (!Character.isWhitespace(cp)) {
                 res=false;
                 break;
             }
-
             i += Character.charCount(cp);
         }
 
         return res;
     }
 
-    public static boolean containsPunct(String s) {
-        boolean res=false;
-
-        for(int i = 0; i < s.length(); ) {
-            int cp = s.codePointAt(i);
-            if (CharacterTools.isPunctuation(cp)) {
-                res=true;
-                break;
-            }
-            i += Character.charCount(cp);
-        }
-
-        return res;
-    }
 
     public static boolean containsNonBmp(String s) {
         boolean res=false;

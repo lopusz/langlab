@@ -61,14 +61,14 @@
   (is (= (contains-punct-only? "z…¿„”—") false))
   (is (= (contains-punct-only? ",;!b") false)))
 
-(deftest contains-letters-or-digits-only
-  (is (= (contains-letters-or-digits-only? "") false))
-  (is (= (contains-letters-or-digits-only? "ala123") true))
-  (is (= (contains-letters-or-digits-only? "99żółw ") false))
-  (is (= (contains-letters-or-digits-only? "99zółw-stary") false))
-  (is (= (contains-letters-or-digits-only? "99zółw,późno") false))
-  (is (= (contains-letters-or-digits-only?
-           "àâçéèêëïîôùûüÿÀÂÇÉÈÊËÏÎÔÙÛÜ") true)))
+(deftest contains-letters
+  (is (= (contains-letters? "") false))
+  (is (= (contains-letters? "ala") true))
+  (is (= (contains-letters? "ala123") true))
+  (is (= (contains-letters? "żółŹŻ") true))
+  (is (= (contains-letters? "99") false))
+  (is (= (contains-letters? " -...") false))
+  (is (= (contains-letters? "…¿ \n„”—" ) false)))
 
 (deftest contains-letters-only
   (is (= (contains-letters-only? "") false))
@@ -81,14 +81,14 @@
   (is (= (contains-letters-only?
            "àâçéèêëïîôùûüÿÀÂÇÉÈÊËÏÎÔÙÛÜ") true)))
 
-(deftest contains-non-letters-only
-  (is (= (contains-non-letters-only? "") false))
-  (is (= (contains-non-letters-only? "ala") false))
-  (is (= (contains-non-letters-only? "ala123") false))
-  (is (= (contains-non-letters-only? "żółwŹŻ") false))
-  (is (= (contains-non-letters-only? "99") true))
-  (is (= (contains-non-letters-only? " -...") true))
-  (is (= (contains-non-letters-only? "…¿ \n„”—" ) true)))
+(deftest contains-digits
+  (is (= (contains-digits? "") false))
+  (is (= (contains-digits? "123") true))
+  (is (= (contains-digits? "ala123") true))
+  (is (= (contains-digits? "888żółwŹŻ ") true))
+  (is (= (contains-digits? "-9") true))
+  (is (= (contains-digits? "888+999 ") true))
+  (is (= (contains-digits? " ") false)))
 
 (deftest contains-digits-only
   (is (= (contains-digits-only? "") false))
@@ -96,7 +96,25 @@
   (is (= (contains-digits-only? "ala123") false))
   (is (= (contains-digits-only? "888żółwŹŻ ") false))
   (is (= (contains-digits-only? "888-999 ") false))
+  (is (= (contains-digits-only? "-9") false)) ; !!!
   (is (= (contains-digits-only? "888+999 ") false)))
+
+(deftest contains-letters-or-digits
+  (is (= (contains-letters-or-digits? "") false))
+  (is (= (contains-letters-or-digits? "ala123") true))
+  (is (= (contains-letters-or-digits? "óżł") true))
+  (is (= (contains-letters-or-digits? "----") false))
+  (is (= (contains-letters-or-digits?
+           "àâçéèêëïîôùûüÿÀÂÇÉÈÊËÏÎÔÙÛÜ") true)))
+
+(deftest contains-letters-or-digits-only
+  (is (= (contains-letters-or-digits-only? "") false))
+  (is (= (contains-letters-or-digits-only? "ala123") true))
+  (is (= (contains-letters-or-digits-only? "99żółw ") false))
+  (is (= (contains-letters-or-digits-only? "99zółw-stary") false))
+  (is (= (contains-letters-or-digits-only? "99zółw,późno") false))
+  (is (= (contains-letters-or-digits-only?
+           "àâçéèêëïîôùûüÿÀÂÇÉÈÊËÏÎÔÙÛÜ") true)))
 
 (deftest contains-whitespace-test
   (is (= (contains-whitespace? "") false))

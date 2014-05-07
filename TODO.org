@@ -1,5 +1,10 @@
 * Issues & ideas
-  + *[characters]* Add other contains-non-XXX-only functions
+  + *[general]* Add string similarity library
+     based either on simmetrics or on second string
+     http://web.archive.org/web/20081224065617/http://www.dcs.shef.ac.uk/~sam/simmetrics.html
+     http://web.archive.org/web/20081224234350/http://www.dcs.shef.ac.uk/~sam/stringmetrics.html
+     http://sourceforge.net/projects/secondstring/
+     http://secondstring.sourceforge.net/
   + *[general]* Consider using perforate lein plugin to add benchmarks.
     https://github.com/davidsantiago/perforate
     This is, however, for microbenchmarks.
@@ -42,6 +47,7 @@
     http://cm.bell-labs.com/cm/cs/who/doug/ssort.c
 
 * Done
+  + *[characters]* Add consequently contains-XXX  and contains-XXX-only
   + *[transformers]* Move split-tokens-with-space to parsers
   + *[tagging]* Add some kind of gen-dict-from-file.
     Check how does with-open works. Is it reasonable to take reader as
