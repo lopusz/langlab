@@ -23,14 +23,14 @@
   ; DEPENDENCIES
 
   :dependencies [
-    [org.clojure/clojure "1.5.1"]
+    [org.clojure/clojure "1.6.0"]
     [org.clojure/math.numeric-tower "0.0.4"]
 
     ;; Runtime assertions
     [pjstadig/assertions "0.1.0"]
 
     ;; ICU - various tools used in parsers, lang+encoding detectors
-    [com.ibm.icu/icu4j "52.1"]
+    [com.ibm.icu/icu4j "53.1"]
 
     ;; language detectors
     [com.cybozu.labs/langdetect "1.1-20120112"]
