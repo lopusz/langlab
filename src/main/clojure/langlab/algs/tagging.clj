@@ -10,7 +10,8 @@
      [ pjstadig.assertions :refer [assert]]
      [ langlab.core.parsers :refer [split-tokens-with-whitespace] ]
      [ langlab.core.transformers :refer [ merge-tokens-with-space ] ]
-     [ langlab.core.ngrams :refer [gen-ngrams]]))
+     [ langlab.core.ngrams :refer [gen-ngrams]])
+  (import [ java.io Reader]))
 
 ; READING TAGS DICTIONARY FUNCTIONS
 
@@ -130,14 +131,14 @@
 (defn gen-dict-from-reader
   "Generates dictionary from a given reader `r`, passing `env` to
    the `gen-dict-from-seq`."
-  [ r env ]
+  [ ^Reader r env ]
     (with-open [ r* r ]
       (gen-dict-from-seq (line-seq r*) env)))
 
 (defn gen-fdict-from-reader
   "Generates frequency dictionary from a given reader `r`. passing `env` to
    the `gen-fdict-from-seq`."
-  [ r env ]
+  [ ^Reader r env ]
     (with-open [ r* r ]
       (gen-fdict-from-seq (line-seq r*) env)))
 

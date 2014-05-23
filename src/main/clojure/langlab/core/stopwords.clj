@@ -6,6 +6,7 @@
 
   (:require [ clojure.string :refer [lower-case]])
   (:import
+             [ org.apache.lucene.analysis.util CharArraySet ]
              [ org.apache.lucene.analysis.ar ArabicAnalyzer ]
              [ org.apache.lucene.analysis.hy ArmenianAnalyzer ]
              [ org.apache.lucene.analysis.eu BasqueAnalyzer ]
@@ -88,8 +89,8 @@
   []
   #{ "o" "a" "os" "as" "um" "uns" "uma" "umas"})
 
-(defn- conv-char-array-set-to-str-set [ char-array-set ]
-  (into #{} (map #(String. %) char-array-set)))
+(defn- conv-char-array-set-to-str-set [ ^CharArraySet char-array-set ]
+  (into #{} (map #(String. ^chars %) char-array-set)))
 
 (defn ar-get-stopwords-lucene
   "Returns default Arabic stopword set used by Lucene."
@@ -4799,4 +4800,3 @@
      "þunda"
      "þundan"
      "þunu"})
-
