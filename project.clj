@@ -63,7 +63,7 @@
   ; PLUGINS + CONFIGURATION
 
   :plugins [
-             [codox "0.6.6"]
+             [codox "0.8.7"]
              [lein-ancient "0.5.5"]
            ]
 
@@ -72,6 +72,7 @@
   :codox {
           :output-dir "target/apidoc"
           :sources [ "src/main/clojure"]
+          :defaults {:doc/format :markdown}
           :src-dir-uri "http://github.com/lopusz/langlab/blob/master/"
           :src-linenum-anchor-prefix "L"
           }

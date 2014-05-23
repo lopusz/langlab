@@ -1,5 +1,5 @@
 (ns langlab.core.characters
-  "xxx Module contains string utilities operating on characters.
+  "Module contains string utilities operating on characters.
 
    This includes, e.g., diacritics removal,  vowel groups detection,
    character counting, non-BMP characters removal, etc.
