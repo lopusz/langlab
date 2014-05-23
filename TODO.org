@@ -1,4 +1,5 @@
 * Issues & ideas
+  + *[general]* Correct apidocs, so they look OK with new codox markdown support
   + *[general]* Add string similarity library
      based either on simmetrics or on second string
      http://web.archive.org/web/20081224065617/http://www.dcs.shef.ac.uk/~sam/simmetrics.html
