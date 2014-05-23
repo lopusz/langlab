@@ -1,4 +1,4 @@
-(defproject langlab "1.1.0-SHAPSHOT"
+(defproject langlab "1.1.0-SNAPSHOT"
 
   ; GENERAL OPTIONS
 
@@ -12,7 +12,7 @@
   :aot :all
   :omit-source true
 
-  ;; :global-vars {*warn-on-reflection* true}
+  :global-vars {*warn-on-reflection* true}
 
   ;; Options used by Java
   ;;; run with assertions enabled
