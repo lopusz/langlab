@@ -26,7 +26,6 @@
     - "—" -> "-"
     - hard spaces to spaces
     - what more ?
-  + *[tagging]* Refactor tagging module so it works with langlab
   + *[parsers]* There is a (closed source?) sentence parser library from
      Scott Piao
      http://text0.mib.man.ac.uk:8080/scottpiao/apidocs/api_sentpar_breaker.jsp
@@ -45,7 +44,6 @@
     http://dl.acm.org/citation.cfm?id=972779
     http://www.mibel.cs.tsukuba.ac.jp/~myama/tfdf/index.html
     http://cm.bell-labs.com/cm/cs/who/doug/ssort.c
-
 * Done
   + *[characters]* Add consequently contains-XXX  and contains-XXX-only
   + *[transformers]* Move split-tokens-with-space to parsers
@@ -55,6 +53,7 @@
   + *[tagging]* Add defaulting to merge-tokens-with-space in tags algebra.
   + *[tagging]* Add API DOCS to tagging module.
   + *[tagging]* Add function to convert fdict -> dict.
+  + *[tagging]* Refactor tagging module so it works with langlab
   + *[ngrams]* Correct ngrams module so it uses partition
   + *[stopwords]* Verify Norwegian stopwords (no-sw)
     I had to do some uppercase conversions, so something might be wrong there.
