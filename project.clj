@@ -47,8 +47,11 @@
     ;; Morpha stemmer
     [edu.washington.cs.knowitall/morpha-stemmer "1.0.5"]
 
-    ;; encoding detector based on mozilla algorithm
+    ;; encoding detector based on Mozilla algorithm
     [com.googlecode.juniversalchardet/juniversalchardet "1.0.3"]
+
+    ;; fuzzy string similarity
+    [org.apache.commons/commons-lang3 "3.3.2"]
 
     ;; OpenNLP Clojure wrappers
     [clojure-opennlp "0.3.2"]
