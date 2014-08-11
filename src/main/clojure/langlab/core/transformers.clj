@@ -66,3 +66,18 @@
   [ tokens ]
   (map lower-case
    (trans-drop-punct tokens)))
+
+(defn trans-drop-set
+  "Drop all elements of `tokens` that are included in the `drop-set`.
+   To generate 'drop-set' one of the functions returning stopwords or
+   articles from module core.stopwords can be used."
+  [ drop-set tokens ]
+  (filter #(not (contains? drop-set %)) tokens))
+
+(defn trans-drop-set-all-case
+  "Drop all elements of `tokens` that are included in the `drop-set`.
+   Ignore case.
+   To generate `drop-set` one of the functions returning stopwords or
+   articles from module `core.stopwords` can be used."
+  [ drop-set tokens ]
+  (filter #(not (contains? drop-set (lower-case %))) tokens))

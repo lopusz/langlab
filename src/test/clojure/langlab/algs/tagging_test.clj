@@ -3,10 +3,10 @@
     [ clojure.test :refer :all ]
     [ langlab.core.stemmers :refer [en-stem-snowball]]
     [ langlab.core.transformers :refer
-       [merge-tokens-with-space trans-drop-punct-lower]]
+       [merge-tokens-with-space trans-drop-punct-lower trans-drop-set]]
     [ langlab.core.parsers :refer
        [split-tokens-with-whitespace lg-split-tokens-bi lg-split-sentences-bi]]
-    [ langlab.core.stopwords :refer [trans-drop-set  en-get-articles]]
+    [ langlab.core.stopwords :refer [en-get-articles]]
     [ langlab.algs.tagging :refer :all]))
 
 ; TEST READING TAGS DICTIONARY FUNCTIONS

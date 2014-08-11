@@ -29,27 +29,13 @@
              [ org.apache.lucene.analysis.no NorwegianAnalyzer ]
              [ org.apache.lucene.analysis.fa PersianAnalyzer ]
              [ org.apache.lucene.analysis.pt PortugueseAnalyzer ]
+             [ org.apache.lucene.analysis.pl PolishAnalyzer ]
              [ org.apache.lucene.analysis.ro RomanianAnalyzer ]
              [ org.apache.lucene.analysis.ru RussianAnalyzer ]
              [ org.apache.lucene.analysis.es SpanishAnalyzer ]
              [ org.apache.lucene.analysis.sv SwedishAnalyzer ]
              [ org.apache.lucene.analysis.th ThaiAnalyzer ]
              [ org.apache.lucene.analysis.tr TurkishAnalyzer ]))
-
-(defn trans-drop-set
-  "Drop all elements of 'tokens' that are included in the 'drop-set'.
-   For 'drop-set' one of the module constants representing stopwords or
-   articles can be used."
-  [ drop-set tokens ]
-  (filter #(not (contains? drop-set %)) tokens))
-
-(defn trans-drop-set-all-case
-  "Drop all elements of 'tokens' that are included in the 'drop-set'.
-   Ignore case.
-   For 'drop-set' one of the module constants representing stopwords or
-   articles can be used."
-  [ drop-set tokens ]
-  (filter #(not (contains? drop-set (lower-case %))) tokens))
 
 (defn en-get-articles
   "Returns English article set."
@@ -89,7 +75,7 @@
   #{ "o" "a" "os" "as" "um" "uns" "uma" "umas"})
 
 (defn- conv-char-array-set-to-str-set [ char-array-set ]
-  (into #{} (map #(String. %) char-array-set)))
+  (into #{} (map #(String. ^chars %) char-array-set)))
 
 (defn ar-get-stopwords-lucene
   "Returns default Arabic stopword set used by Lucene."
@@ -205,6 +191,11 @@
   "Returns default Portuguese stopword set used by Lucene."
   []
   (conv-char-array-set-to-str-set (PortugueseAnalyzer/getDefaultStopSet)))
+
+(defn pl-get-stopwords-lucene
+  "Returns default Polish stopword set used by Lucene."
+  []
+  (conv-char-array-set-to-str-set (PolishAnalyzer/getDefaultStopSet)))
 
 (defn ro-get-stopwords-lucene
   "Returns default Romanian stopword set used by Lucene."
