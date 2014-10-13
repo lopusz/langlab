@@ -1,4 +1,4 @@
-(defproject langlab "1.2.0-SNAPSHOT"
+(defproject langlab "1.2.0"
 
   ; GENERAL OPTIONS
 
