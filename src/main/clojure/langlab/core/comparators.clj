@@ -1,6 +1,7 @@
 (ns langlab.core.comparators
   "Module contains various tools for fuzzy strings comparison."
-  (:import [ org.apache.commons.lang3 StringUtils ]))
+  (:import [ org.apache.commons.lang3 StringUtils ]
+           [ langlab.jcore.comparators ComparatorTools]))
 
 (defn calc-levenshtein-dist-aclang
    "Calculates the Levenshtein distance between `s1` and `s2`.
@@ -29,6 +30,9 @@
    It uses Appache Commons Lang3 (aclang)."
   [ ^String s1 ^String s2]
    (StringUtils/getJaroWinklerDistance s1 s2))
+
+(defn calc-common-prefix-length [ ^String s1 ^String s2 ]
+  (ComparatorTools/calcCommonPrefixLength s1 s2))
 
 ; Add here metaphone and soundex comparisons form commons-codec
 ; http://en.wikipedia.org/wiki/Soundex
