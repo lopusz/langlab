@@ -14,7 +14,7 @@
   + n-grams generation,
   + ...
 
-  Add the the following section to your ~project.clj~
+  To use langlab, add the the following dependency to your ~project.clj~
 
   [[http://clojars.org/langlab][http://clojars.org/langlab/latest-version.svg]]
 
