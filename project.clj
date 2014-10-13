@@ -66,7 +66,7 @@
   ; PLUGINS + CONFIGURATION
 
   :plugins [
-             [codox "0.8.7"]
+             [codox "0.8.10"]
              [lein-ancient "0.5.5"]
            ]
 
