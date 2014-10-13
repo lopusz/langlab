@@ -15,9 +15,8 @@
   + ...
 
   Add the the following section to your ~project.clj~
-  #+BEGIN_SRC text
-  [langlab "1.1.0"]
-  #+END_SRC
+
+  [[http://clojars.org/langlab][http://clojars.org/langlab/latest-version.svg]]
 
   You need *Java 7* and *lein 2* to compile and run this project.
 
