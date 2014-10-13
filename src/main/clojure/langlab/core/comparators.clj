@@ -31,7 +31,9 @@
   [ ^String s1 ^String s2]
    (StringUtils/getJaroWinklerDistance s1 s2))
 
-(defn calc-common-prefix-length [ ^String s1 ^String s2 ]
+(defn calc-common-prefix-length
+  "Calculates the length of the common initial substring of `s1` and `s2`."
+  [ ^String s1 ^String s2 ]
   (ComparatorTools/calcCommonPrefixLength s1 s2))
 
 ; Add here metaphone and soundex comparisons form commons-codec
