@@ -79,7 +79,7 @@
 
 (defn contains-punct-only?
   "Checks if `s` contains *only* punctuation according to
-   `Character.getType(cp)` equal to *_PUNCTUATION classes."
+   `Character.getType(cp)` equal to `*_PUNCTUATION` classes."
   [ ^String s ]
   (StringTools/containsPunctOnly s))
 

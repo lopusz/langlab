@@ -10,7 +10,7 @@
 
 
 (defn spprint
-  "Pretty prints 'o' to string."
+  "Pretty prints `o` to string."
   [ o ]
   (let [
       w (new StringWriter)
@@ -22,7 +22,7 @@
   (System/getProperty "line.separator"))
 
 (defn spprint-noeol
-  "Pretty prints 'o' to string and removes all end of line characters."
+  "Pretty prints `o` to string and removes all end of line characters."
   [ o ]
   (let [
       w (new StringWriter)
@@ -40,8 +40,10 @@
   (> tol (float  (abs diff)))))
 
 (defn is-eq-dict
-  "Runs test of function `f` based on map `arg-fval-map`
-     { data1 result1 data2 result2 ... }
+  "Runs test of function `f` based on map `arg-fval-map`, which is of the form
+
+     `{ data1 result1 data2 result2 ... }`
+
    There is an option of including customized equality operator  `eq-f`,
    useful, e.g., for floats."
   ([ f arg-fval-map ]
@@ -62,8 +64,10 @@
       (seq-is= fvals fvals*))))
 
 (defn is-not-eq-dict
-  "Runs anti-test of function `f` based on map `arg-fval-map`
-     { data1 result1 data2 result2 ... }
+  "Runs anti-test of function `f` based on map `arg-fval-map`, which is of the from
+
+     `{ data1 result1 data2 result2 ... }`
+
    The results should NOT be equal to those provided in map.
    This is useful to document known deficiencies."
    [ f arg-fval-map ]

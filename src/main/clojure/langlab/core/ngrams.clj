@@ -4,10 +4,11 @@
 (defn gen-ngrams
   "Function generates n-grams from a given 'tokens' sequence.
 
-   Two invocations are possible:
-   (gen-n-grams n tokens) <- generates all n-grams
-   (gen-n-grams n m tokens) <- generates all n-grams,(n+1)-grams,...,(m)-grams
-   (gen-ngrams tokens) <- generates 1 .. (count tokens) n-grams
+   The following invocations are possible:
+
+   - `(gen-n-grams n tokens)` - generates all n-grams
+   - `(gen-n-grams n m tokens)` - generates all n-grams,(n+1)-grams,...,(m)-grams
+   - `(gen-ngrams tokens)` - generates 1 .. (count tokens) n-grams
   "
   ([ tokens ] (gen-ngrams 1 (count tokens) tokens))
   ([ n tokens ]
@@ -32,10 +33,13 @@
 (defn gen-ngrams*
   "Function generates n-grams from a given 'tokens' sequence.
 
-   Following invocations are possible:
-   (gen-ngrams n tokens) <- generates all n-grams
-   (gen-ngrams n m tokens) <- generates all n-grams,(n+1)-grams,...,(m)-grams
-   (gen-ngrams tokens) <- generates 1 .. (count tokens) n-grams
+   Alternative slightly slower version (?).
+
+   The following invocations are possible:
+
+   - `(gen-ngrams n tokens)` - generates all n-grams
+   - `(gen-ngrams n m tokens)` - generates all n-grams,(n+1)-grams,...,(m)-grams
+   - `(gen-ngrams tokens)` - generates 1 .. (count tokens) n-grams
   "
   ([ tokens ]
      (gen-ngrams 1 (count tokens) tokens))

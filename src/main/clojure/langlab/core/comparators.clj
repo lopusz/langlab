@@ -5,7 +5,7 @@
 
 (defn calc-levenshtein-dist-aclang
    "Calculates the Levenshtein distance between `s1` and `s2`.
-    It uses Appache Commons Lang3 (aclang)."
+    It uses Apache Commons Lang3 (aclang)."
    [ ^String s1 ^String s2 ]
    (StringUtils/getLevenshteinDistance s1 s2))
 
@@ -13,7 +13,7 @@
    "Calculates the Levenshtein distance between `s1` and `s2`,
     only if it is lower or equal to `truncation`.
     If the Levenshtein distance is greater `false` is returned.
-    It uses Appache Commons Lang3 (aclang)."
+    It uses Apache Commons Lang3 (aclang)."
   [ ^String s1 ^String s2 ^Integer truncation]
   (let [
          dist (StringUtils/getLevenshteinDistance s1 s2 truncation)
@@ -27,7 +27,7 @@
 
    http://en.wikipedia.org/wiki/Jaro-Winkler_distance
 
-   It uses Appache Commons Lang3 (aclang)."
+   It uses Apache Commons Lang3 (aclang)."
   [ ^String s1 ^String s2]
    (StringUtils/getJaroWinklerDistance s1 s2))
 

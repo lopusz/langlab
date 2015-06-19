@@ -15,7 +15,8 @@
   "Splits `s` on regexp `re`, but as opposed to `string/split` keeps the
    regexp matches in a resulting seq.
 
-   Similar effect can be achieved by using look-arounds, but its clumsy.
+   Similar effect can be achieved by using look-arounds, but its clumsy, see
+
    http://stackoverflow.com/questions/19951850/split-string-with-regex-but-keep-delimeters-in-match-array"
   [ s re ]
   (let [
@@ -47,7 +48,7 @@
   "Split `s` into seq of sentences using standard BreakIterator class.
    Sets language to `lang`.
 
-   _Note_: It is not clear to me how the locale is used by BreakIterator."
+  **Note.** It is not clear to me how the locale is used by BreakIterator."
   [ ^String lang ^String s ]
   (iterator-seq (BreakIteratorWrapper/getSentenceIterator s lang)))
 
@@ -59,7 +60,8 @@
 (defn lg-split-tokens-bi
   "Split `s` into seq of words using standard BreakIterator class.
    Sets language to `lang`.
-   _Note_: It is not clear to me how the locale is used by BreakIterator."
+
+   **Note.** It is not clear to me how the locale is used by BreakIterator."
   [ ^String lang ^String s ]
   (trans-drop-whitespace
     (iterator-seq (BreakIteratorWrapper/getWordIterator s lang))))
@@ -75,7 +77,7 @@
   "Split `s` into seq of sentences using ICU BreakIterator class.
    Sets language to `lang`.
 
-   _Note_: It is not clear to me how the locale is used by BreakIterator."
+   **Note.** It is not clear to me how the locale is used by BreakIterator."
 
   [ ^String lang ^String s ]
   (iterator-seq (ICUBreakIteratorWrapper/getSentenceIterator s lang)))
@@ -88,7 +90,8 @@
 (defn lg-split-tokens-icu-bi
   "Split `s` into seq of words using ICU BreakIterator class.
    Sets language to `lang`.
-   _Note_: It is not clear to me how the locale is used by BreakIterator."
+
+   **Note.** It is not clear to me how the locale is used by BreakIterator."
   [ ^String lang ^String s ]
   (trans-drop-whitespace
     (iterator-seq (ICUBreakIteratorWrapper/getWordIterator s lang))))

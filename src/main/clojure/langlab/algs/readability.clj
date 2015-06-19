@@ -11,6 +11,7 @@
 (defn count-words
   "Counts the number of words in `s` based on the provided `env`.
    The `env` supports keys:
+
    - `:split-tokens-f` (mandatory)
    - `:trans-drop-punct-f` (defaults to `trans-drop-punct`)"
 
@@ -54,17 +55,18 @@
 (defn calc-text-stats
   "Calculates statistics of text `s`.
    The `env` supports the following keys mapping to functions
-   `:split-sentences-f` - splits text into sentences (mandatory),
-   `:split-tokens-f`  - splits text to tokens (mandatory),
-   `:trans-drop-punct-f` - removes all non-words tokens (default `trans-drop-punct`),
-   `:count-chars-f` - count chars in string  (default: `en-count-chars-bi`,
-   `:is-hard-word-f` - check if token is a hard word (default: count-latin-vowel-groups-without-final>2).
+
+   - `:split-sentences-f` - splits text into sentences (mandatory),
+   - `:split-tokens-f`  - splits text to tokens (mandatory),
+   - `:trans-drop-punct-f` - removes all non-words tokens (default `trans-drop-punct`),
+   - `:count-chars-f` - count chars in string  (default: `en-count-chars-bi`,
+   - `:is-hard-word-f` - check if token is a hard word (default: count-latin-vowel-groups-without-final>2).
 
    Result contains a map with  the following fields:
-   `:n-chars` - total number of letters in words,
-   `:n-words` - number of words,
-   `:n-hard-words` - number of hard words according to is-hard-word-f,
-   `:n-sentences` - number of sentences."
+   - `:n-chars` - total number of letters in words,
+   - `:n-words` - number of words,
+   - `:n-hard-words` - number of hard words according to is-hard-word-f,
+   - `:n-sentences` - number of sentences."
 
   [ ^String s env ]
 

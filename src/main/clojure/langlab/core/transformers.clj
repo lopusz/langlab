@@ -18,7 +18,11 @@
 
 (defn trans-merge-punct
   "In seq `tokens` merges those groups that contain only punctuation.
-   E.g.,  [ \"Wow\" \"!\" \"!\" \"!\" ] -> [ \"Wow\" \"!!!\" ].
+
+   `(trans-merge-punct [ \"Wow\" \"!\" \"!\" \"!\" ])`
+
+   `[ \"Wow\" \"!!!\" ]`
+
    Inverse of `trans-split-punct`."
   [ tokens ]
   (let [
@@ -33,7 +37,11 @@
 
 (defn trans-split-punct
   "Split all punctuation tokens from `tokens` into separate characters.
-   E.g., [ \"Wow\" \"!!!\" ] ->  [ \"Wow\" \"!\" \"!\" \"!\" ]
+
+   `(trans-split-punct [ \"Wow\" \"!!!\" ])`
+
+   `[ \"Wow\" \"!\" \"!\" \"!\" ]`
+
    Inverse of `trans-split-punct`."
   [ tokens ]
   (let [
@@ -69,7 +77,7 @@
 
 (defn trans-drop-set
   "Drop all elements of `tokens` that are included in the `drop-set`.
-   To generate 'drop-set' one of the functions returning stopwords or
+   To generate `drop-set` one of the functions returning stopwords or
    articles from module core.stopwords can be used."
   [ drop-set tokens ]
   (filter #(not (contains? drop-set %)) tokens))

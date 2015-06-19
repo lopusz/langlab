@@ -1,9 +1,10 @@
 (ns langlab.algs.tagging
   "Module contains functionality related to tagging with dictionary tags.
    The implemented functionality can be divided into three main areas:
-   * generating dictionaries and frequency dictionaries,
-   * tagging itself,
-   * tags algebra (union/intersection/difference) etc.
+
+   - generating dictionaries and frequency dictionaries,
+   - tagging itself,
+   - tags algebra (union, intersection, difference, etc.).
   "
   (:refer-clojure :exclude [assert])
   (:require
@@ -68,10 +69,11 @@
    and finally merges. It is constructed according to the keys in `env`.
 
    The following keywords mapping to functions can be included in `env`:
-   :split-tokens-f - tokenizer function (mandatory),
-   :stem-f - stemming function (mandatory),
-   :trans-tokens-f - transforming function (default: identity),
-   :merge-tokens-f - merging tokens (default: merge-tokens-with-space)."
+
+   - `:split-tokens-f` - tokenizer function (mandatory),
+   - `:stem-f` - stemming function (mandatory),
+   - `:trans-tokens-f` - transforming function (default: identity),
+   - `:merge-tokens-f` - merging tokens (default: merge-tokens-with-space)."
 
   [seq env]
   (assert (contains? env :split-tokens-f))
@@ -98,20 +100,23 @@
     (hash-map (norm-f s) { (norm-nostem-f s) 1 })))
 
 (defn gen-fdict-from-seq
-  "Generate frequency dictionary (fdict) from `seq`.
+  "Generate frequency dictionary (`fdict`) from `seq`.
    The fdict is useful when there are many tokens that stem to the same entry
    in a given `seq`.
    The resulting fdict has the form:
-     { normalized-entry { entry1 freq1 entry2 freq2 }, ...}.
+
+     `{ normalized-entry { entry1 freq1 entry2 freq2 }, ...}.`
+
    All `entry1`, `entry2`, ... were normalized without stemming. When
    applying stemming they normalize to the same `normalized-entry`.
    The normalization function is constructed according to the keys in `env`.
 
    The following keywords mapping to functions can be included in `env`:
-   :split-tokens-f - tokenizer function (mandatory),
-   :stem-f - stemming function (mandatory),
-   :trans-tokens-f - transforming function (default: identity),
-   :merge-tokens-f - merging tokens (default: merge-tokens-with-space)."
+
+   - `:split-tokens-f` - tokenizer function (mandatory),
+   - `:stem-f` - stemming function (mandatory),
+   - `:trans-tokens-f` - transforming function (default: identity),
+   - `:merge-tokens-f` - merging tokens (default: merge-tokens-with-space)."
 
   [ seq env ]
   (assert (contains? env :split-tokens-f))
@@ -156,7 +161,9 @@
 
 (defn conv-fdict-to-dict
   "Converts frequency dictionary `fdict` of the form
-     { normalized-entry { entry1 freq1 entry2 freq2 }, ... },
+
+     `{ normalized-entry { entry1 freq1 entry2 freq2 }, ... },`
+
    to an ordinary dictionary by selecting most frequent `entry1`, `entry2`, ...
    From the entries having the same frequencies the shortest is selected."
   [ fdict ]
@@ -224,13 +231,14 @@
    functions contained in the `env`. The result is a map `{ tag freq }`.
 
    The following keywords mapping to functions can be included in `env`:
-   :split-tokens-f - tokenizer function (mandatory),
-   :stem-f - stemming function (mandatory),
-   :trans-tokens-f - transforming function (default: identity),
-   :merge-tokens-f - merging tokens (default: merge-tokens-with-space),
-   :split-sentences-f - parses string into sentences (optional).
 
-    If :split-sentences-f is given, sentences are parsed separately and tag
+   - `:split-tokens-f` - tokenizer function (mandatory),
+   - `:stem-f` - stemming function (mandatory),
+   - `:trans-tokens-f` - transforming function (default: identity),
+   - `:merge-tokens-f` - merging tokens (default: merge-tokens-with-space),
+   - `:split-sentences-f` - parses string into sentences (optional).
+
+    If `:split-sentences-f` is given, sentences are parsed separately and tag
     maps from all sentences are merged."
   [ dict env ]
   (assert (map? dict))
@@ -262,10 +270,11 @@
    according to the keys in `env`.
 
    The following keywords mapping to functions can be included in `env`:
-   :split-tokens-f - tokenizer function (mandatory),
-   :stem-f - stemming function (mandatory),
-   :trans-tokens-f - transforming function (default: identity),
-   :merge-tokens-f - merging tokens (default: merge-tokens-with-space)."
+
+   - `:split-tokens-f` - tokenizer function (mandatory),
+   - `:stem-f` - stemming function (mandatory),
+   - `:trans-tokens-f` - transforming function (default: identity),
+   - `:merge-tokens-f` - merging tokens (default: merge-tokens-with-space)."
   [ tags1 tags2 env ]
   (assert (contains? env :split-tokens-f))
   (assert (contains? env :stem-f))
@@ -285,10 +294,11 @@
    and finally merges. It is constructed according to the keys in `env`.
 
    The following keywords mapping to functions can be included in `env`:
-   :split-tokens-f - tokenizer function (mandatory),
-   :stem-f - stemming function (mandatory),
-   :trans-tokens-f - transforming function (default: identity),
-   :merge-tokens-f - merging tokens (default: merge-tokens-with-space)."
+
+   - `:split-tokens-f` - tokenizer function (mandatory),
+   - `:stem-f` - stemming function (mandatory),
+   - `:trans-tokens-f` - transforming function (default: identity),
+   - `:merge-tokens-f` - merging tokens (default: merge-tokens-with-space)."
 
   [ tags1 tags2 env ]
   (assert (contains? env :split-tokens-f))
@@ -312,10 +322,11 @@
    and finally merges. It is constructed according to the keys in `env`.
 
    The following keywords mapping to functions can be included in `env`:
-   :split-tokens-f - tokenizer function (mandatory),
-   :stem-f - stemming function (mandatory),
-   :trans-tokens-f - transforming function (default: identity),
-   :merge-tokens-f - merging tokens (default: merge-tokens-with-space)."
+
+   - `:split-tokens-f` - tokenizer function (mandatory),
+   - `:stem-f` - stemming function (mandatory),
+   - `:trans-tokens-f` - transforming function (default: identity),
+   - `:merge-tokens-f` - merging tokens (default: merge-tokens-with-space)."
 
   [ tags1 tags2 env ]
   (assert (contains? env :split-tokens-f))
