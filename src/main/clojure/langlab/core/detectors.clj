@@ -43,8 +43,13 @@
   "Returns language code string for `s` using the Cybozu Labs library.
    The optional `env` parameter can contain the following optional keys:
 
-   - `:alpha`   - alpha parameter of the Cybozu algorithm,
-   - `:max-len` - maximum length of `s` to be taken for lang detection."
+   - `:alpha`   - alpha smoothing parameter of the Cybozu algorithm
+      (default 0.5),
+   - `:max-len` - maximum length of `s` to be taken for lang detection.
+
+  **Note.** Cybozu is not well suited to very short texts (at least 10-20 words).
+  For very short text with 1-10 words, it may return wrong answer.
+  "
   ([ ^String s env ]
     (let [
         _ @init-cybozu
@@ -69,8 +74,12 @@
 
    Optional `env` parameter can contain the following optional keys:
 
-   - `:alpha`   - alpha parameter of the Cybozu algorithm,
-   - `:max-len` - maximum length of `s` to be taken for lang detection."
+   - `:alpha`   - alpha smootihing parameter of the Cybozu algorithm
+     (default 0.5),
+   - `:max-len` - maximum length of `s` to be taken for lang detection.
+
+  **Note.** Cybozu is not well suited to very short texts (at least 10-20 words).
+  For very short text with 1-10 words, it may return wrong answer."
   ([ ^String s env ]
      (let [
            _ @init-cybozu
