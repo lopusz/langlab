@@ -57,7 +57,7 @@
     [clojure-opennlp "0.3.2"]
 
     ;; Hunspell stemmer of Lucene
-    [hunspell-stemmer "0.2.0"]
+    [hunspell-stemmer "0.3.0"]
 
     ;; Additional language tools
     [clef-tools "0.2.0"]
