@@ -5,6 +5,7 @@
       [java.lang CharSequence]
       [morfologik.stemming WordData]
       [morfologik.stemming PolishStemmer]
+      [org.apache.lucene.util CharsRef ]
       [hunspell_stemmer Dictionary Stemmer]))
 
 (set! *warn-on-reflection* true)
@@ -41,8 +42,59 @@
     (fn [^String word]
       (let [
             stemmer (Stemmer. d)
-            stem-list (.stem stemmer word)
+            stem-list (.uniqueStems stemmer word (.length word))
+            conv-f
+              (fn [ ^CharsRef cf]
+                (.toString cf))
             ]
         (if (= 0 (.size stem-list))
           word
-          (map #(.toString %) stem-list))))))
+          (map conv-f stem-list))))))
+
+(defn make-multi-stem-hunspell-raw [aff-fname dic-fname ]
+  (let [
+        as (io/input-stream aff-fname)
+        ds (io/input-stream dic-fname)
+        d ^Dictionary (Dictionary. as ds)
+        ]
+    (fn [^String word]
+      (let [
+            stemmer (Stemmer. d)
+            stem-list (.uniqueStems stemmer word (.length word))
+            conv-f
+            (fn [ ^CharsRef cf]
+              (.toString cf))
+            ]
+        (if (= 0 (.size stem-list))
+          word
+          (map conv-f stem-list))))))
+
+(defn select-shortest-word [ words ]
+  (if (empty? words)
+    nil
+    (let [
+           len-f
+             (fn [ ^String s ]
+               (.length s))
+      ]
+      (apply (partial min-key len-f) words))))
+
+(defn select-longest-word [ words ]
+  (if (empty? words)
+    nil
+    (let [
+          len-f
+            (fn [ ^String s ]
+              (.length s))
+          ]
+      (apply (partial max-key) len-f words))))
+
+
+(defn merge-multiple-words [words sep]
+  (if (empty? words)
+    nil
+    (->>
+      words
+      sort
+      (interpose sep)
+      (apply str))))
