@@ -35,7 +35,12 @@
              [ org.apache.lucene.analysis.es SpanishAnalyzer ]
              [ org.apache.lucene.analysis.sv SwedishAnalyzer ]
              [ org.apache.lucene.analysis.th ThaiAnalyzer ]
-             [ org.apache.lucene.analysis.tr TurkishAnalyzer ]))
+             [ org.apache.lucene.analysis.tr TurkishAnalyzer ]
+             [ clef_tools.stopwords
+               Bulgarian Czech English FinishLong FinnishShort
+               French German Hungarian Italian PolishLong PolishShort
+               PortugueseLong PortugueseShort Roumanian Russian SpanishLong
+               SpanishShort Swedish ]))
 
 (defn en-get-articles
   "Returns English article set."
@@ -226,7 +231,7 @@
   "Returns default Turkish stopword set used by Lucene."
   []
   (conv-char-array-set-to-str-set (TurkishAnalyzer/getDefaultStopSet)))
-(defn ca-get-stopwords
+(defn ca-get-stopwords-ranks
   "Returns Catalan stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
@@ -355,7 +360,7 @@
      "van"
      "vosaltres"})
 
-(defn cz-get-stopwords
+(defn cz-get-stopwords-ranks
   "Returns Czech stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
@@ -498,7 +503,7 @@
      "zpet"
      "zpravy"})
 
-(defn da-get-stopwords
+(defn da-get-stopwords-ranks
   "Returns Danish stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
@@ -604,7 +609,7 @@
      "ud"
      "var"})
 
-(defn de-get-stopwords
+(defn de-get-stopwords-ranks
   "Returns German stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
@@ -738,8 +743,8 @@
      "zum"
      "zur"})
 
-(defn en-get-stopwords
-  "Returns English stopword set.
+(defn en-get-stopwords-ranks-short
+  "Returns English stopword set (shorter list).
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "a"
@@ -917,8 +922,8 @@
      "yourselves"
      "you've"})
 
-(defn en-get-stopwords*
-  "Returns English stopword set (alternative longer list).
+(defn en-get-stopwords-ranks-long
+  "Returns English stopword set (longer list).
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "a"
@@ -1466,8 +1471,8 @@
      "you've"
      "zero"})
 
-(defn en-get-stopwords**
-  "Returns English stopword (alternative very long list).
+(defn en-get-stopwords-ranks-vlong
+  "Returns English stopword (very long list).
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
   #{ "a"
@@ -2138,7 +2143,7 @@
      "z"
      "zero"})
 
-(defn es-get-stopwords
+(defn es-get-stopwords-ranks
   "Returns Spanish stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
@@ -2321,7 +2326,7 @@
      "voy"
      "yo"})
 
-(defn fi-get-stopwords
+(defn fi-get-stopwords-ranks
   "Returns Finish stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
@@ -3073,7 +3078,7 @@
      "ylös"
      "ympäri"})
 
-(defn fr-get-stopwords
+(defn fr-get-stopwords-ranks
   "Returns French stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
@@ -3204,7 +3209,7 @@
      "vous"
      "vu"})
 
-(defn hu-get-stopwords
+(defn hu-get-stopwords-ranks
   "Returns Hungarian stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
@@ -3244,7 +3249,7 @@
      "vissza"
      "volt"})
 
-(defn it-get-stopwords
+(defn it-get-stopwords-ranks
   "Returns Italian stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
@@ -3383,7 +3388,7 @@
      "volte"
      "vostro"})
 
-(defn nl-get-stopwords
+(defn nl-get-stopwords-ranks
   "Returns Dutch stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
@@ -3436,7 +3441,7 @@
      "zo"
      "zou"})
 
-(defn no-get-stopwords
+(defn no-get-stopwords-ranks
   "Returns Norwegian stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
@@ -3560,7 +3565,7 @@
      "vöre"
      "vört"})
 
-(defn pl-get-stopwords
+(defn pl-get-stopwords-ranks
   "Returns Polish stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
@@ -3703,7 +3708,7 @@
      "zawsze"
      "że"})
 
-(defn pl-get-stopwords-wiki
+(defn pl-get-stopwords-wiki-long
  "Return Polish stopword set.
   Taken from http://pl.wikipedia.org/wiki/Wikipedia:Stopwords."
   []
@@ -3984,7 +3989,7 @@
      "znowu"
      "został"})
 
-(defn pl-get-stopwords-wiki*
+(defn pl-get-stopwords-wiki-short
  "Return Polish stopword set.
   Taken from http://pl.wikipedia.org/wiki/Wikipedia:Stopwords.
   Extended with polysemous words _bez_ i _go_."
@@ -4268,7 +4273,7 @@
      "znowu"
      "został"})
 
-(defn pt-get-stopwords
+(defn pt-get-stopwords-ranks
   "Returns Portuguese stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
@@ -4420,7 +4425,7 @@
      "verdadeiro"
      "você"})
 
-(defn ru-get-stopwords
+(defn ru-get-stopwords-ranks
   "Returns Russian stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
@@ -4846,7 +4851,7 @@
      "эту"
      "я"})
 
-(defn sv-get-stopwords
+(defn sv-get-stopwords-ranks
   "Returns Swedish stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
@@ -5237,7 +5242,7 @@
      "vilket"
      "vill"})
 
-(defn tr-get-stopwords
+(defn tr-get-stopwords-ranks
   "Returns Turkish stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
   []
@@ -5356,3 +5361,98 @@
      "þundan"
      "þunu"})
 
+(defn bg-get-stopwords-clef
+  "Returns Bulgarian stopword set.
+  Taken from http://members.unine.ch/jacques.savoy/clef/"
+  []
+  (into #{} (Bulgarian/get)))
+
+(defn cz-get-stopwords-clef
+  "Returns Czech stopword set.
+  Taken from http://members.unine.ch/jacques.savoy/clef/"
+  []
+  (into #{} (Czech/get)))
+
+(defn en-get-stopwords-clef
+  "Returns English stopword set.
+  Taken from http://members.unine.ch/jacques.savoy/clef/"
+  []
+  (into #{} (English/get)))
+
+(defn fr-get-stopwords-clef
+  "Returns French stopword set.
+    Taken from http://members.unine.ch/jacques.savoy/clef/"
+  []
+  (into #{} (French/get)))
+
+(defn de-get-stopwords-clef
+  "Returns German stopword set.
+   Taken from http://members.unine.ch/jacques.savoy/clef/"
+  []
+  (into #{} (German/get)))
+
+(defn hu-get-stopwords-clef
+  "Returns Hungarian stopword set.
+   Taken from http://members.unine.ch/jacques.savoy/clef/"
+  []
+  (into #{} (Hungarian/get)))
+
+(defn it-get-stopwords-clef
+  "Returns Italian stopword set.
+   Taken from http://members.unine.ch/jacques.savoy/clef/"
+  []
+  (into #{} (Italian/get)))
+
+(defn pl-get-stopwords-short-clef
+  "Returns Polish stopword set (shorter version).
+   Taken from http://members.unine.ch/jacques.savoy/clef/"
+  []
+  (into #{} (PolishLong/get)))
+
+(defn pl-get-stopwords-long-clef
+  "Returns Polish stopword set (longer version).
+   Taken from http://members.unine.ch/jacques.savoy/clef/"
+  []
+  (into #{} (PolishLong/get)))
+
+(defn pt-get-stopwords-short-clef
+  "Returns Portuguese stopword set (shorter version).
+   Taken from http://members.unine.ch/jacques.savoy/clef/"
+  []
+  (into #{} (PortugueseShort/get)))
+
+(defn pt-get-stopwords-long-clef
+  "Returns Portuguese stopword set (longer version).
+   Taken from http://members.unine.ch/jacques.savoy/clef/"
+  []
+  (into #{} (PortugueseLong/get)))
+
+(defn ro-get-stopwords-clef
+  "Returns Roumanian stopword set.
+   Taken from http://members.unine.ch/jacques.savoy/clef/"
+  []
+  (into #{} (Roumanian/get)))
+
+(defn ru-get-stopwords-clef
+  "Returns Russian stopword set.
+   Taken from http://members.unine.ch/jacques.savoy/clef/"
+  []
+  (into #{} (Russian/get)))
+
+(defn es-get-stopwords-short-clef
+  "Returns Spanish stopword set (shorter version).
+   Taken from http://members.unine.ch/jacques.savoy/clef/"
+  []
+  (into #{} (SpanishShort/get)))
+
+(defn es-get-stopwords-long-clef
+  "Returns Spanish stopword set (longer version).
+   Taken from http://members.unine.ch/jacques.savoy/clef/"
+  []
+  (into #{} (SpanishLong/get)))
+
+(defn sv-get-stopwords-clef
+  "Returns Swedish stopword set.
+   Taken from http://members.unine.ch/jacques.savoy/clef/"
+  []
+  (into #{} (Swedish/get)))
