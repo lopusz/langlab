@@ -60,7 +60,7 @@
     [hunspell-stemmer "0.2.0"]
 
     ;; Additional language tools
-    [clef-tools "0.1.0"]
+    [clef-tools "0.2.0"]
     ]
 
   ; SOURCE DIRECTORY RECONFIGURATION
