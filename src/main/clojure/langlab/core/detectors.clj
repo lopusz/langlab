@@ -2,8 +2,7 @@
   "Module contains language and encoding detection utilities.
 
    Language is represented with two-letter strings containing
-   ISO 639-1 codes.
-   (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+   ISO 639-1 codes, see http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes.
 
    Unfortunately, there is no standard for encoding string
    representation."
