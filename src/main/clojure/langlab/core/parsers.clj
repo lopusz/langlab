@@ -1,15 +1,13 @@
 (ns langlab.core.parsers
   "Module contains tools for parsing text into sentences and words."
   (:import
-     [ org.apache.lucene.util Version]
      [ org.apache.lucene.analysis.core SimpleAnalyzer]
      [ langlab.jcore.parsers
              BreakIteratorWrapper ICUBreakIteratorWrapper LuceneTools])
   (:require [ clojure.string :refer (trim split) ]
             [ opennlp.nlp :refer (make-tokenizer make-sentence-detector) ]
             [ langlab.core.transformers
-                :refer (trans-drop-whitespace) ]
-            ))
+                :refer (trans-drop-whitespace) ]))
 
 (defn split*
   "Splits `s` on regexp `re`, but as opposed to `string/split` keeps the
@@ -108,7 +106,7 @@
    Splitter based on Simple Analyzer from Lucene."
   [ ^String s ]
   (LuceneTools/splitTokensWithAnalyzer
-     (new SimpleAnalyzer Version/LUCENE_43) s))
+     (new SimpleAnalyzer) s))
 
 ;; ONLP BASED SPLITTER FACTORIES
 

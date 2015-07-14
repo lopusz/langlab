@@ -37,8 +37,8 @@
     [org.apache.tika/tika-core "1.5"]
 
     ;; stemmers family + useful analysis utilities
-    [org.apache.lucene/lucene-analyzers-common "4.7.0"]
-    [org.apache.lucene/lucene-analyzers-stempel "4.7.0"]
+    [org.apache.lucene/lucene-analyzers-common "5.2.1"]
+    [org.apache.lucene/lucene-analyzers-stempel "5.2.1"]
 
     ;; Polish multistemmers
     [org.carrot2/morfologik-stemming "1.9.0"]
@@ -55,6 +55,9 @@
 
     ;; OpenNLP Clojure wrappers
     [clojure-opennlp "0.3.2"]
+
+    ;; Hunspell stemmer of Lucene
+    [hunspell-stemmer "0.2.0"]
     ]
 
   ; SOURCE DIRECTORY RECONFIGURATION

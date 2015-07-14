@@ -1,13 +1,11 @@
 (ns  langlab.core.multi-stemmers
   "Module contains stemming algorithms returning multiple results."
-  (:require [ clojure.java.io :refer (resource input-stream)])
-  (:import 
-    [java.lang CharSequence]
-    [morfologik.stemming WordData]
-    [morfologik.stemming PolishStemmer]
-    [org.apache.lucene.util Version]
-    [org.apache.lucene.analysis.hunspell 
-     HunspellDictionary HunspellStemmer HunspellStemmer$Stem ]))
+  (:require [ clojure.java.io :as io])
+  (:import
+      [java.lang CharSequence]
+      [morfologik.stemming WordData]
+      [morfologik.stemming PolishStemmer]
+      [hunspell_stemmer Dictionary Stemmer]))
 
 (set! *warn-on-reflection* true)
 
@@ -16,36 +14,35 @@
   [ ^String word ]
   (let [
         stemmer (new PolishStemmer)
-        conv-to-string 
+        conv-to-string
           (fn [ ^WordData w ]
             (. (. w getStem) toString))
-        stems (map 
+        stems (map
                conv-to-string
                (. stemmer lookup word))
        ]
     stems))
 
-(defn read-hunspell-dict 
-  "Reads the affix file `aff-fname` and the dictionary `dict-fname` and
-   makes `HunspellDictionary` necessary for hunspell stemmer."
+(defn ^:private ^Dictionary read-hunspell-dict
   [aff-fname dic-fname]
-  (with-open 
+  (with-open
       [
-         as (input-stream aff-fname)
-         ds (input-stream dic-fname)
+         as (io/input-stream aff-fname)
+         ds (io/input-stream dic-fname)
       ]
-    (HunspellDictionary. as ds Version/LUCENE_43)))
+    (Dictionary. as ds)))
 
-(defn multi-stem-hunspell 
-  "Given the dictionary `d`, stems the `word`. 
-   Language depends on provided dictionary `d`, which is created using 
-   `read-hunspell-dict`."
-  [^HunspellDictionary d  ^String word]
+(defn make-multi-stem-hunspell [aff-fname dic-fname ]
   (let [
-        stemmer (HunspellStemmer. d)
-        conv-stem-to-string  #(. ^HunspellStemmer$Stem % getStemString)
-       ]
-    (distinct 
-      (map  
-        conv-stem-to-string
-        (.stem stemmer word)))))
+        as (io/input-stream aff-fname)
+        ds (io/input-stream dic-fname)
+        d ^Dictionary (Dictionary. as ds)
+    ]
+    (fn [^String word]
+      (let [
+            stemmer (Stemmer. d)
+            stem-list (.stem stemmer word)
+            ]
+        (if (= 0 (.size stem-list))
+          word
+          (map #(.toString %) stem-list))))))
