@@ -231,6 +231,7 @@
   "Returns default Turkish stopword set used by Lucene."
   []
   (conv-char-array-set-to-str-set (TurkishAnalyzer/getDefaultStopSet)))
+
 (defn ca-get-stopwords-ranks
   "Returns Catalan stopword set.
    Taken from http://www.ranks.nl/resources/stopwords.html."
