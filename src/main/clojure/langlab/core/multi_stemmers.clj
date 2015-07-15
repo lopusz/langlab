@@ -33,53 +33,68 @@
       ]
     (Dictionary. as ds)))
 
-(defn make-multi-stem-hunspell [aff-fname dic-fname ]
-  (let [
-        as (io/input-stream aff-fname)
-        ds (io/input-stream dic-fname)
-        d ^Dictionary (Dictionary. as ds)
-    ]
-    (fn [^String word]
-      (let [
-            stemmer (Stemmer. d)
-            stem-list (.uniqueStems stemmer word (.length word))
-            conv-f
-              (fn [ ^CharsRef cf]
-                (.toString cf))
-            ]
-        (if (= 0 (.size stem-list))
-          word
-          (map conv-f stem-list))))))
+(defn ^:private input-stream? [o]
+  (instance? java.io.InputStream o))
 
-(defn make-multi-stem-hunspell-raw [aff-fname dic-fname ]
+(defn ^:private conv-to-input-stream [x]
+  (if (input-stream? x)
+    x
+    (io/input-stream x)))
+
+(defn make-multi-stem-hunspell-raw
+  "Creates Hunspell stemming function based on dictionaries read from
+   `aff-fname-or-stream` `dic-fname-or-stream`. Each parameter can be
+   either file name or stream. It returns a stemming function with
+   signature String -> String.
+
+   **Note.** Since the hunspell is a dictionary stemmer, the created function
+   returns empty collection, if it encounters unknown term. Complementary
+   fucntion `make-multi-stem-hunspell` returns the original word in this case."
+  [aff-fname-or-stream dic-fname-or-stream]
   (let [
-        as (io/input-stream aff-fname)
-        ds (io/input-stream dic-fname)
+        as (conv-to-input-stream aff-fname-or-stream)
+        ds (conv-to-input-stream dic-fname-or-stream)
         d ^Dictionary (Dictionary. as ds)
         ]
     (fn [^String word]
       (let [
             stemmer (Stemmer. d)
-            stem-list (.uniqueStems stemmer word (.length word))
+            word-array (.toCharArray word)
+            stem-list (.uniqueStems stemmer word-array (.length word))
             conv-f
             (fn [ ^CharsRef cf]
               (.toString cf))
             ]
-        (if (= 0 (.size stem-list))
-          word
-          (map conv-f stem-list))))))
+          (map conv-f stem-list)))))
 
-(defn select-shortest-word [ words ]
-  (if (empty? words)
-    nil
+(defn ^:private conv-empty-to-arg [ f ]
+  (fn [ word ]
     (let [
-           len-f
-             (fn [ ^String s ]
-               (.length s))
-      ]
-      (apply (partial min-key len-f) words))))
+          res (f word)
+          ]
+      (if (empty? res)
+        word
+        res))))
 
-(defn select-longest-word [ words ]
+(defn make-multi-stem-hunspell
+  "Creates Hunspell stemming function based on dictionaries stored in
+   `aff-fname` and `dic-fname`. Each parameter can be either file name or
+   stream. It returns a stemming function with signature String -> String.
+
+  **Note.** Since the hunspell is a dictionary stemmer, the created function
+  returns original word, if it encounters unknown term. Complementary function
+  `make-multi-stem-hunspell-raw` returns empty collection in this case"
+
+  [aff-fname-or-stream dic-fname-or-stream ]
+  (conv-empty-to-arg
+    (make-multi-stem-hunspell-raw aff-fname-or-stream dic-fname-or-stream)))
+
+(defn select-longest-word
+  "Selects the longest string out of `words`.
+
+   Can be used to select one of the multiple stems and hence convert
+   multi-stemmer to stemmer."
+  [ words ]
   (if (empty? words)
     nil
     (let [
@@ -89,8 +104,28 @@
           ]
       (apply (partial max-key) len-f words))))
 
+(defn select-shortest-word
+  "Selects the shortest string out of `words`.
 
-(defn merge-multiple-words [words sep]
+   Can be used to select one of the multiple stems and hence convert
+   multi-stemmer to stemmer."
+  [ words ]
+  (if (empty? words)
+    nil
+    (let [
+          len-f
+          (fn [ ^String s ]
+            (.length s))
+          ]
+      (apply (partial min-key) len-f words))))
+
+(defn merge-multiple-words
+  "Sorts `words` and merges them into one string with a separator `sep` in
+   between.
+
+   Can be used to merge multiple stems into one word and hence convert
+   multi-stemmer to stemmer."
+  [words sep]
   (if (empty? words)
     nil
     (->>
