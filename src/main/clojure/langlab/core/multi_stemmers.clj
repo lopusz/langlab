@@ -49,7 +49,7 @@
 
    **Note.** Since the hunspell is a dictionary stemmer, the created function
    returns empty collection, if it encounters unknown term. Complementary
-   fucntion `make-multi-stem-hunspell` returns the original word in this case."
+   function `make-multi-stem-hunspell` returns the original word in this case."
   [aff-fname-or-stream dic-fname-or-stream]
   (let [
         as (conv-to-input-stream aff-fname-or-stream)

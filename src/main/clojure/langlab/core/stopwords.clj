@@ -5429,7 +5429,7 @@
   (into #{} (PortugueseLong/get)))
 
 (defn ro-get-stopwords-clef
-  "Returns Roumanian stopword set.
+  "Returns Romanian stopword set.
    Taken from http://members.unine.ch/jacques.savoy/clef/"
   []
   (into #{} (Roumanian/get)))

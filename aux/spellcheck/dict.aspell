@@ -19,6 +19,7 @@ Pd
 Pe
 Piao
 Pohlmann
+PolishLight
 Ps
 Refactor
 UTF
@@ -109,6 +110,7 @@ plugin
 punct
 ro
 ru
+sep
 simmetrics
 spprint
 stemmer
@@ -126,6 +128,7 @@ tol
 trunc
 unichardet
 uniq
+vlong
 whitespace
 wiki
 winkler

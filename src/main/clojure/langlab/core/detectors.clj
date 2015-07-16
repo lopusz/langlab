@@ -73,7 +73,7 @@
 
    Optional `env` parameter can contain the following optional keys:
 
-   - `:alpha`   - alpha smootihing parameter of the Cybozu algorithm
+   - `:alpha`   - alpha smoothing parameter of the Cybozu algorithm
      (default 0.5),
    - `:max-len` - maximum length of `s` to be taken for lang detection.
 
