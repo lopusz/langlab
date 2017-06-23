@@ -27,18 +27,20 @@
     [org.clojure/math.numeric-tower "0.0.4"]
 
     ;; Runtime assertions
-    [pjstadig/assertions "0.1.0"]
+    [pjstadig/assertions "0.2.0"]
 
     ;; ICU - various tools used in parsers, lang+encoding detectors
-    [com.ibm.icu/icu4j "53.1"]
+    [com.ibm.icu/icu4j "59.1"]
 
     ;; language detectors
     [com.cybozu.labs/langdetect "1.1-20120112"]
-    [org.apache.tika/tika-core "1.5"]
+    [org.apache.tika/tika-core "1.15"]
 
     ;; stemmers family + useful analysis utilities
-    [org.apache.lucene/lucene-analyzers-common "5.2.1"]
-    [org.apache.lucene/lucene-analyzers-stempel "5.2.1"]
+    [org.apache.lucene/lucene-analyzers-common "6.6.0"]
+    [org.apache.lucene/lucene-analyzers-stempel "6.6.0"]
+    [org.apache.lucene/lucene-kuromoji "3.6.2"
+     :exclusions [org.apache.lucene/lucene-analyzers]]
 
     ;; Polish multistemmers
     [org.carrot2/morfologik-stemming "1.9.0"]
@@ -51,10 +53,10 @@
     [com.googlecode.juniversalchardet/juniversalchardet "1.0.3"]
 
     ;; fuzzy string similarity
-    [org.apache.commons/commons-lang3 "3.3.2"]
+    [org.apache.commons/commons-lang3 "3.6"]
 
     ;; OpenNLP Clojure wrappers
-    [clojure-opennlp "0.3.2"]
+    [clojure-opennlp "0.4.0"]
 
     ;; Hunspell stemmer of Lucene
     [hunspell-stemmer "0.3.0"]
